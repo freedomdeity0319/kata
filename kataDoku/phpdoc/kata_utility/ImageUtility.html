@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class ImageUtility</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> ImageUtility</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+											<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">routines to resize images and handle downloads</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> mnt@codeninja.de</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_kata---lib---utilities---imageutility.php.html">/kata/lib/utilities/imageutility.php</a> (line <span class="field">21</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-const-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constant Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Constants</span> (<a href="#sec-consts">details</a>)
+												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="const-summary">
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#IMGERR_TOOBIG" title="details" class="const-name">IMGERR_TOOBIG</a> = 					<span class="var-type"> 1</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#IMGERR_TOOSMALL" title="details" class="const-name">IMGERR_TOOSMALL</a> = 					<span class="var-type"> 2</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#IMGERR_UNKNOWNFORMAT" title="details" class="const-name">IMGERR_UNKNOWNFORMAT</a> = 					<span class="var-type"> 4</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#UPL_EXTENSION" title="details" class="const-name">UPL_EXTENSION</a> = 					<span class="var-type"> 3</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#UPL_INTERNAL" title="details" class="const-name">UPL_INTERNAL</a> = 					<span class="var-type"> 2</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#UPL_TOOBIG" title="details" class="const-name">UPL_TOOBIG</a> = 					<span class="var-type"> 1</span>
+
+				</div>
+							</div>
+		</div>
+	</div>
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																<div class="var-title">
+					<img src="../media/images/Variable.png" alt=" " />
+					<span class="var-type">black</span>
+					<a href="#$blackSkin" title="details" class="var-name">$blackSkin</a>
+				</div>
+																<div class="var-title">
+					<img src="../media/images/Variable.png" alt=" " />
+					<span class="var-type">white</span>
+					<a href="#$whiteSkin" title="details" class="var-name">$whiteSkin</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">float</span>
+										<a href="#getNudity" title="details" class="method-name">getNudity</a>
+											(<span class="var-type">resource</span>&nbsp;<span class="var-name">$img</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#isImageInvalid" title="details" class="method-name">isImageInvalid</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$maxwidth</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$maxheight</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$minwidth</span> = <span class="var-default">1</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$minheight</span> = <span class="var-default">1</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">5</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#makeThumbnail" title="details" class="method-name">makeThumbnail</a>
+											(<span class="var-type">image</span>&nbsp;<span class="var-name">$image</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$height</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#makeThumbnailProportional" title="details" class="method-name">makeThumbnailProportional</a>
+											(<span class="var-type">image</span>&nbsp;<span class="var-name">$image</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$max_x</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$max_y</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">image</span>
+										<a href="#read" title="details" class="method-name">read</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#setQuality" title="details" class="method-name">setQuality</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$quality</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">mixed</span>
+										<a href="#simpleUploadError" title="details" class="method-name">simpleUploadError</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$fieldname</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#write" title="details" class="method-name">write</a>
+											(<span class="var-type">image</span>&nbsp;<span class="var-name">$img</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+												<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$blackSkin" id="$blackSkin"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">black</span>
+			<span class="var-name">$blackSkin</span>
+			 = <span class="var-default"> 0xFEC5BF</span>			(line <span class="line-number">221</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">var:</span> skin color tone</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$whiteSkin" id="$whiteSkin"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">white</span>
+			<span class="var-name">$whiteSkin</span>
+			 = <span class="var-default"> 0x793B24</span>			(line <span class="line-number">217</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">var:</span> skin color tone</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodgetNudity" id="getNudity"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getNudity</span> (line <span class="line-number">230</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">try to classify how likely the picture contains nudity.</p>
+<p class="description"><p>warning: O(scary) (read: can take several seconds depending for big pictures)</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> 0=no nudity 100=full frontal nudity ^^</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">float</span>
+		<span class="method-name">
+			getNudity
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$img</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$img</span><span class="var-description">: image-resource of the picture to classify</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodisImageInvalid" id="isImageInvalid"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">isImageInvalid</span> (line <span class="line-number">155</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">does the image conform to given parameters?</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			isImageInvalid
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$maxwidth</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$maxheight</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$minwidth</span> = <span class="var-default">1</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$minheight</span> = <span class="var-default">1</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">5</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span><span class="var-description">: ...</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$maxwidth</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$maxheight</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">5</span><span class="var-description">: IMGERR_ codes</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$minwidth</span><span class="var-description">: minwidth</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$minheight</span><span class="var-description">: minheight</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodmakeThumbnail" id="makeThumbnail"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">makeThumbnail</span> (line <span class="line-number">97</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">simply create a thumbnail, dont make it proportional</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			makeThumbnail
+		</span>
+					(<span class="var-type">image</span>&nbsp;<span class="var-name">$image</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$width</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$height</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">image</span>
+				<span class="var-name">$image</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$width</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$height</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodmakeThumbnailProportional" id="makeThumbnailProportional"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">makeThumbnailProportional</span> (line <span class="line-number">110</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">enshure picture fits proportionally into the destionation size. this</p>
+<p class="description"><p>could possibly result in the picture being cropped</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			makeThumbnailProportional
+		</span>
+					(<span class="var-type">image</span>&nbsp;<span class="var-name">$image</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$max_x</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$max_y</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">image</span>
+				<span class="var-name">$image</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$max_x</span><span class="var-description">: target width</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$max_y</span><span class="var-description">: target height</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodread" id="read"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">read</span> (line <span class="line-number">38</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">read a gif,jpg,png from disk and return image</p>
+	
+	<div class="method-signature">
+		<span class="method-result">image</span>
+		<span class="method-name">
+			read
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetQuality" id="setQuality"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">setQuality</span> (line <span class="line-number">86</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">set image write quality. 0-100, regardless of imagetype</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setQuality
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$quality</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$quality</span><span class="var-description">: 0=worst 100=best</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsimpleUploadError" id="simpleUploadError"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">simpleUploadError</span> (line <span class="line-number">183</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">reduce several upload-errors to 3 general ones</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true=success, false=no file given, UPLOAD_ERR_</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			simpleUploadError
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$fieldname</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fieldname</span><span class="var-description">: name=&quot;&quot; of the upload-input-element</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodwrite" id="write"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">write</span> (line <span class="line-number">66</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">write the given image to disk</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			write
+		</span>
+					(<span class="var-type">image</span>&nbsp;<span class="var-name">$img</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">image</span>
+				<span class="var-name">$img</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$type</span><span class="var-description">: imagetype, IMAGETYPE_GIF usw.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	<a name="sec-consts"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Constants</a> (<span class="disabled">details</span>)
+						
+			
+												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+														| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="constIMGERR_TOOBIG" id="IMGERR_TOOBIG"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">IMGERR_TOOBIG</span>
+			 = <span class="const-default"> 1</span>
+			(line <span class="line-number">23</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constIMGERR_TOOSMALL" id="IMGERR_TOOSMALL"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">IMGERR_TOOSMALL</span>
+			 = <span class="const-default"> 2</span>
+			(line <span class="line-number">24</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constIMGERR_UNKNOWNFORMAT" id="IMGERR_UNKNOWNFORMAT"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">IMGERR_UNKNOWNFORMAT</span>
+			 = <span class="const-default"> 4</span>
+			(line <span class="line-number">25</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constUPL_EXTENSION" id="UPL_EXTENSION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">UPL_EXTENSION</span>
+			 = <span class="const-default"> 3</span>
+			(line <span class="line-number">29</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constUPL_INTERNAL" id="UPL_INTERNAL"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">UPL_INTERNAL</span>
+			 = <span class="const-default"> 2</span>
+			(line <span class="line-number">28</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constUPL_TOOBIG" id="UPL_TOOBIG"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">UPL_TOOBIG</span>
+			 = <span class="const-default"> 1</span>
+			(line <span class="line-number">27</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+						
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 23 Sep 2010 16:25:54 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.1</a>
+	</p>
+	</div></body>
+</html>

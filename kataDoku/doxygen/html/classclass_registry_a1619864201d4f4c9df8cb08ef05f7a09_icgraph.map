@@ -1,0 +1,23 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_controller.html#a7410c4efc1f02fa2b3c8b8a48c8ec3d8" title="Controller::_constructComponents" alt="" coords="219,55,437,83"/>
+<area shape="rect" id="node9" href="$class_view.html#a761cee5405fb54e0a7e1f25c3a2b8415" title="View::constructHelpers" alt="" coords="251,182,405,210"/>
+<area shape="rect" id="node20" href="$class_helper.html#aec2035bb23c0b52d3956b4df3bcc6c43" title="Helper::getHelper" alt="" coords="268,233,388,261"/>
+<area shape="rect" id="node22" href="$class_model.html#ae4ad496968b2957ec568e824e8f636fb" title="Model::setupDbo" alt="" coords="268,309,388,337"/>
+<area shape="rect" id="node5" href="$class_controller.html#a8833f69e3aeb2c5e6f02f8f18b432d92" title="Controller::_constructClasses" alt="" coords="485,5,677,33"/>
+<area shape="rect" id="node7" href="$class_controller.html#aa58723d565c02e5128342db3227659b0" title="Controller::addComponent" alt="" coords="496,55,667,83"/>
+<area shape="rect" id="node11" href="$class_view.html#afca11b004dfd8089a45a9ce4c116ea8b" title="View::render" alt="" coords="755,157,848,185"/>
+<area shape="rect" id="node13" href="$class_smarty_view.html#a18a4b0a93909a49b678715fe8d2e8ee8" title="SmartyView::render" alt="" coords="513,157,649,185"/>
+<area shape="rect" id="node15" href="$class_view.html#a4439d78a19960167ec67de91b86e2704" title="View::renderLayout" alt="" coords="516,207,647,235"/>
+<area shape="rect" id="node18" href="$class_smarty_view.html#a72008287f32a08bfce15d20b7588f17e" title="SmartyView::renderLayout" alt="" coords="495,258,668,286"/>
+<area shape="rect" id="node24" href="$class_model.html#a8c2d5caf005161a4b6928914229aabfc" title="Model::changeConnection" alt="" coords="496,309,667,337"/>
+<area shape="rect" id="node26" href="$class_model.html#a3d6598eab43e9d79525ceee3c5103edc" title="Model::dbo" alt="" coords="539,359,624,387"/>
+<area shape="rect" id="node28" href="$class_model.html#ad50a61cc9500c68907f23d68daee6dfd" title="Model::escape" alt="" coords="748,359,855,387"/>
+<area shape="rect" id="node34" href="$class_model.html#a8ebd20a84ad992dff5621c24b9a342d8" title="Model::getPrefix" alt="" coords="744,309,859,337"/>
+<area shape="rect" id="node38" href="$class_model.html#a20a78c2526737da4653da2de47a8d04f" title="Model::makeDateTime" alt="" coords="725,410,877,438"/>
+<area shape="rect" id="node40" href="$class_model.html#a5ec535675d29f74b1020aa9a895ca11c" title="Model::query" alt="" coords="753,461,849,489"/>
+<area shape="rect" id="node44" href="$class_model.html#a5d9919f58e4ce755aebb52fc53d5f76c" title="Model::quoteName" alt="" coords="736,258,867,286"/>
+<area shape="rect" id="node30" href="$class_model.html#a257876be5bf9db75d96451b43fdc016a" title="Model::quote" alt="" coords="952,359,1048,387"/>
+<area shape="rect" id="node32" href="$class_model.html#a11e31c1446243b22ebec40168f23f13b" title="Model::pairs" alt="" coords="1124,309,1215,337"/>
+<area shape="rect" id="node36" href="$class_model.html#ac308b470fe9a7acd0b13754ac13e0160" title="Model::getTableName" alt="" coords="927,309,1073,337"/>
+<area shape="rect" id="node42" href="$class_model.html#af0d5536c1011705e3b2704a6ee837e75" title="Model::cachedQuery" alt="" coords="929,461,1071,489"/>
+</map>

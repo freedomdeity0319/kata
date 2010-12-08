@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_extcache_utility.html#a64b3792d355215b211e7f34c7d62d09f" title="ExtcacheUtility::compareAndSwap" alt="" coords="201,5,423,33"/>
+<area shape="rect" id="node5" href="$class_extcache_utility.html#a7ec7891d35ae3240630042ab5bd2235f" title="ExtcacheUtility::decrement" alt="" coords="223,55,401,83"/>
+<area shape="rect" id="node7" href="$class_extcache_utility.html#a61791055bf11bce45bc405921e9c6baf" title="ExtcacheUtility::getMulti" alt="" coords="231,106,393,134"/>
+<area shape="rect" id="node9" href="$class_extcache_utility.html#a84523de5bd9a873102a7dcb57fcc425e" title="ExtcacheUtility::increment" alt="" coords="225,157,399,185"/>
+</map>

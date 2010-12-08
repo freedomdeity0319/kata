@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class HtmlHelper</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> HtmlHelper</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">the default html-helper, available in each view.</p>
+<p class="description"><p>modify this helper, or build your own one.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> mnt@codeninja.de</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_kata---lib---views---helpers---html.php.html">/kata/lib/views/helpers/html.php</a> (line <span class="field">15</span>)
+		</p>
+		
+				
+		<pre><a href="../kata_helper/Helper.html">Helper</a>
+   |
+   --HtmlHelper</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																								<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#compressCss" title="details" class="method-name">compressCss</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$css</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#cssTag" title="details" class="method-name">cssTag</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$files</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$cacheAndMinify</span> = <span class="var-default">false</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$rtl</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#escape" title="details" class="method-name">escape</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$s</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$singleQuotes</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#filterCss" title="details" class="method-name">filterCss</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$css</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$rtl</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#image" title="details" class="method-name">image</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$htmlAttributes</span> = <span class="var-default">array ()</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#javascriptTag" title="details" class="method-name">javascriptTag</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$files</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$cacheAndMinify</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#link" title="details" class="method-name">link</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$title</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$htmlAttributes</span> = <span class="var-default">array ()</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$confirmMessage</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$escapeTitle</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#selectTag" title="details" class="method-name">selectTag</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$fieldName</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$optionElements</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$selected</span> = <span class="var-default">null</span>], [<span class="var-type">array</span>&nbsp;<span class="var-name">$selectAttr</span> = <span class="var-default">array ()</span>], [<span class="var-type">array</span>&nbsp;<span class="var-name">$optionAttr</span> = <span class="var-default">array ()</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$showEmpty</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#tokenUrl" title="details" class="method-name">tokenUrl</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../kata_helper/Helper.html">Helper</a></span></p>
+					<blockquote>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_helper/Helper.html#var$action">Helper::$action</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_helper/Helper.html#var$base">Helper::$base</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_helper/Helper.html#var$basePath">Helper::$basePath</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_helper/Helper.html#var$params">Helper::$params</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_helper/Helper.html#var$tags">Helper::$tags</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_helper/Helper.html#var$vars">Helper::$vars</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_helper/Helper.html#var$webroot">Helper::$webroot</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodcompressCss" id="compressCss"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">compressCss</span> (line <span class="line-number">263</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">compress given css-string</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the compressed css</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			compressCss
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$css</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$css</span><span class="var-description">: styles to compress</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcssTag" id="cssTag"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">cssTag</span> (line <span class="line-number">226</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">return css-tags for all given files.</p>
+<p class="description"><p>if DEBUG&lt;=0 all files are joined into a single one and are sent compressed to the browser,  otherweise individual link-tags are generated</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> css-tag(s)</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			cssTag
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$files</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$cacheAndMinify</span> = <span class="var-default">false</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$rtl</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$files</span><span class="var-description">: filename of css to include, relative to webroot/css/</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$rtl</span><span class="var-description">: if we should include rtl-styles instead of ltr</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$cacheAndMinify</span><span class="var-description">: if we should join+compress+cache given target</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodescape" id="escape"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">escape</span> (line <span class="line-number">108</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">escape string stuitable for javascript output. can also be used to  escape raw php code you want to output (for include or eval) but NOT  to escape HTML for XSS-protection!</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			escape
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$s</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$singleQuotes</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$s</span><span class="var-description">: string to escape</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$singleQuotes</span><span class="var-description">: if single quotes should be escaped (true) or double-quotes (false)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfilterCss" id="filterCss"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">filterCss</span> (line <span class="line-number">268</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			filterCss
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$css</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$rtl</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$css</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$rtl</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodimage" id="image"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">image</span> (line <span class="line-number">49</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">builds a complete link to an image. if relative it is assumed the image can be found in &quot;webroot/&quot;</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			image
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$htmlAttributes</span> = <span class="var-default">array ()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$url</span><span class="var-description">: filename of the image (is automatically expanded if relative link)</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$htmlAttributes</span><span class="var-description">: array of attributes of the link, for example &quot;class&quot;=&gt;&quot;dontunderline&quot;</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodjavascriptTag" id="javascriptTag"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">javascriptTag</span> (line <span class="line-number">211</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">return javascript-tags for all given files.</p>
+<p class="description"><p>if DEBUG&lt;=0 all files are joined into a single one and are sent compressed to the browser  otherweise individual javascript-src-tags are generated</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> javascript-tag(s)</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			javascriptTag
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$files</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$cacheAndMinify</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$files</span><span class="var-description">: filename of script to include, relative to webroot/js/</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$cacheAndMinify</span><span class="var-description">: if we should join+compress+cache given target</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlink" id="link"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">link</span> (line <span class="line-number">26</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">build a href link</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			link
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$title</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$htmlAttributes</span> = <span class="var-default">array ()</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$confirmMessage</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$escapeTitle</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$title</span><span class="var-description">: what the link should say</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$htmlAttributes</span><span class="var-description">: array of attributes of the link, for example &quot;class&quot;=&gt;&quot;dontunderline&quot;</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$escapeTitle</span><span class="var-description">: if we should run htmlspecialchars over the links title</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$url</span><span class="var-description">: url where the link should point (is automatically expanded if relative link)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$confirmMessage</span><span class="var-description">: an optional message that asks if you are really shure if you click on the link and aborts navigation if user clicks cancel, ignored if false</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodselectTag" id="selectTag"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">selectTag</span> (line <span class="line-number">68</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">build select/option tags</p>
+<p class="description"><p><samp>$arr = array('blue'=&gt;'Blue color','red'=&gt;'Red color');
+ echo $html-&gt;selectTag('gameinput',$arr,'red');</samp></p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			selectTag
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$fieldName</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$optionElements</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$selected</span> = <span class="var-default">null</span>], [<span class="var-type">array</span>&nbsp;<span class="var-name">$selectAttr</span> = <span class="var-default">array ()</span>], [<span class="var-type">array</span>&nbsp;<span class="var-name">$optionAttr</span> = <span class="var-default">array ()</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$showEmpty</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fieldName</span><span class="var-description">: name-part of the select-tag</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$optionElements</span><span class="var-description">: array with key/value elements (key=option-tags value-part, name=between option tag)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$selected</span><span class="var-description">: keyname of the element to be default selected</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$selectAttr</span><span class="var-description">: array of attributes of the select-tag, for example &quot;class&quot;=&gt;&quot;dontunderline&quot;</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$optionAttr</span><span class="var-description">: array of attributes for each option-tag, for example &quot;class&quot;=&gt;&quot;dontunderline&quot;</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$showEmpty</span><span class="var-description">: if we should display an empty option as the default selection so the user knows (s)he has to select something</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodtokenUrl" id="tokenUrl"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">tokenUrl</span> (line <span class="line-number">237</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">output a url with __token get parameter appended. used for xsrf-detection</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> url with token appended</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			tokenUrl
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$url</span><span class="var-description">: url to add __token to</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../kata_helper/Helper.html#methodtokenUrl">Helper::tokenUrl()</a></dt>
+						<dd>output a url with __token get parameter appended. used for xsrf-detection</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../kata_helper/Helper.html">Helper</a></span></p>
+					<blockquote>
+													<img src="../media/images/Constructor.png" alt=" "/>
+							<span class="method-name"><a href="../kata_helper/Helper.html#method__construct">Helper::__construct()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_helper/Helper.html#methodgetHelper">Helper::getHelper()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_helper/Helper.html#methodparseAttributes">Helper::parseAttributes()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_helper/Helper.html#methodtokenUrl">Helper::tokenUrl()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_helper/Helper.html#methodurl">Helper::url()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_helper/Helper.html#methodurlAbs">Helper::urlAbs()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_helper/Helper.html#methodurlRel">Helper::urlRel()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_helper/Helper.html#methodurlWebroot">Helper::urlWebroot()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 23 Sep 2010 16:25:54 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.1</a>
+	</p>
+	</div></body>
+</html>
