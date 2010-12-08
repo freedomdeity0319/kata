@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_session_component.html#af8709c9057dd7feba80e4fe6526f4118" title="SessionComponent::delete" alt="" coords="297,5,473,33"/>
+<area shape="rect" id="node5" href="$class_session_component.html#aba17497861b459a395b5cf229d5bdbe7" title="SessionComponent::read" alt="" coords="301,55,469,83"/>
+<area shape="rect" id="node7" href="$class_session_component.html#a2898db45263c765a5a8167eff75d8a38" title="SessionComponent::write" alt="" coords="301,106,469,134"/>
+<area shape="rect" id="node9" href="$class_session_component.html#a8acb361a19ae977f60de94eb8c94a37a" title="SessionComponent::writeArray" alt="" coords="285,157,485,185"/>
+</map>
