@@ -1,0 +1,15 @@
+<area shape="rect" id="node3" href="$class_model.html#5ae35888fbd832eeef7b3793c1715187" title="create" alt="" coords="315,5,371,33">
+<area shape="rect" id="node5" href="$class_model.html#074998e1626a44c7c380c901d71f437d" title="describe" alt="" coords="136,157,205,185">
+<area shape="rect" id="node7" href="$class_model.html#fe17727dd4f641849f47b070f3e9724a" title="escape" alt="" coords="139,208,203,236">
+<area shape="rect" id="node9" href="$class_model.html#628300eb8464467d9344c7c59cc8770b" title="getConfig" alt="" coords="133,259,208,287">
+<area shape="rect" id="node11" href="$class_model.html#bea978f4dcd47c4289232744d3ed2f01" title="getLink" alt="" coords="139,309,203,337">
+<area shape="rect" id="node13" href="$class_model.html#7a333affb97cf092d50f3e59edaa9066" title="getPrefix" alt="" coords="135,360,207,388">
+<area shape="rect" id="node15" href="$class_model.html#ab5a8f5a18c184c66f4f05543c6af5c8" title="getWhereStringHelper" alt="" coords="97,411,244,439">
+<area shape="rect" id="node17" href="$class_model.html#c0e0745bf8d7566f7e22118e559fceba" title="makeDateTime" alt="" coords="117,461,224,489">
+<area shape="rect" id="node19" href="$class_model.html#b8f824a32b3f00dfe99405faa7893836" title="pairs" alt="" coords="147,56,195,84">
+<area shape="rect" id="node25" href="$class_model.html#bad8bfcc130c60a011eabc55fb4b46b8" title="query" alt="" coords="144,107,197,135">
+<area shape="rect" id="node21" href="$class_model.html#15261e56a8e5782705c8d672eeb1e146" title="replace" alt="" coords="311,56,375,84">
+<area shape="rect" id="node23" href="$class_model.html#42ac6cbbb5aace4f8d4adb515189f13e" title="update" alt="" coords="313,107,372,135">
+<area shape="rect" id="node27" href="$class_model.html#197431c3435ac36b3b8d4e8cd91f9e0c" title="cachedQuery" alt="" coords="293,157,392,185">
+<area shape="rect" id="node30" href="$class_model.html#14d9894235bf9a7534ae387f99042564" title="delete" alt="" coords="315,208,371,236">
+<area shape="rect" id="node32" href="$class_model.html#41be0f0d2b22b68d41cf9d51a76f6817" title="read" alt="" coords="320,259,365,287">

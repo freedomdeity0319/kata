@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_model.html#a8ebd20a84ad992dff5621c24b9a342d8" title="Model::getPrefix" alt="" coords="211,5,325,33"/>
+<area shape="rect" id="node11" href="$class_model.html#a5d9919f58e4ce755aebb52fc53d5f76c" title="Model::quoteName" alt="" coords="203,55,333,83"/>
+<area shape="rect" id="node5" href="$class_model.html#a3d6598eab43e9d79525ceee3c5103edc" title="Model::dbo" alt="" coords="381,30,467,58"/>
+<area shape="rect" id="node7" href="$class_model.html#ae4ad496968b2957ec568e824e8f636fb" title="Model::setupDbo" alt="" coords="515,30,635,58"/>
+<area shape="rect" id="node9" href="$classclass_registry.html#a1619864201d4f4c9df8cb08ef05f7a09" title="classRegistry::getObject" alt="" coords="684,30,847,58"/>
+</map>

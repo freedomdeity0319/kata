@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$class_component.html" title="Component" alt="" coords="5,30,93,58"/>
+<area shape="rect" id="node3" href="$classbase_session_component.html" title="baseSessionComponent" alt="" coords="141,5,304,33"/>
+<area shape="rect" id="node7" href="$class_locale_component.html" title="LocaleComponent" alt="" coords="160,55,285,83"/>
+<area shape="rect" id="node5" href="$class_session_component.html" title="SessionComponent" alt="" coords="353,5,487,33"/>
+</map>

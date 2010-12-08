@@ -1,0 +1,108 @@
+################################# 1.2 ##########################################
+
+Changes-------------------------------------------------------------------------
+
+internal:
+  built-in GF_Lib autoloader
+  MINUTE,HOUR-defines now available in core.php
+  CLI define (1 if kata invoked from command line)
+  better css/js caching (see $html->jsTag $html->cssTag)
+  better active record functions
+  fairly good unittest coverage
+  
+controller:
+  redirect() with previous output ie6 kludge fix
+
+dispatcher:
+  XAMPP-workaround for backslashes in basepath
+
+cacheUtility:
+  override auto-selection of caching-method via core.php:CACHE_USEMETHOD
+  
+session:
+  lazy start, now uses the systems session-directory instead of katas
+
+New-----------------------------------------------------------------------------
+
+kataReg - the global configuration registry, see doku
+
+core.php: LANGUAGE_ESCAPE Locale will do htmlentities with double-encode for
+          all strings returnedif true
+
+kataTest: supports phpunit and simpletest, various utility functions
+          to test code/webwise
+
+Deprecated----------------------------------------------------------------------
+
+LANGUAGENOTPRINTF -> dropped, now Locale never uses printf
+
+################################# 1.1 ##########################################
+
+Changes-------------------------------------------------------------------------
+
+Moved all components,utilities and so on that kata has by default to lib folder.
+In the future you only have to update the lib-folder, nothing else.
+
+New-----------------------------------------------------------------------------
+
+internal:
+  gameinstaller-now-broken-tmppath fix, see core.php: //define('TMPPATH')
+  STRICT proof
+  XP Framework proof
+  ZEND proof
+
+clusterlockUtility:
+  locking über mehrere server hinweg
+
+CacheUtility:
+  - autoselects caching-method: memcached,apc,eaccellerator,xcache,filesystem
+  - Now has an internal cache, so queries for the same data are only polled once
+  - Now correctly checks if APC is enabled for cgi/cli
+  - Can now output debugging data
+
+Session-component:
+  - Is able to use sessions via memcache, just set SESSION_STORAGE to
+    'memcached'
+
+html-helper:
+  - $html->javascripTag(array('foo.js'),true)
+    $html->cssTag(array('foo.css'),true)
+    returns the neccessary html. if DEBUG==0 the js/css will be joined,
+    compressed,minified and cached.
+
+core.php:
+  - supports routing: sample:
+    $routes = array('from.php'=>'to/controller','oldcontroller/'=>'newcontroller/');
+  - display code-coverage (which lines of code are actually executed):
+    include (LIB.'boot_coverage.php');
+  - display code-profiling (which code-parts are most costly):
+    include (LIB.'boot_profile.php');
+  - display debug-output in firebug console fi DEBUG==1:
+    include (LIB.'boot_firephp.php');
+
+ImageUtility:
+  - getNudity() returns 0..100 how much skin it detected (black+white)
+
+HttpUtility: (new)
+  - ultra-simple and reliable get/post via Streamwrapper
+    (no more fopen('http://...) or curl)
+
+MinifyUtility: (new)
+  - compress css or javascript, also used by html-helper
+
+Model: full active record support, see documentation of each method
+  - lazy-loads database.php
+  - swap connections at runtime (even between different vendors)
+  - query() and active record functions can deep-resort any resultset because
+    $idnames is now an array. sample:
+    $this->query('SELECT game_id,country,gameblob FROM games',array('game_id','country'))
+    gives:
+    Array(
+       [1] => array(
+           ['de'] => array(
+                  'gameblob' => ...
+           )
+       )
+
+
+

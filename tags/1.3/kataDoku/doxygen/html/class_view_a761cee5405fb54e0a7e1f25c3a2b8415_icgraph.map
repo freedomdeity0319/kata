@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_view.html#afca11b004dfd8089a45a9ce4c116ea8b" title="View::render" alt="" coords="435,26,528,54"/>
+<area shape="rect" id="node5" href="$class_smarty_view.html#a18a4b0a93909a49b678715fe8d2e8ee8" title="SmartyView::render" alt="" coords="231,26,367,54"/>
+<area shape="rect" id="node7" href="$class_view.html#a4439d78a19960167ec67de91b86e2704" title="View::renderLayout" alt="" coords="233,77,364,105"/>
+<area shape="rect" id="node10" href="$class_smarty_view.html#a72008287f32a08bfce15d20b7588f17e" title="SmartyView::renderLayout" alt="" coords="212,128,385,156"/>
+</map>

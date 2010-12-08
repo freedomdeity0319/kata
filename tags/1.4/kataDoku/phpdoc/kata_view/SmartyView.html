@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class SmartyView</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> SmartyView</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">smarty view class. used to render the view (and layout) for the controller. ALPHAish.</p>
+<p class="description"><p>to use put the following in your controller:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-key">public&nbsp;</span><span class="src-var">$view&nbsp;</span>=&nbsp;<span class="src-str">'SmartyView'</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+		<p class="notes">
+			Located in <a class="field" href="_kata---lib---smartyview.php.html">/kata/lib/smartyview.php</a> (line <span class="field">24</span>)
+		</p>
+		
+				
+		<pre><a href="../kata_view/View.html">View</a>
+   |
+   --SmartyView</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																								<div class="var-title">
+					<img src="../media/images/Variable.png" alt=" " />
+					<span class="var-type">object</span>
+					<a href="#$smarty" title="details" class="var-name">$smarty</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																								<div class="method-definition">
+					<img src="../media/images/Constructor.png" alt=" "/>
+											<span class="method-result">SmartyView</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">object controller</span>&nbsp;<span class="var-name">&$controller</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#render" title="details" class="method-name">render</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$action</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$layout</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#renderElement" title="details" class="method-name">renderElement</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, [<span class="var-type">an</span>&nbsp;<span class="var-name">$params</span> = <span class="var-default">array ()</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#renderLayout" title="details" class="method-name">renderLayout</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$contentForLayout</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$layout</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#smarty_helper" title="details" class="method-name">smarty_helper</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$params</span>, <span class="var-type"></span>&nbsp;<span class="var-name">&$smarty</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="var$smarty" id="$smarty"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="../media/images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">object</span>
+			<span class="var-name">$smarty</span>
+			 = <span class="var-default"> null</span>			(line <span class="line-number">31</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">hold smarty-object</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../kata_view/View.html">View</a></span></p>
+					<blockquote>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_view/View.html#var$action">View::$action</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_view/View.html#var$base">View::$base</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_view/View.html#var$controller">View::$controller</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_view/View.html#var$didConstructHelpers">View::$didConstructHelpers</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_view/View.html#var$elementName">View::$elementName</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_view/View.html#var$helperClasses">View::$helperClasses</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_view/View.html#var$helpers">View::$helpers</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_view/View.html#var$layoutName">View::$layoutName</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_view/View.html#var$params">View::$params</a></span><br>
+							</span>
+													<img src="../media/images/Variable.png" />
+							<span class="var-title">
+								<span class="var-name"><a href="../kata_view/View.html#var$webroot">View::$webroot</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Constructor.png" />
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">37</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">constructor. copies all needed variables from the controller</p>
+	
+	<div class="method-signature">
+		<span class="method-result">SmartyView</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type">object controller</span>&nbsp;<span class="var-name">&$controller</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">object controller</span>
+				<span class="var-name">&$controller</span><span class="var-description">: that uses this view</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../kata_view/View.html#method__construct">View::__construct()</a></dt>
+						<dd>constructor. copies all needed variables from the controller</dd>
+					</dl>
+			
+	</div>
+<a name="methodrender" id="render"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">render</span> (line <span class="line-number">79</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">render the actual view and layout. normally done at the end of a action of a controller</p>
+<p class="description"><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-num">1.&nbsp;</span><span class="src-id">all&nbsp;<a href="../kata_view/View.html#var$helpers">helpers</a>&nbsp;are&nbsp;constructed&nbsp;here</span><span class="src-sym">,&nbsp;</span><span class="src-id">very&nbsp;late</span><span class="src-sym">,&nbsp;</span><span class="src-id">so&nbsp;we&nbsp;dont&nbsp;accidently&nbsp;waste&nbsp;cpu&nbsp;cycles</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-num">2.&nbsp;</span><span class="src-id">all&nbsp;variables</span><span class="src-sym">,&nbsp;</span><span class="src-id"><a href="../kata_view/View.html#var$helpers">helpers</a>&nbsp;</span><span class="src-key">and&nbsp;</span><span class="src-id"><a href="../kata_view/View.html#var$params">params</a>&nbsp;given&nbsp;from&nbsp;the&nbsp;<a href="../kata_view/View.html#var$controller">controller</a>&nbsp;are&nbsp;extracted&nbsp;to&nbsp;</span><span class="src-key">global&nbsp;</span>namespace</div></li>
+<li><div class="src-line">&nbsp;<span class="src-num">3.&nbsp;</span><span class="src-id">the&nbsp;actual&nbsp;view</span>-<span class="src-id">template&nbsp;</span><a href="../kata_internal/_kata---lib---basics.php.html#functionis">is</a>&nbsp;<span class="src-id">rendered</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-num">4.&nbsp;</span><span class="src-id">the&nbsp;content&nbsp;of&nbsp;the&nbsp;rendered&nbsp;view&nbsp;</span><a href="../kata_internal/_kata---lib---basics.php.html#functionis">is</a>&nbsp;<span class="src-id">rendered&nbsp;into&nbsp;the&nbsp;layout</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> html of the view</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			render
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$action</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$layout</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$action</span><span class="var-description">: name of the view</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$layout</span><span class="var-description">: name of the layout</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../kata_view/View.html#methodrender">View::render()</a></dt>
+						<dd>render the actual view and layout. normally done at the end of a action of a controller</dd>
+					</dl>
+			
+	</div>
+<a name="methodrenderElement" id="renderElement"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">renderElement</span> (line <span class="line-number">131</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">render a element and return the resulting html. an element is kind of like a mini-view you can use inside a view (via $this-&gt;renderElement()).</p>
+<p class="description"><p>it has (like a view) access to all variables a normal view has</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			renderElement
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>, [<span class="var-type">an</span>&nbsp;<span class="var-name">$params</span> = <span class="var-default">array ()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: name of the element (see views/elements/) without .thtml</span>			</li>
+					<li>
+				<span class="var-type">an</span>
+				<span class="var-name">$params</span><span class="var-description">: array of variables the element can access in global namespace</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../kata_view/View.html#methodrenderElement">View::renderElement()</a></dt>
+						<dd>render a element and return the resulting html. an element is kind of like a mini-view you can use inside a view (via $this-&gt;renderElement()).</dd>
+					</dl>
+			
+	</div>
+<a name="methodrenderLayout" id="renderLayout"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">renderLayout</span> (line <span class="line-number">105</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">renders the given string into the layout. normally called by renderView()</p>
+<p class="description"><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-num">1.&nbsp;</span><span class="src-id">title&nbsp;</span><span class="src-key">and&nbsp;</span><span class="src-id">content&nbsp;are&nbsp;extracted&nbsp;into&nbsp;</span><span class="src-key">global&nbsp;</span>namespace</div></li>
+<li><div class="src-line">&nbsp;<span class="src-num">2.&nbsp;</span><span class="src-id">all&nbsp;variables</span><span class="src-sym">,&nbsp;</span><span class="src-id"><a href="../kata_view/View.html#var$helpers">helpers</a>&nbsp;</span><span class="src-key">and&nbsp;</span><span class="src-id"><a href="../kata_view/View.html#var$params">params</a>&nbsp;given&nbsp;from&nbsp;the&nbsp;<a href="../kata_view/View.html#var$controller">controller</a>&nbsp;are&nbsp;extracted&nbsp;to&nbsp;</span><span class="src-key">global&nbsp;</span>namespace</div></li>
+<li><div class="src-line">&nbsp;<span class="src-num">3.&nbsp;</span><span class="src-id">the&nbsp;given&nbsp;string&nbsp;</span><a href="../kata_internal/_kata---lib---basics.php.html#functionis">is</a>&nbsp;<span class="src-id">rendered&nbsp;into&nbsp;the&nbsp;layout</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-num">4.&nbsp;</span><span class="src-id">the&nbsp;html</span>-<span class="src-id">output&nbsp;of&nbsp;this&nbsp;routine&nbsp;normally&nbsp;lands&nbsp;in&nbsp;the&nbsp;controllers&nbsp;output&nbsp;property</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			renderLayout
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$contentForLayout</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$layout</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$contentForLayout</span><span class="var-description">: raw html to be rendered to the layout (normally the content of a view)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$layout</span><span class="var-description">: name of the layout</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../kata_view/View.html#methodrenderLayout">View::renderLayout()</a></dt>
+						<dd>renders the given string into the layout. normally called by renderView()</dd>
+					</dl>
+			
+	</div>
+<a name="methodsmarty_helper" id="smarty_helper"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">smarty_helper</span> (line <span class="line-number">55</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">allow smarty to use helpers</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			smarty_helper
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$params</span>, <span class="var-type"></span>&nbsp;<span class="var-name">&$smarty</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$params</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">&$smarty</span>			</li>
+				</ul>
+		
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../kata_view/View.html">View</a></span></p>
+					<blockquote>
+													<img src="../media/images/Constructor.png" alt=" "/>
+							<span class="method-name"><a href="../kata_view/View.html#method__construct">View::__construct()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_view/View.html#methodconstructHelpers">View::constructHelpers()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_view/View.html#methodrender">View::render()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_view/View.html#methodrenderElement">View::renderElement()</a></span><br>
+													<img src="../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../kata_view/View.html#methodrenderLayout">View::renderLayout()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 23 Sep 2010 16:25:56 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.1</a>
+	</p>
+	</div></body>
+</html>
