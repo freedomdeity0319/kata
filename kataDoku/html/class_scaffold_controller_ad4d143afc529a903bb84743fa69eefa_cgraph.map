@@ -1,0 +1,8 @@
+<area shape="rect" id="node3" href="$class_scaffold_controller.html#bf8e97417dc4d3dd6975e83e259b3a6c" title="beforeUpdate" alt="" coords="131,5,227,33">
+<area shape="rect" id="node5" href="$class_controller.html#20ba54a665f5b078fa7b6a82cde35c55" title="Controller::redirect" alt="" coords="115,55,243,83">
+<area shape="rect" id="node7" href="$class_controller.html#bc0dc536ab7ac6278218e3ad82641b4c" title="Controller::render" alt="" coords="119,106,239,134">
+<area shape="rect" id="node9" href="$class_controller.html#b62d5fcc37681da4ef72feb6af4b1ccc" title="Controller::renderView" alt="" coords="292,106,439,134">
+<area shape="rect" id="node11" href="$class_controller.html#4c964c9d60bf1ffa6ff923c46cd14037" title="Controller::afterFilter" alt="" coords="500,55,639,83">
+<area shape="rect" id="node13" href="$class_controller.html#d1730a54bce2e5d15c8326d56b9597a9" title="Controller::beforeFilter" alt="" coords="496,106,643,134">
+<area shape="rect" id="node15" href="$class_controller.html#2921bc4b7aaee1055eecf75a9e29923f" title="Controller::initViewClass" alt="" coords="488,157,651,185">
+<area shape="rect" id="node17" href="$basics_8php.html#b8d9e801861452792cb3baef64a70985" title="kataUse" alt="" coords="699,157,768,185">
