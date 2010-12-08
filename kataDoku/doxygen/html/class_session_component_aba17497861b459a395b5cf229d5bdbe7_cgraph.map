@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_session_component.html#a626b8d63622eaa602d5dba42936b9228" title="SessionComponent::decodeSession" alt="" coords="223,5,455,33"/>
+<area shape="rect" id="node7" href="$classbase_session_component.html#a260f5020f3d30ec3c2244dc522ff5e53" title="baseSessionComponent::initSession" alt="" coords="221,55,456,83"/>
+<area shape="rect" id="node5" href="$class_session_component.html#a0a396827a4baf60cf1307f4759803b81" title="SessionComponent::calculateHash" alt="" coords="509,5,733,33"/>
+<area shape="rect" id="node9" href="$classbase_session_component.html#a1a7010eb7f30e54818d588cd5c2a0139" title="baseSessionComponent::checkValid" alt="" coords="504,55,739,83"/>
+</map>

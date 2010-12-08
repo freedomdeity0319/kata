@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class ValidateUtility</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> ValidateUtility</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">check if an array of parameters matches certain criterias.</p>
+<p class="description"><p>you can still use the (deprecated) defines of model.php (until i murder you)</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> feldkamp@gameforge.de</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_kata---lib---utilities---validateutility.php.html">/kata/lib/utilities/validateutility.php</a> (line <span class="field">14</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																								<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">true</span>
+										<a href="#check" title="details" class="method-name">check</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$how</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$params</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">true</span>
+										<a href="#checkAll" title="details" class="method-name">checkAll</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$how</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$params</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">true</span>
+										<a href="#checkAllWithModel" title="details" class="method-name">checkAllWithModel</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$modelname</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$params</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+													<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodcheck" id="check"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">check</span> (line <span class="line-number">29</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">checks the given values of the array match certain criterias</p>
+<p class="description"><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<a href="../kata_utility/ValidateUtility.html#methodcheck">check</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-str">'email'</span>=&gt;<span class="src-str">'INT'</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-sym">)</span><span class="src-sym">,</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id">params</span><span class="src-sym">[</span><span class="src-str">'form'</span><span class="src-sym">]</span><span class="src-sym">)</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> if data validates OR $params-key, for example 'EMAIL' if no correct email given OR false if $params is empty</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">true</span>
+		<span class="method-name">
+			check
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$how</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$params</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$how</span><span class="var-description">: key/value pair. key is the name of the key inside the $what-array, value is a rule, the name of a function that is given the string (should return bool wether the string validates)</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$params</span><span class="var-description">: the actual data as name=&gt;value array (eg. $this-&gt;params['form'])</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcheckAll" id="checkAll"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">checkAll</span> (line <span class="line-number">52</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">checks the given values of the array match certain criterias</p>
+<p class="description"><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<a href="../kata_utility/ValidateUtility.html#methodcheck">check</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-str">'email'</span>=&gt;<span class="src-str">'INT'</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-sym">)</span><span class="src-sym">,</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id">params</span><span class="src-sym">[</span><span class="src-str">'form'</span><span class="src-sym">]</span><span class="src-sym">)</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> if data validates OR $params-key, for example 'EMAIL' if no correct email given OR array() if $params is empty</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">true</span>
+		<span class="method-name">
+			checkAll
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$how</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$params</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$how</span><span class="var-description">: key/value pair. key is the name of the key inside the $what-array, value is a rule, the name of a function that is given the string (should return bool wether the string validates)</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$params</span><span class="var-description">: the actual data as name=&gt;value array (eg. $this-&gt;params['form'])</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcheckAllWithModel" id="checkAllWithModel"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">checkAllWithModel</span> (line <span class="line-number">159</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">check the given parameter-array against the rows of a model</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> if data validates OR $params-key, for example 'EMAIL' if no correct email given OR array() if $params is empty</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">true</span>
+		<span class="method-name">
+			checkAllWithModel
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$modelname</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$params</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$modelname</span><span class="var-description">: name of the model to validate against</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$params</span><span class="var-description">: the actual data as name=&gt;value array (eg. $this-&gt;params['form'])</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 23 Sep 2010 16:25:56 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.1</a>
+	</p>
+	</div></body>
+</html>

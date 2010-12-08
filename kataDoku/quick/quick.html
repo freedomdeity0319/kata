@@ -1,0 +1,1942 @@
+<html>
+<head>
+   <title>kata FAQ</title>
+   <meta name="generator" content="format.php">
+</head>
+<style type="text/css">
+* {
+	font-size:11pt;
+}
+a {
+	color:black;
+}
+pre.php, span.xdebug-var-dump, span.code, pre.code {
+   color:black;
+   font-size:9pt;
+   background-color:#e8e8f8;
+   font-family:Courier, 'Courier New', monospace;
+}
+pre.php > * {
+	font-size:9pt !important;
+}
+pre.php, h2, h3, div.code, pre.result {
+	margin-top:4px;
+	margin-bottom:4px;
+	margin-left:0;
+	margin-right:0;
+}
+span.result, pre.result {
+   color:black;
+   font-family:courier new;
+   font-size:10pt;
+   background-color:#f8e8e8;
+}
+h2 {
+	font-weight:bold;
+	text-decoration:underline;
+	font-size:14pt !important;
+        margin-bottom:10px;
+}
+h3 {
+	font-weight:bold;
+	text-decoration:underline;
+	font-size:12pt !important;
+        margin-bottom:10px;
+}
+div.indent {
+	border-left:2px solid #e0e0e0;
+	padding-left:5px;
+	margin-left:30px;
+}
+div.newtopict {
+     margin-top:50px;
+}
+div.newtopicb {
+     border-top:1px solid grey;
+     margin-bottom:70px;
+}
+div.newttopict {
+     margin-top:50px;
+}
+div.newttopicb {
+     border-top:3px solid grey;
+     height:2px;
+     border-bottom:3px solid grey;
+     margin-bottom:70px;
+}
+.top {
+         text-align:right;
+         font-size:8pt !important;
+         float:right;
+}
+div.liinner {
+      float:left;
+      padding-right:6px;
+}
+div.li {
+       padding:2px;
+       clear:left;
+}
+table.framed {
+        border-collapse:collapse;
+        border:2px solid black;
+}
+table.framed tr td {
+	border:1px solid black;
+	border-bottom:2px solid black;
+	padding:4px 2px;
+	color:black !important;
+	background-color:#f8f8f8;
+	vertical-align:top;
+}
+table.framed tr.odd td {
+        background-color:#f0f0f0 !important;
+}
+/**
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ */
+.php  {font-family:monospace;}
+.php .imp {font-weight: bold; color: red;}
+.php .kw1 {color: #b1b100;}
+.php .kw2 {color: #000000; font-weight: bold;}
+.php .kw3 {color: #990000;}
+.php .kw4 {color: #009900; font-weight: bold;}
+.php .co1 {color: #666666; font-style: italic;}
+.php .co2 {color: #666666; font-style: italic;}
+.php .co3 {color: #0000cc; font-style: italic;}
+.php .co4 {color: #009933; font-style: italic;}
+.php .coMULTI {color: #666666; font-style: italic;}
+.php .es0 {color: #000099; font-weight: bold;}
+.php .es1 {color: #000099; font-weight: bold;}
+.php .es2 {color: #660099; font-weight: bold;}
+.php .es3 {color: #660099; font-weight: bold;}
+.php .es4 {color: #006699; font-weight: bold;}
+.php .es5 {color: #006699; font-weight: bold; font-style: italic;}
+.php .es6 {color: #009933; font-weight: bold;}
+.php .es_h {color: #000099; font-weight: bold;}
+.php .br0 {color: #009900;}
+.php .sy0 {color: #339933;}
+.php .sy1 {color: #000000; font-weight: bold;}
+.php .st0 {color: #0000ff;}
+.php .st_h {color: #0000ff;}
+.php .nu0 {color: #cc66cc;}
+.php .nu8 {color: #208080;}
+.php .nu12 {color: #208080;}
+.php .nu19 {color:#800080;}
+.php .me1 {color: #004000;}
+.php .me2 {color: #004000;}
+.php .re0 {color: #000088;}
+.php span.xtra { display:block; }
+</style>
+<body>
+
+<img align="right" src="kata.png" alt="black belt" title="black belt" />
+<a name="____top"><h2>kata FAQ</h2></a>
+<div class="topics"><ul><li><a href="#topic0">Warning!</a></li><li><a href="#topic1">What is kata?</a></li><li><a href="#topic2">Flowchart, for techies</a></li><br /><li><a href="#topic3"><h2>Hello World</h2></a></li><li><a href="#topic4">What happens when i request http://myhost/games/list/param1/param2</a></li><li><a href="#topic5">...access GET-parameters</a></li><li><a href="#topic6">...access POST-parameters</a></li><li><a href="#topic7">Why not $_GET or $_POST?</a></li><li><a href="#topic8">Some predefined functions() of kata</a></li><li><a href="#topic9">Some predefined CONSTANTS of kata</a></li><li><a href="#topic10">...get variables from the controller into the view</a></li><li><a href="#topic11">...redirect browser to a different url</a></li><li><a href="#topic12">...render a different view</a></li><li><a href="#topic13">...use a different layout</a></li><li><a href="#topic14">...execute something before any method of a controller is called</a></li><li><a href="#topic15">...execute something before a view is rendered</a></li><li><a href="#topic16">...do ajax</a></li><li><a href="#topic17">...use the same methods in all controllers</a></li><li><a href="#topic18">...access a helper inside a view</a></li><br /><li><a href="#topic19"><h2>Gotchas</h2></a></li><li><a href="#topic20">...how to i access a helper from a model</a></li><li><a href="#topic21">...how to i access the model from a view</a></li><li><a href="#topic22">...my params do not survive a redirect</a></li><li><a href="#topic23">...i need the same code inside a view and inside a model</a></li><li><a href="#topic24">... controller/ (without index) never gets called</a></li><br /><li><a href="#topic25"><h2>Tricks</h2></a></li><li><a href="#rawkata">Use models or components without starting kata</a></li><li><a href="#topic27">Get rid of all Apache .htaccess files</a></li><li><a href="#topic28">Omit ?></a></li><li><a href="#defaultaction">Change the default action of a controller</a></li><li><a href="#topic30">have a 404-handler per controller</a></li><li><a href="#topic31">exception handlign in controllers</a></li><li><a href="#topic32">...cache anything anywhere</a></li><li><a href="#xsrf">...create a protection for XSRF</a></li><li><a href="#topic34">...use the same helpers, components or models in all controllers</a></li><li><a href="#topic35">...make a php-file accessible via webserver without using kata</a></li><li><a href="#vendor">...include external files, aka vendor() call</a></li><li><a href="#topic37">...render a view and have it returned to me</a></li><li><a href="#topic38">...render a view of a different controller</a></li><li><a href="#topic39">...use a imageserver / content delivery network</a></li><li><a href="#topic40">...rewrite incoming urls</a></li><li><a href="#topic41">...kata and debugging</a></li><li><a href="#topic42">Replace 404 and error layout</a></li><li><a href="#topic43">Use kata with lighthttpd</a></li><li><a href="#topic44">Add autocompletion for models and components</a></li><li><a href="#ccss">Use one css-file für LTR/RTL layouts</a></li><br /><li><a href="#model</h2>"><h2>Database access: Models</a></li><li><a href="#topic47">...use a model inside a model</a></li><li><a href="#activerecord">...use active record model functions</a></li><li><a href="#topic49">Insert data into a table</a></li><li><a href="#topic50">MassInsert data into a table</a></li><li><a href="#topic51">Replace data</a></li><li><a href="#topic52">Update</b> data</a></li><li><a href="#topic53">Remove data</a></li><li><a href="#topic54">Read rows</a></li><li><a href="#topic55">Complex read</a></li><li><a href="#topic56">Complex read with conditions (WHERE clause)</a></li><li><a href="#topic57">Complex read with complex conditions</a></li><li><a href="#topic58">Complex read with automatic pagination</a></li><li><a href="#topic59">Filter read results</a></li><li><a href="#topic60">...use a different table for each active record use</a></li><li><a href="#topic61">...use different databases</a></li><li><a href="#topic62">...change database config dynamically</a></li><br /><li><a href="#topic63"><h2>What is ...?</h2></a></li><li><a href="#helper">what is a helper</a></li><li><a href="#component">what is a component</a></li><li><a href="#utility">what is a utility</a></li><li><a href="#element">what is an element</a></li><li><a href="#registry">what is the registry</a></li><li><a href="#topic69">What is compile.php?</a></li><li><a href="#topic70">What is service.php?</a></li><li><a href="#topic71">How to extend a helper, component, utility</a></li><br /><li><a href="#topic72"><h2>Predefined Components</h2></a></li><li><a href="#session">Sessions</a></li><li><a href="#locale">Localization (l10n)</a></li><br /><li><a href="#topic75"><h2>Predefined Helpers</h2></a></li><li><a href="#html">html - url-generation etc</a></li><li><a href="#js">js - javascript handling</a></li><li><a href="#formhelper">form - easy form handling</a></li><br /><li><a href="#topic79"><h2>Predefined Utilities</h2></a></li><li><a href="#cache">cache - universal caching</a></li><li><a href="#http">http - GET/POST HTTP Requests</a></li><li><a href="#ip">ip - user-ip finder</a></li><li><a href="#image">image - image handling / resizing / uploading</a></li><li><a href="#lock">lock - server-wide process locking</a></li><li><a href="#clusterlock">clusterlock - cluster-wide process locking</a></li><li><a href="#validate">validate - parameter validation</a></li></ul></div><div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><div class="content"><h3><a name="topic0">Warning!</a></h3>
+<b>NEVER</b> modify anything inside the <span class="code">lib/</span>-folder, or on the next
+kata-update your whole application will break!
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic1">What is kata?</a></h3>
+Kata is a fast, simple, passive, event based MVC Framework for PHP5. It runs
+on Windows and Linux.
+<br /><br />
+Preparations for kata:
+<div class="li"><div class="liinner">&bull;</div>Setup linux: <a href="http://codeninja.de/kata_php_framework/#installation">http://codeninja.de/kata_php_framework/#installation</a></div>
+<div class="li"><div class="liinner">&bull;</div>Setup Eclipse: <a href="http://codeninja.de/kata_php_framework/#eclipse">http://codeninja.de/kata_php_framework/#eclipse</a></div>
+<br /><br />
+What MVC actually does:
+<br /><br />
+<img src="mvc.png" />
+//TODO: cli does not use apache
+<br /><br />
+(Some) used Patterns:
+<div class="li"><div class="liinner">&bull;</div>MVC: <a href="http://de.wikipedia.org/wiki/Model_View_Controller">http://de.wikipedia.org/wiki/Model_View_Controller</a></div>
+<div class="li"><div class="liinner">&bull;</div>IoC: <a href="http://en.wikipedia.org/wiki/Inversion_of_control">http://en.wikipedia.org/wiki/Inversion_of_control</a></div>
+<div class="li"><div class="liinner">&bull;</div>Proxy: <a href="http://en.wikipedia.org/wiki/Proxy_pattern">http://en.wikipedia.org/wiki/Proxy_pattern</a></div>
+<div class="li"><div class="liinner">&bull;</div>CoC: <a href="http://en.wikipedia.org/wiki/Convention_over_configuration">http://en.wikipedia.org/wiki/Convention_over_configuration</a></div>
+<div class="li"><div class="liinner">&bull;</div>Objectpool: <a href="http://en.wikipedia.org/wiki/Object_pool">http://en.wikipedia.org/wiki/Object_pool</a></div>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic2">Flowchart, for techies</a></h3>
+<img src="flow.png" />
+<br /><br />
+<div class="newttopict"></div><a href="#____top"><div class="top">top</div></a><div class="newttopicb"></div><h3><a name="topic3"><h2>Hello World</h2></a></h3>
+Put the following code into the file <span class="code">controllers/main_controller.php</span>:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> index<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">setPageTitle</span><span class="br0">&#40;</span><span class="st_h">'My first view title'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+Now put the following code into the file <span class="code">views/main/index.thtml</span>:
+<pre class="php" style="font-family:monospace;">Hello World!
+<span class="sy1">&lt;?</span> <span class="kw1">echo</span> <span class="st_h">' ...And hello again!'</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></pre>
+<br />
+And finally put the following code into the file <span class="code">views/layouts/default.thtml</span>:
+<pre class="php" style="font-family:monospace;">&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;<span class="sy1">&lt;?=</span><span class="re0">$title_for_layout</span><span class="sy1">?&gt;</span>&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!-- this is where kata injects the html of a view: --&gt;
+<span class="sy1">&lt;?=</span><span class="re0">$content_for_layout</span><span class="sy1">?&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<br />
+If you now call <span class="code">http://localhost/</span> (presuming you have kata installed
+directly into your apache webroot) you will see the following output:
+<pre class="php" style="font-family:monospace;"><span class="sy0">&lt;</span>html<span class="sy0">&gt;</span>
+<span class="sy0">&lt;</span>head<span class="sy0">&gt;</span>
+	<span class="sy0">&lt;</span>title<span class="sy0">&gt;</span>My first view title<span class="sy0">&lt;/</span>title<span class="sy0">&gt;</span>
+<span class="sy0">&lt;/</span>head<span class="sy0">&gt;</span>
+<span class="sy0">&lt;</span>body<span class="sy0">&gt;</span>
+<span class="sy0">&lt;!--</span> this is where kata injects the html of a view<span class="sy0">:</span> <span class="sy0">--&gt;</span>
+<span class="me1">Hello</span> World<span class="sy0">!</span> <span class="sy0">...</span>And hello again<span class="sy0">!</span>
+<span class="sy0">&lt;/</span>body<span class="sy0">&gt;</span>
+<span class="sy0">&lt;/</span>html<span class="sy0">&gt;</span></pre>
+<br />
+You can also call <span class="code">http://localhost/main</span> or <span class="code">http://localhost/main/index</span> because
+main is the default controller, and index is the default action (which can be changed, see
+<a href="#defaultaction">#defaultaction</a>
+<br /><br />
+Note: If you append parameters to your url you can't omit controller or action-name.
+For example for <span class="code">http://localhost/123</span> kata will search for a controller named <span class="code">123</span>.
+Likewise if you use <span class="code">http://localhost/main/123</span> kata will search for a method named
+<span class="code">123</span> inside the <span class="code">main</span>-controller.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic4">What happens when i request http://myhost/games/list/param1/param2</a></h3>
+This (simplified) is what basically happens:
+<div class="li"><div class="liinner">&bull;</div>kata loads the file <span class="code">controllers/games_controller.php</span> because thats the first parameter in the url</div>
+<div class="li"><div class="liinner">&bull;</div>inside that file kata expects a class of type <span class="code">GamesController</span></div>
+<div class="li"><div class="liinner">&bull;</div>inside that class kata expects a method <span class="code">list()</span> because thats the second parameter in the url</div>
+<div class="li"><div class="liinner">&bull;</div>kata calls <span class="code">GameController-&gt;list('param1','param2');</span></div>
+<div class="li"><div class="liinner">&bull;</div>kata renders template <span class="code">views/games/list.thtml</span></div>
+<div class="li"><div class="liinner">&bull;</div>kata renders <span class="code">views/layouts/default.thtml</span> and injects the template it rendered in the previous step</div>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic5">...access GET-parameters</a></h3>
+adding <span class="code">?foo=1</span> to the url.
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> index<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">params</span><span class="br0">&#91;</span><span class="st_h">'url'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st_h">'foo'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<a href="http://www.php.net/die"><span class="kw3">die</span></a><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+results in <span class="result">'1'</span>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic6">...access POST-parameters</a></h3>
+using the following form: <pre class="php" style="font-family:monospace;">&lt;form action=&quot;<span class="sy1">&lt;?=</span><span class="re0">$html</span><span class="sy0">-&gt;</span><span class="me1">url</span><span class="br0">&#40;</span><span class="st_h">'main/index/?param1=red'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&quot; method=&quot;post&quot;&gt;
+&lt;input type=&quot;text&quot; name=&quot;foo&quot; value=&quot;1&quot; /&gt;
+&lt;input type=&quot;text&quot; name=&quot;bar[]&quot; value=&quot;1&quot; /&gt;
+&lt;/form&gt;</pre>
+To access the GET and POST-parameters:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> index<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">params</span><span class="br0">&#91;</span><span class="st_h">'form'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st_h">'foo'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">params</span><span class="br0">&#91;</span><span class="st_h">'form'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st_h">'bar'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">params</span><span class="br0">&#91;</span><span class="st_h">'url'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st_h">'param1'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<a href="http://www.php.net/die"><span class="kw3">die</span></a><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+results in <span class="result">'1'</span>, <span class="result">array('1')</span> and <span class="result">'red'</span>
+Inside a view you also have access to <span class="code">$this-&gt;params</span>.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic7">Why not $_GET or $_POST?</a></h3>
+<span class="code">$this-&gt;params</span> is automatically dequoted and sanatized by kata.
+<span class="code">$_GET</span> and <span class="code">$_POST</span> are left untouched.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic8">Some predefined functions() of kata</a></h3>
+<table class="framed"><tr><td><span class="code">debug()</span></td><td> is like print_r() but remains silent if you set <span class="code">DEBUG</span> to 0 or lower inside <span class="code">config/core.php</span>. You will never see the output of a print_r() on your live-servers anymore.</td></tr>
+<tr class="odd"><td><span class="code">env()</span></td><td> returns environment variables, no matter if kata runs as CGI, module or stub. Use this instead of <span class="code">$_SERVER</span></td></tr>
+<tr><td><span class="code">h()</span></td><td>  is a shortcut for htmlentities()</td></tr>
+<tr class="odd"><td><span class="code">is()</span></td><td>  returns the second value, if the first is not set. Example: <span class="code">echo is($this-&gt;params['url']['page'],1)</span> will return the get-variable or -if the given get-variable is unset- will return 1.
+POSSIBLE GOTCHAS: SEE WARNING BELOW</td></tr>
+<tr class="odd"><td><span class="code">writeLog()</span></td><td>  is a shortcut to write to one of katas logs. Example: <span class="code">writeLog('hack attack',KATA_PANIC);</span>. The second parameter is the severity of the error you are logging.</td></tr>
+</table>
+<br /><br />
+Possible values for <span class="code">writeLog</span> or <span class="code">$this-&gt;log()</span>:
+<table class="framed"><tr class="odd"><td><span class="code">KATA_DEBUG</span></td><td>logs to <span class="code">logs/debug.log</span>. If <span class="code">DEBUG</span> is <span class="code">-1</span> nothing is written.&lt;/rtd&gt;
+<tr><td><span class="code">KATA_ERROR</span></td><td> logs to <span class="code">logs/error.log</span></td></tr>
+<tr class="odd"><td><span class="code">KATA_PANIC</span></td><td> logs to <span class="code">logs/panic.log</span></td></tr></table>
+Inside a Model or Controller you can also use <span class="code">$this-&gt;log('foo',KATA_DEBUG);</span>.
+<br /><br />
+WARNING: Use is() only if you are always shure of the type of the variable
+you are checking (or you checked the type of the variable before).
+Otherwise funny things will happen to the variable you just checked, because
+thats just the (totally awesome) way PHP handles references. Example:
+<pre class="php" style="font-family:monospace;"><span class="re0">$abc</span> <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">;</span>
+<span class="re0">$a</span> <span class="sy0">=</span> <span class="sy0">&amp;</span><span class="re0">$abc</span><span class="br0">&#91;</span><span class="st_h">'unsetKey'</span><span class="br0">&#93;</span><span class="sy0">;</span>
+<a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$abc</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+will result in
+<span class="code">array(1) {
+  [&quot;unsetKey&quot;]=&gt;
+  &amp;NULL
+}</span>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic9">Some predefined CONSTANTS of kata</a></h3>
+Paths:
+<table class="framed"><tr class="odd"><td><span class="code">DS</span></td><td> is a shortcut for the directory-seperator (<span class="code">/</span> or <span class="code">\</span>, depending on your plattform)</td></tr>
+<tr><td><span class="code">ROOT</span></td><td> contains an absolute path (including last slash) to where kata resides</td></tr>
+<tr class="odd"><td><span class="code">WWW_ROOT</span></td><td> contains an absolute path to katas <span class="code">webroot/</span></td></tr>
+<tr><td><span class="code">CLI</span></td><td> is <span class="code">1</span> if you are running kata from the command line, <span class="code">0</span> if you are using a webserver</td></tr></table>
+<br /><br />
+Time related constants for timestamp calculations:
+<table class="framed"><tr class="odd"><td><span class="code">SECOND</span></td></tr>
+<tr><td><span class="code">MINUTE</span></td></tr>
+<tr class="odd"><td><span class="code">HOUR</span></td></tr>
+<tr><td><span class="code">DAY</span></td></tr>
+<tr class="odd"><td><span class="code">WEEK</span></td></tr>
+<tr><td><span class="code">MONTH</span></td></tr>
+<tr class="odd"><td><span class="code">YEAR</span></td></tr></table>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic10">...get variables from the controller into the view</a></h3>
+Inside the controller:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> index<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">set</span><span class="br0">&#40;</span><span class="st_h">'var1'</span><span class="sy0">,</span><span class="st_h">'somestring'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+Inside the view (<span class="code">views/main/index.thtml</span> in this case):
+<pre class="php" style="font-family:monospace;"><a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$var</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in <span class="result">'somestring'</span>
+<br /><br />
+Any variables you set in the controller are also available in the layout.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic11">...redirect browser to a different url</a></h3>
+Inside the controller:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> index<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">redirect</span><span class="br0">&#40;</span><span class="st_h">''</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//=main/index</span>
+		<span class="co1">// the following lines are never executed because</span>
+		<span class="co1">// redirect terminates the program flow:</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">redirect</span><span class="br0">&#40;</span><span class="st_h">'games/'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//=games/index</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">redirect</span><span class="br0">&#40;</span><span class="st_h">'games/list2/'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic12">...render a different view</a></h3>
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> index<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">'inbox'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//renders views/games/inbox.thtml</span>
+		<span class="co1">// the second render is never executed because</span>
+		<span class="co1">// we did already render</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">'../user/banned'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//renders views/user/banned.thtml</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+Rendering different views instead of heaving a view that displays
+different things depending on how a variable is set is <i>much</i>
+cleaner and easier to read.
+<br /><br />
+Hint: If you have reoccuring pieces of html that you need in multiple views
+use an <a href="#element">element</a>.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic13">...use a different layout</a></h3>
+You can change the layout before you render:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> index<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">layout</span> <span class="sy0">=</span> <span class="st_h">'black'</span><span class="sy0">;</span> <span class="co1">//uses views/layouts/black.thtml</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="kw2">function</span> dummy<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">layout</span> <span class="sy0">=</span> <span class="kw4">null</span><span class="sy0">;</span> <span class="co1">//dont use a layout, just return the view</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+You can also change the layout for the whole controller:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">public</span> <span class="re0">$layout</span> <span class="sy0">=</span> <span class="st_h">'black'</span><span class="sy0">;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic14">...execute something before any method of a controller is called</a></h3>
+Inside the controller:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> parent<span class="sy0">::</span><span class="me2">beforeAction</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+   		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">checkForLogin</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+<span class="code">beforeAction()</span> is normally used for code that always needs to be executed,
+for example check if a user is logged in or if the current user is allowed
+to execute the current action.
+<br /><br />
+You should put <span class="code">beforeAction()</span> into the AppController if you want
+all Controllers to act like this.
+<br /><br />
+Whats the difference between beforeAction() and __construct()?
+construct is called when the controller-class is loaded, beforeAction
+is called after all dependencies (Helpers, Models) are initialized.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic15">...execute something before a view is rendered</a></h3>
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> parent<span class="sy0">::</span><span class="me2">beforeFilter</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+             <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">set</span><span class="br0">&#40;</span><span class="st_h">'mycash'</span><span class="sy0">,</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">User</span><span class="sy0">-&gt;</span><span class="me1">getCash</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+<span class="code">beforeFilter()</span> is normally used for code that only needs to be executed
+if you really want to display something. It is not executed if you do a
+redirect. Use it if you need to fetch some data from the model to be display
+to display a view. Example:
+<br /><br />
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> parent<span class="sy0">::</span><span class="me2">beforeFilter</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="co1">//automatically set pagetitle. expects localization in</span>
+		<span class="co1">//&quot;controller/action title&quot; format</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">set</span><span class="br0">&#40;</span><span class="st_h">'title'</span><span class="sy0">,</span> __<span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">params</span><span class="br0">&#91;</span><span class="st_h">'controller'</span><span class="br0">&#93;</span><span class="sy0">.</span><span class="st_h">'/'</span><span class="sy0">.</span>
+			<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">params</span><span class="br0">&#91;</span><span class="st_h">'action'</span><span class="br0">&#93;</span><span class="sy0">.</span><span class="st_h">' title'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic16">...do ajax</a></h3>
+Just prepend ajax/ to your url:
+Change <span class="code">games/list</span> to <span class="code">ajax/games/list</span>
+<br /><br />
+You will find <span class="result">1</span> in <span class="code">$this-&gt;params['isAjax']</span> and the view is rendered &quot;naked&quot; (read:
+without a layout). You can react inside your <span class="code">beforeAction()</span> and <span class="code">beforeFilter()</span>
+accordingly to skip code that is not needed for ajax-calls. Examples are:
+Check if the user is logged in inside <span class="code">beforeAction()</span>,
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic17">...use the same methods in all controllers</a></h3>
+There are situations where you need some code in all controllers, for example
+a method that checks if the user is online. Create a file <span class="code">controllers/app_controller.php</span>
+and put the following content in it:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> AppController <span class="kw2">extends</span> Controller <span class="br0">&#123;</span>
+&nbsp;
+<span class="kw2">public</span> <span class="re0">$userArray</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw2">function</span> checkForLogin<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="re0">$user</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">Session</span><span class="sy0">-&gt;</span><span class="me1">read</span><span class="br0">&#40;</span><span class="st_h">'user'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$user</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">redirect</span><span class="br0">&#40;</span><span class="st_h">'user/login'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+	<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">userArray</span> <span class="sy0">=</span> <span class="re0">$user</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+<br />
+Because all controllers extend AppController they all inherit the
+<span class="code">checkForLogin</span> method. <b>Possible Gotcha:</b> If you overwrite a
+method thats in the AppController in your own controller you have
+to do a <span class="code">parent::myMethodName();</span> if you want to execute both
+methods.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic18">...access a helper inside a view</a></h3>
+Add the helper you want to use to your controller:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MyController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+   <span class="kw2">public</span> <span class="re0">$helpers</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'html'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+After this you can do the following inside your view:
+<pre class="php" style="font-family:monospace;"><span class="kw1">echo</span> <span class="re0">$html</span><span class="sy0">-&gt;</span><span class="me1">url</span><span class="br0">&#40;</span><span class="st_h">'my/index'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// returns absolute url</span>
+<span class="kw1">echo</span> <span class="re0">$html</span><span class="sy0">-&gt;</span><span class="me1">relUrl</span><span class="br0">&#40;</span><span class="st_h">'my/index'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// returns relative url</span>
+<span class="kw1">echo</span> <span class="re0">$html</span><span class="sy0">-&gt;</span><span class="me1">url</span><span class="br0">&#40;</span><span class="st_h">'http://somesite.com/foo?bla=1'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// returns http://somesite.com/foo?bla=1</span>
+&nbsp;
+<span class="kw1">echo</span> <span class="re0">$html</span><span class="sy0">-&gt;</span><span class="me1">image</span><span class="br0">&#40;</span><span class="st_h">'img/foo.jpg'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// returns complete image-tag</span>
+<span class="kw1">echo</span> <span class="re0">$html</span><span class="sy0">-&gt;</span><span class="me1">image</span><span class="br0">&#40;</span><span class="st_h">'img/foo.jpg'</span><span class="sy0">,</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'align'</span><span class="sy0">=&gt;</span><span class="st_h">'left'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// image with align=&quot;left&quot;</span></pre>
+<br />
+For a full reference what helpers pre-exists and what they offer: see
+<a href="#helper">#helper</a>
+<br /><br />
+<div class="newttopict"></div><a href="#____top"><div class="top">top</div></a><div class="newttopicb"></div><h3><a name="topic19"><h2>Gotchas</h2></a></h3>
+Problems that already occured and that you should know about.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic20">...how to i access a helper from a model</a></h3>
+You dont. Redesign your code so you dont have to.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic21">...how to i access the model from a view</a></h3>
+You dont. Redesign your code so you dont have to.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic22">...my params do not survive a redirect</a></h3>
+thats normal, because a redirect simply instructs the users browser
+to fetch a new url. if you need your data to survice a redirect you
+have to append them to the redirect-url (as GET params) or you have
+to write them into the session.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic23">...i need the same code inside a view and inside a model</a></h3>
+An example for this problem would be a bbcode-parser. You
+need the code to display bbcode, and you need the code to
+send emails.
+<br /><br />
+Solution: Put your code into a utility.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic24">... controller/ (without index) never gets called</a></h3>
+<br /><br />
+Do you have a directory by the same name in webroot/? Then apache
+will try to serve this directory instead of your controller.
+<br /><br />
+Solutions: Rename directory in webroot, rename your controller, or put
+a <span class="result">index.php</span> in the directory inside webroot:
+<pre class="php" style="font-family:monospace;"><span class="kw2">&lt;?php</span> <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st_h">'Location: index'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></pre>
+<br />
+<div class="newttopict"></div><a href="#____top"><div class="top">top</div></a><div class="newttopicb"></div><h3><a name="topic25"><h2>Tricks</h2></a></h3>
+<br /><br />
+Good to know!
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="rawkata">Use models or components without starting kata</a></h3>
+<br /><br />
+This example illustrates component and model use in a bare-bone
+.php file inside <span class="code">webroot/</span>.
+<pre class="php" style="font-family:monospace;"><span class="sy1">&lt;?</span>
+<a href="http://www.php.net/define"><span class="kw3">define</span></a><span class="br0">&#40;</span><span class="st_h">'CURRENTPATH'</span><span class="sy0">,</span> <a href="http://www.php.net/dirname"><span class="kw3">dirname</span></a><span class="br0">&#40;</span><span class="re0">$_SERVER</span><span class="br0">&#91;</span><span class="st_h">'PHP_SELF'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">.</span><span class="st_h">'/'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">//startup base</span>
+<span class="kw1">require</span><span class="br0">&#40;</span><span class="st_h">'..'</span><span class="sy0">.</span><span class="kw4">DIRECTORY_SEPARATOR</span><span class="sy0">.</span><span class="st_h">'lib'</span><span class="sy0">.</span><span class="kw4">DIRECTORY_SEPARATOR</span><span class="sy0">.</span><span class="st_h">'defines.php'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw1">require</span><span class="br0">&#40;</span>LIB<span class="sy0">.</span><span class="st0">&quot;boot.php&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">//fire up locale-component</span>
+<span class="kw1">require</span><span class="br0">&#40;</span>LIB<span class="sy0">.</span><span class="st_h">'controllers'</span><span class="sy0">.</span>DS<span class="sy0">.</span><span class="st_h">'components'</span><span class="sy0">.</span>DS<span class="sy0">.</span><span class="st_h">'locale.php'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="re0">$locale</span> <span class="sy0">=</span> classRegistry <span class="sy0">::</span> <span class="me2">getObject</span><span class="br0">&#40;</span><span class="st_h">'LocaleComponent'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="re0">$locale</span><span class="sy0">-&gt;</span><span class="me1">startup</span><span class="br0">&#40;</span><span class="kw4">null</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">//guess best userlanguage</span>
+<span class="re0">$lang</span> <span class="sy0">=</span> <span class="re0">$locale</span><span class="sy0">-&gt;</span><span class="me1">getBrowserLang</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="re0">$lang</span> <span class="sy0">=</span> <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$lang</span><span class="br0">&#41;</span>?<span class="st_h">'en'</span><span class="sy0">:</span><span class="re0">$lang</span><span class="sy0">;</span>
+<span class="re0">$langModel</span> <span class="sy0">=</span> getModel<span class="br0">&#40;</span><span class="st_h">'Language'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="re0">$lang</span> <span class="sy0">=</span> <span class="re0">$langModel</span><span class="sy0">-&gt;</span><span class="me1">getBestPortalLanguage</span><span class="br0">&#40;</span><span class="re0">$lang</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="re0">$locale</span><span class="sy0">-&gt;</span><span class="me1">setCode</span><span class="br0">&#40;</span><span class="re0">$lang</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">//and now you can use __()</span>
+<span class="sy1">?&gt;</span>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+...
+&nbsp;</pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic27">Get rid of all Apache .htaccess files</a></h3>
+<br /><br />
+Add these rules to your vhost:
+<pre class="code">&lt;Directory /home/www/mmogame/html/webroot/&gt;
+RewriteEngine  On
+RewriteBase /
+RewriteCond    %{REQUEST_FILENAME} !-d
+RewriteCond    %{REQUEST_FILENAME} !-f
+RewriteRule    ^(.*)$ index.php?kata=$1 [QSA,L]
+AddOutputFilterByType DEFLATE text/html #optional
+&lt;/Directory&gt;</pre>
+<br />
+If you want to expire all views instantly add this to your vhost:
+<span class="code">FileETag MTime
+ExpiresDefault &quot;M6048000&quot;
+ExpiresByType text/html now
+ExpiresActive On</span>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic28">Omit ?></a></h3>
+<br /><br />
+You can omit the last closing <span class="code">?&gt;</span> in any of your code. Its
+official standard. Never again worry about <span class="result">headers already sent in line 29</span>.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="defaultaction">Change the default action of a controller</a></h3>
+<br /><br />
+Normally index() is the default action of a controller. You can change
+this by overwriting <span class="code">$defaultAction</span>:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MyController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">public</span> <span class="re0">$defaultAction</span> <span class="sy0">=</span> <span class="st_h">'foobar'</span><span class="sy0">;</span>
+&nbsp;
+	<span class="kw2">function</span> foobar<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic30">have a 404-handler per controller</a></h3>
+<br /><br />
+If kata finds the appropriate controller, but not the appropriate action
+then <span class="code">controller-&gt;before404()</span> is called, where you can act accordingly:
+<pre class="php" style="font-family:monospace;"><span class="kw2">function</span> before404<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">peter</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">'peter'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+<br />
+If this method returns <span class="code">true</span> kata will render the normal 404-layout.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic31">exception handlign in controllers</a></h3>
+<br /><br />
+If you want to handle exception within controllers just implement
+the <span class="code">afterError()</span> method:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MyController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">public</span> <span class="kw2">function</span> afterError<span class="br0">&#40;</span><span class="re0">$exception</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">log</span><span class="br0">&#40;</span><span class="st_h">'exception '</span><span class="sy0">.</span><span class="re0">$exception</span><span class="sy0">-&gt;</span><span class="me1">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span>KATA_ERROR<span class="br0">&#41;</span><span class="sy0">;</span>
+		parent<span class="sy0">::</span><span class="me2">afterError</span><span class="br0">&#40;</span><span class="re0">$exception</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//if you want to render error-layout</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic32">...cache anything anywhere</a></h3>
+Simply use the cacheUtility. The cacheutility autoselects the best caching-
+method for you, but you can override that behaviour. Example:
+<pre class="php" style="font-family:monospace;">	<span class="kw2">function</span> writeHighscore<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$highscore</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">calculateHighscore</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="re0">$cacheUtil</span> <span class="sy0">=</span> getUtil<span class="br0">&#40;</span><span class="st_h">'Cache'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+		<span class="co1">//write data to the cache, under the name 'highscore' and cache</span>
+		<span class="co1">//for 300 seconds.</span>
+		<span class="re0">$cacheUtil</span><span class="sy0">-&gt;</span><span class="me1">write</span><span class="br0">&#40;</span><span class="re0">$highscore</span><span class="sy0">,</span><span class="st_h">'highscore'</span><span class="sy0">,</span><span class="nu0">300</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="co1">//same as above, but force using the filesystem to persist the data</span>
+		<span class="co1">//to we survive a reboot</span>
+		<span class="re0">$cacheUtil</span><span class="sy0">-&gt;</span><span class="me1">write</span><span class="br0">&#40;</span><span class="re0">$highscore</span><span class="sy0">,</span><span class="st_h">'highscore'</span><span class="sy0">,</span><span class="nu0">300</span><span class="sy0">,</span>CacheUtility<span class="sy0">::</span><span class="me2">CM_FILE</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="kw2">function</span> readHighscores<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$cacheUtil</span> <span class="sy0">=</span> getUtil<span class="br0">&#40;</span><span class="st_h">'Cache'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+		<span class="re0">$highscore</span> <span class="sy0">=</span> <span class="re0">$cacheUtil</span><span class="sy0">-&gt;</span><span class="me1">read</span><span class="br0">&#40;</span><span class="st_h">'highscore'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="co1">//did we success? return</span>
+		<span class="kw1">if</span> <span class="br0">&#40;</span><span class="kw4">false</span> <span class="sy0">!==</span> <span class="re0">$highscore</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			<span class="kw1">return</span> <span class="re0">$highscore</span><span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+		<span class="co1">//next try: read it from the filesystem.</span>
+		<span class="re0">$cacheUtil</span><span class="sy0">-&gt;</span><span class="me1">read</span><span class="br0">&#40;</span><span class="st_h">'highscore'</span><span class="sy0">,</span>CacheUtility<span class="sy0">::</span><span class="me2">CM_FILE</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="kw1">if</span> <span class="br0">&#40;</span><span class="kw4">false</span> <span class="sy0">!==</span> <span class="re0">$highscore</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			<span class="kw1">return</span> <span class="re0">$highscore</span><span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+&nbsp;
+		<span class="co1">//still no luck? calculate it.</span>
+		<span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">caluclateHighscore</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span></pre>
+<br />
+If <span class="code">DEBUG</span> is <span class="code">2</span> you will see whats being written/read from cache.
+If <span class="code">DEBUG</span> is <span class="code">3</span> caching is completely disabled.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="xsrf">...create a protection for XSRF</a></h3>
+Such a protection involves three steps:
+<div class="li"><div class="liinner">&bull;</div>Create a token (if the user logs in) and write it into the users session</div>
+<div class="li"><div class="liinner">&bull;</div>use <span class="code">$html-&gt;tokenUrl()</span> instead of <span class="code">$html-&gt;url()</span> for all POST-FORMs you want to protect</div>
+<div class="li"><div class="liinner">&bull;</div>Check (for example if you detect post-parameters) if the token is there and valid.</div>
+<br /><br />
+An example implementation would look like this:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> UserController <span class="kw2">extends</span> Controller <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> generateToken<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="kw1">return</span> <a href="http://www.php.net/md5"><span class="kw3">md5</span></a><span class="br0">&#40;</span><a href="http://www.php.net/rand"><span class="kw3">rand</span></a><span class="br0">&#40;</span><span class="nu0">0</span><span class="sy0">,</span>PHP_INT_MAX<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="co1">//put a generated token</span>
+	<span class="kw2">function</span> login<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="co1">//....</span>
+&nbsp;
+		<span class="co1">//if user did login successfully:</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">Session</span><span class="sy0">-&gt;</span><span class="me1">write</span><span class="br0">&#40;</span><span class="st_h">'usertoken'</span><span class="sy0">,</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">generateToken</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">redirect</span><span class="br0">&#40;</span><span class="st_h">'inbox/index'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;</pre>
+And the AppController:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> AppController <span class="kw2">extends</span> Controller <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> checkToken<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$tokenShould</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">Session</span><span class="sy0">-&gt;</span><span class="me1">read</span><span class="br0">&#40;</span><span class="st_h">'usertoken'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="re0">$tokenIs</span> <span class="sy0">=</span> is<span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">params</span><span class="br0">&#91;</span><span class="st_h">'url'</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st_h">'__token'</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st_h">''</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+		<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$tokenShould</span> <span class="sy0">!=</span> <span class="re0">$tokenIs</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			<span class="co1">//user sees only 'internal server error'</span>
+			throw <span class="kw2">new</span> Exception<span class="br0">&#40;</span><span class="st_h">'XSRF Protection'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="kw2">function</span> beforeFilter<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">set</span><span class="br0">&#40;</span><span class="st_h">'__token'</span><span class="sy0">,</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">Session</span><span class="sy0">-&gt;</span><span class="me1">read</span><span class="br0">&#40;</span><span class="st_h">'usertoken'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="kw2">function</span> beforeAction<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="co1">//do we have post parameters appended?</span>
+		<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/count"><span class="kw3">count</span></a><span class="br0">&#40;</span>is<span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">params</span><span class="br0">&#91;</span><span class="st_h">'form'</span><span class="br0">&#93;</span><span class="sy0">,</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">checkToken</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+	<span class="br0">&#125;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic34">...use the same helpers, components or models in all controllers</a></h3>
+All models, components, helpers you add inside your AppController
+are accessible to all descendant controllers. All models, components,
+helpers you use inside a controller are simply added to the list.
+<br /><br />
+Example:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> AppControllers <span class="kw2">extends</span> Controller <span class="br0">&#123;</span>
+	<span class="re0">$uses</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'User'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+and your own controller looks like this:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MyController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+	<span class="re0">$uses</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'Ships'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+then <span class="code">MyController</span> has access to the <span class="code">User</span>-Model and
+the <span class="code">Ships</span>-Model.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic35">...make a php-file accessible via webserver without using kata</a></h3>
+All files you dump into the <span class="code">webroot/</span> directory are directly
+accessible without using kata.
+<br /><br />
+Example: You have a file <span class="code">webroot/moo.php</span> that contains
+<pre class="php" style="font-family:monospace;"><span class="kw1">echo</span> <span class="st_h">'moooooo!'</span><span class="sy0">;</span></pre>
+Then you can simply call <span class="code">http://localhost/moo.php</span>.
+<br /><br />
+Hack: If you decide you want to continue normally inside kata
+just do:
+<pre class="php" style="font-family:monospace;"><span class="re0">$_GET</span><span class="br0">&#91;</span><span class="st_h">'kata'</span><span class="br0">&#93;</span> <span class="sy0">=</span> <span class="st_h">'controller/action/'</span><span class="sy0">;</span>
+<span class="kw1">include</span> <span class="st_h">'../index.php'</span><span class="sy0">;</span></pre>
+<br />
+For a clean way to use parts of kata inside raw php-files
+see <a href="#rawkata">#rawkata</a>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="vendor">...include external files, aka vendor() call</a></h3>
+Put your php-file into the directory <span class="code">vendors/</span> and include it with
+<span class="code">vendor('file')</span> (without vendors/ and .php).
+<br /><br />
+Example: If you want to use
+your file (for example <span class="code">vendors/mailer/somefile.php</span>)
+simply use:
+<pre class="php" style="font-family:monospace;">vendor<span class="br0">&#40;</span><span class="st_h">'mailer/somefile'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+kata makes shure you dont include a file multiple times.
+<br /><br />
+You can use vendor() anywhere you want.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic37">...render a view and have it returned to me</a></h3>
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> MainController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> sendMail<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$html</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">renderView</span><span class="br0">&#40;</span><span class="st_h">'emailTemplate'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<a href="http://www.php.net/mail"><span class="kw3">mail</span></a><span class="br0">&#40;</span><span class="st_h">'staff@example.org'</span><span class="sy0">,</span> <span class="st_h">'Welcome!'</span><span class="sy0">,</span> <span class="re0">$html</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="co1">// after sendMail returns kata renders</span>
+		<span class="co1">// views/main/sendMail.thtml as if nothing happend</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic38">...render a view of a different controller</a></h3>
+<br /><br />
+<pre class="php" style="font-family:monospace;">&nbsp;
+<span class="kw2">class</span> FooController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+      <span class="kw2">function</span> index<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+&nbsp;
+         <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">'../bar/index'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+<br />
+Possible gotcha: <span class="code">views/foo</span> must exist, or your operating system
+is unable to change directories.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic39">...use a imageserver / content delivery network</a></h3>
+<br /><br />
+kata can automatically use a different URL to serve images. Simply put
+<span class="code">define('CDN_URL','http://s%d.img.somegame.de/');</span> into your
+<span class="code">config/core.php</span>, after that all URLs for images (jpg,gif,png)
+are rewritten according to your define.
+<br /><br />
+To speed up loading kata generates a (consistent) number from 0-3 per image
+so the browser can use multiple connections to load images. In the above example
+we will end up with the following URLs:
+<span class="result">http://s0.img.somegame.de
+http://s1.img.somegame.de
+http://s2.img.somegame.de
+http://s3.img.somegame.de</span>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic40">...rewrite incoming urls</a></h3>
+<br /><br />
+You can rewrite incoming URLs to different URLs. Put this into your
+<span class="code">config/core.php</span>:
+<pre class="php" style="font-family:monospace;">&nbsp;
+<span class="re0">$routes</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st_h">'main/index'</span><span class="sy0">=&gt;</span><span class="st_h">'games/index'</span><span class="sy0">,</span> <span class="co1">//change initial controller</span>
+    <span class="st_h">''</span> <span class="sy0">=&gt;</span> <span class="st_h">'games/index'</span><span class="sy0">,</span> <span class="co1">//ditto</span>
+    <span class="st_h">'p/'</span> <span class="sy0">=&gt;</span> <span class="st_h">'profile/show/'</span><span class="sy0">,</span> <span class="co1">// p/foo/bar -&gt; profile/show/foo/bar</span>
+    <span class="st_h">'card/'</span><span class="sy0">=&gt;</span><span class="st_h">'gamerscard/getImage/'</span><span class="sy0">,</span> <span class="co1">// ditto</span>
+    <span class="st_h">'foo/nonexistantFile.php'</span> <span class="sy0">=&gt;</span> <span class="st_h">'somecontroller/someaction'</span>
+<span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic41">...kata and debugging</a></h3>
+Edit <span class="code">config/core.php</span> and set <span class="code">DEBUG</span> TO <span class="code">2</span>. You will
+now see a debug-output at the bottom of the page containing various
+informations: current GET/POST parameters, sql-queries and results,
+cache-operations and results, loaded Classes and so on.
+<br /><br />
+If an exception occurs kata will render the error-layout which will
+output what went wrong, how we got there, and what parameters we used.
+<br /><br />
+<table class="framed">
+<tr class="odd"><td><span class="code">DEBUG=-1</span> </td><td> like 0 + dont write debug-log&lt;/rtd&gt;
+<tr><td><span class="code">DEBUG=0</span> </td><td> No errors are displayed, fail only on hard problems (like failed sql-queries), on insignificant problems try to survive as long as possible</td></tr>
+<tr class="odd"><td><span class="code">DEBUG=1</span> </td><td> Display all errors</td></tr>
+<tr><td><span class="code">DEBUG=2</span> </td><td> like 1 + everything suspicious leads to an exception + output lots of debug-info</td></tr>
+<tr class="odd"><td><span class="code">DEBUG=3</span> </td><td> like 2 + disabled caching</td></tr>
+</table>
+<br /><br />
+There are several debugging-aides that you can enable inside
+your <b>core.php</b>. These mostly only work if <span class="code">DEBUG</span> is
+at least <span class="code">2</span>.
+<br /><br />
+<table class="framed"><tr><td><span class="code">include(LIB.'boot_firephp.php');</span></td><td> will redirect all debugging-output from kata to the firebug console (if <span class="code">DEBUG</span> equals <span class="code">1</span>).
+<tr class="odd"><td><span class="code">include(LIB.'boot_coverage.php');</span></td><td> will output a detailed listing of all your used models, controllers etc. and will hilite lines that were actually executed. Very helpful to find unreachable code or to get to the bottom of unexpected behaviour.&lt;/rtd&gt;
+<tr><td><span class="code">include(LIB.'boot_profile.php');</span></td><td> will output a detailed listing which commands or functions were executed how often, and how many microseconds processing power they consumed.&lt;/rtd&gt;
+<tr class="odd"><td><span class="code">include(LIB.'boot_strict.php');</span></td><td> will turn any notice, warning, error into a hard error.&lt;/rtd&gt;
+<tr><td><span class="code">include(LIB.'boot_xhprof.php');</span></td><td> will dump a profiling log and create a link to visit the report if <span class="code">DEBUG</span> is <span class="code">2</span>&lt;/rtd&gt;
+</table>
+<br /><br />
+Note: If you use xhprof you have to set the <span class="code">XHPROF_URL</span> define to the url where you
+deposited the <span class="code">xhprof_html</span> folder, eg. <span class="code">define('XHPROF_URL','http://localhost/xhprof/xhprof_html/');</span>
+<br /><br />
+Warning: If you use firephp outputbuffering will be turned on, thus redirects
+will work even if you output text.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic42">Replace 404 and error layout</a></h3>
+<br /><br />
+Simply add <span class="code">views/layouts/404.thtml</span> or <span class="code">views/layouts/error.thtml</span>.
+<br /><br />
+As not enough parameters are know to fully start kata you only have access to
+<span class="code">$this-&gt;params</span>, nothing more, you are own your own.
+If you want to know the absolute framework-webpath use <span class="code">$basePath</span>.
+<br /><br />
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic43">Use kata with lighthttpd</a></h3>
+<br /><br />
+config:
+<pre class="code">$HTTP[&quot;host&quot;] == &quot;locakata&quot; {
+    # we only need index.php here.
+    index-file.names = ( &quot;index.php&quot; )
+    # for clean urls
+    magnet.attract-physical-path-to = ( &quot;/etc/lighttpd/locakata.lua&quot; )
+}</pre>
+<br />
+locakata.lua:
+<pre class="code">attr = lighty.stat(lighty.env[&quot;physical.path&quot;])
+if (not attr) then
+    local request_uri = lighty.env[&quot;uri.path&quot;]:sub(2);
+    if request_uri then
+        lighty.env[&quot;uri.path&quot;] = &quot;/index.php&quot;
+        lighty.env[&quot;physical.rel-path&quot;] = lighty.env[&quot;uri.path&quot;]
+        local uriquery = lighty.env[&quot;uri.query&quot;] or &quot;&quot;
+        lighty.env[&quot;uri.query&quot;] = &quot;kata=&quot; .. request_uri .. (uriquery ~= &quot;&quot; and &quot;&amp;&quot; or &quot;&quot;) .. uriquery
+        lighty.env[&quot;physical.path&quot;] = lighty.env[&quot;physical.doc-root&quot;] .. lighty.env[&quot;physical.rel-path&quot;]
+    end
+end</pre>
+<br />
+thx: martin contento
+<br /><br />
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic44">Add autocompletion for models and components</a></h3>
+Works for Netbeans and some versions of Eclipse.
+<br /><br />
+<pre class="php" style="font-family:monospace;"><span class="co4">/**
+ * @property User $User
+ */</span>
+<span class="kw2">class</span> PostsController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+      <span class="kw2">public</span> <span class="re0">$uses</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">Array</span></a><span class="br0">&#40;</span>
+                 <span class="st_h">'User'</span>
+             <span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+      <span class="kw2">function</span> foo<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+          <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">User</span><span class="sy0">-&gt;</span><span class="me1">bar</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="ccss">Use one css-file für LTR/RTL layouts</a></h3>
+<br /><br />
+You can mix statements for LTR and RTL layouts to greatly simplify the amount
+of work you have to do. Simply prepend each selector with the statements
+seen below:
+<br /><br />
+<pre class="code">/*rtl*/ #contentColumn .dlGamesThumb img { direction:rtl; }
+#contentColumn .dlGamesThumb img { both:1; }
+/*ltr*/ #contentColumn .dlGamesThumb img { direction:ltr; }
+
+#contentColumn .forumWrapper .commonBtn {
+	/*for both ltr + rtl*/
+}
+/*ltr*/ #contentColumn .forumWrapper .commonBtn {
+	/*for ltr*/
+}
+/*rtl*/ #contentColumn .forumWrapper .commonBtn {
+	/*for rtl*/
+}</pre>
+<br />
+All you have to do is name your file <span class="code">.c.css</span> instead of </span>.css</span>
+and use the <span class="code">$html-&gt;cssTag()</span> helper to include the file. kata will
+do the rest, and cache the parsed file (if you tell kata so). Please note
+that you have supply <span class="code">$html-&gt;cssTag()</span> with a caching-flag and a rtl-flag:
+<pre class="php" style="font-family:monospace;"><span class="kw1">echo</span> <span class="re0">$html</span><span class="sy0">-&gt;</span><span class="me1">cssTag</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st_h">'all.c.css'</span><span class="sy0">,</span>
+    <span class="st_h">'stuff.css'</span><span class="sy0">,</span>
+<span class="br0">&#41;</span><span class="sy0">,</span><span class="re0">$cacheAndMinify</span><span class="sy0">,</span><span class="re0">$isRtl</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+<div class="newttopict"></div><a href="#____top"><div class="top">top</div></a><div class="newttopicb"></div><h3><a name="model</h2>"><h2>Database access: Models</a></h3>
+A model is a class (thats a descendant of model) that is used to access/store
+data. Models are automatically singletons.
+<br /><br />
+Configure the database to use by modifying <span class="code">config/database.php</span>, using
+<span class="code">config/database.php.default</span> as a template:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> DATABASE_CONFIG <span class="br0">&#123;</span>
+  <span class="kw2">public</span> static <span class="re0">$default</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'driver'</span> <span class="sy0">=&gt;</span> <span class="st_h">'mysql'</span><span class="sy0">,</span>
+	<span class="st_h">'host'</span> <span class="sy0">=&gt;</span> <span class="st_h">'localhost'</span><span class="sy0">,</span>
+	<span class="st_h">'login'</span> <span class="sy0">=&gt;</span> <span class="st_h">'username'</span><span class="sy0">,</span>
+	<span class="st_h">'password'</span> <span class="sy0">=&gt;</span> <span class="st_h">'password'</span><span class="sy0">,</span>
+	<span class="st_h">'database'</span> <span class="sy0">=&gt;</span> <span class="st_h">'www13'</span><span class="sy0">,</span>
+	<span class="st_h">'prefix'</span> <span class="sy0">=&gt;</span> <span class="st_h">''</span><span class="sy0">,</span>
+	<span class="st_h">'encoding'</span> <span class="sy0">=&gt;</span> <span class="st_h">''</span>
+  <span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+<br />
+Create the file <span class="code">models/users.php</span> with the following content:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> Users <span class="kw2">extends</span> AppModel <span class="br0">&#123;</span>
+&nbsp;
+	<span class="coMULTI">/* returns: array(
+	 *    [0] =&gt; array('user_id'=&gt;4, 'group_id'=&gt;1, 'username'=&gt;'Alice'),
+	 *    [1] =&gt; array('user_id'=&gt;5, 'group_id'=&gt;1, 'username'=&gt;'Bob'),
+	 *    [2] =&gt; array('user_id'=&gt;6, 'group_id'=&gt;2, 'username'=&gt;'Eve')
+	 * );
+	 */</span>
+	<span class="kw2">function</span> getAllUsers<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">query</span><span class="br0">&#40;</span><span class="st_h">'SELECT * FROM users'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="coMULTI">/* returns: array(
+	 *    [4] =&gt; array('user_id'=&gt;4, 'group_id'=&gt;1, 'username'=&gt;'Alice'),
+	 *    [5] =&gt; array('user_id'=&gt;5, 'group_id'=&gt;1, 'username'=&gt;'Bob'),
+	 *    [6] =&gt; array('user_id'=&gt;6, 'group_id'=&gt;2, 'username'=&gt;'Eve')
+	 * );
+	 */</span>
+	<span class="kw2">function</span> getAllUsersById<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">query</span><span class="br0">&#40;</span><span class="st_h">'SELECT * FROM users'</span><span class="sy0">,</span><span class="st_h">'user_id'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="coMULTI">/* returns: array(
+	 *    [1] =&gt; array(
+	 *       [4] =&gt; array('user_id'=&gt;4, 'group_id'=&gt;1, 'username'=&gt;'Alice'),
+	 *       [5] =&gt; array('user_id'=&gt;5, 'group_id'=&gt;1, 'username'=&gt;'Bob'),
+	 *    ),
+	 *    [2] =&gt; array(
+	 *       [6] =&gt; array('user_id'=&gt;6, 'group_id'=&gt;2, 'username'=&gt;'Eve')
+	 *    ),
+	 * );
+	 */</span>
+	<span class="kw2">function</span> getAllUsersByGroupAndId<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">query</span><span class="br0">&#40;</span><span class="st_h">'SELECT * FROM users'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'group_id'</span><span class="sy0">,</span><span class="st_h">'user_id'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+<br />
+To use the model inside your controller do:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> UserController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">public</span> <span class="re0">$uses</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'User'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//load user-model</span>
+&nbsp;
+	<span class="kw2">public</span> <span class="kw2">function</span> listusers<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">set</span><span class="br0">&#40;</span><span class="st_h">'allUsers'</span><span class="sy0">,</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">User</span><span class="sy0">-&gt;</span><span class="me1">getAllUsers</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+If you have only read-access data it may be useful to do something like this:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> Items <span class="br0">&#123;</span> <span class="co1">//note: we dont extend AppModel!</span>
+&nbsp;
+	protected <span class="re0">$itemnames</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+		<span class="nu0">1</span> <span class="sy0">=&gt;</span> <span class="st_h">'Tool'</span><span class="sy0">,</span>
+		<span class="nu0">2</span> <span class="sy0">=&gt;</span> <span class="st_h">'Weapon'</span><span class="sy0">,</span>
+		<span class="nu0">3</span> <span class="sy0">=&gt;</span> <span class="st_h">'Junk'</span>
+	<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+	<span class="kw2">function</span> getItemnameById<span class="br0">&#40;</span><span class="re0">$id</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/isset"><span class="kw3">isset</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">itemnames</span><span class="br0">&#91;</span><span class="re0">$id</span><span class="br0">&#93;</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			<span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">itemnames</span><span class="br0">&#91;</span><span class="re0">$id</span><span class="br0">&#93;</span><span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+		<span class="kw1">return</span> <span class="kw4">false</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+<br />
+if <span class="code">DEBUG</span> is <span class="code">&gt;=2</span> you will see all queries, results, and how
+long each query took.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic47">...use a model inside a model</a></h3>
+Example:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> User <span class="kw2">extends</span> Model <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> isAllowedToLogin<span class="br0">&#40;</span><span class="re0">$userid</span><span class="sy0">,</span><span class="re0">$password</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$userblob</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">readUserBlob</span><span class="br0">&#40;</span><span class="re0">$userid</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$userblob</span><span class="br0">&#91;</span><span class="st_h">'password'</span><span class="br0">&#93;</span> <span class="sy0">!=</span> <span class="re0">$password</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			<span class="kw1">return</span> <span class="kw4">false</span><span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+&nbsp;
+		<span class="re0">$accessModel</span> <span class="sy0">=</span> getModel<span class="br0">&#40;</span><span class="st_h">'Access'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="kw1">return</span> <span class="re0">$accessModel</span><span class="sy0">-&gt;</span><span class="me1">hasAccess</span><span class="br0">&#40;</span><span class="re0">$userid</span><span class="sy0">,</span><span class="st_h">'LOGIN'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+Models are automatically singletons, you always get the same one.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="activerecord">...use active record model functions</a></h3>
+Active record allows simplified access independent of the currently used
+RDBMS. You dont have to write SQL in most cases. It is by no means
+meant do encapsulate database-access, it just offers convenience functions
+to simplify database-access.
+<br /><br />
+For the following examples we show you what to write and what
+the resuling SQL-code kata generates is. We assume a simple table with
+the following layout:
+<br /><br />
+<pre class="code">CREATE TABLE `test` (
+  `id` int(11) NOT NULL auto_increment,
+  `f1` int(11) NOT NULL,
+  `f2` int(11) NOT NULL,
+  `f3` int(11) NOT NULL,
+  `f4` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+);</pre>
+<br />
+We also assume your Model knows what table to access, because you supplied
+a tablename:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> Test <span class="kw2">extends</span> Model <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">public</span> <span class="re0">$useTable</span> <span class="sy0">=</span> <span class="st_h">'test'</span><span class="sy0">;</span></pre>
+<br />
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic49">Insert data into a table</a></h3>
+<pre class="php" style="font-family:monospace;"><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">create</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'id'</span><span class="sy0">=&gt;</span><span class="nu0">1</span><span class="sy0">,</span>
+	<span class="st_h">'f1'</span><span class="sy0">=&gt;</span><span class="nu0">10</span><span class="sy0">,</span>
+	<span class="st_h">'f2'</span><span class="sy0">=&gt;</span><span class="nu0">11</span><span class="sy0">,</span>
+	<span class="st_h">'f3'</span><span class="sy0">=&gt;</span><span class="nu0">12</span><span class="sy0">,</span>
+	<span class="st_h">'f4'</span><span class="sy0">=&gt;</span><span class="nu0">13</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">INSERT INTO `test` (`id`,`f1`,`f2`,`f3`,`f4`) VALUES ('1','10','11','12','13')</pre>
+<br />
+Insert data, primary key is autoincrement:
+<pre class="php" style="font-family:monospace;"><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">create</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span> <span class="co1">//primary key missing, but its autoincrement</span>
+	<span class="st_h">'f1'</span><span class="sy0">=&gt;</span><span class="nu0">20</span><span class="sy0">,</span>
+	<span class="st_h">'f2'</span><span class="sy0">=&gt;</span><span class="nu0">21</span><span class="sy0">,</span>
+	<span class="st_h">'f3'</span><span class="sy0">=&gt;</span><span class="nu0">22</span><span class="sy0">,</span>
+	<span class="st_h">'f4'</span><span class="sy0">=&gt;</span><span class="nu0">23</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">INSERT INTO `test` (`f1`,`f2`,`f3`,`f4`) VALUES ('20','21','22','23')</pre>
+<br />
+kata will return the id of the inserted record.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic50">MassInsert data into a table</a></h3>
+<pre class="php" style="font-family:monospace;"><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">bulkcreate</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+		<span class="st_h">'id'</span><span class="sy0">=&gt;</span><span class="nu0">1</span><span class="sy0">,</span>
+		<span class="st_h">'f1'</span><span class="sy0">=&gt;</span><span class="nu0">10</span><span class="sy0">,</span>
+		<span class="st_h">'f2'</span><span class="sy0">=&gt;</span><span class="nu0">11</span><span class="sy0">,</span>
+		<span class="st_h">'f3'</span><span class="sy0">=&gt;</span><span class="nu0">12</span><span class="sy0">,</span>
+		<span class="st_h">'f4'</span><span class="sy0">=&gt;</span><span class="nu0">13</span>
+	<span class="br0">&#41;</span><span class="sy0">,</span>
+	<a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+		<span class="st_h">'id'</span><span class="sy0">=&gt;</span><span class="nu0">2</span><span class="sy0">,</span>
+		<span class="st_h">'f1'</span><span class="sy0">=&gt;</span><span class="nu0">12</span><span class="sy0">,</span>
+		<span class="st_h">'f2'</span><span class="sy0">=&gt;</span><span class="nu0">13</span><span class="sy0">,</span>
+		<span class="st_h">'f3'</span><span class="sy0">=&gt;</span><span class="nu0">14</span><span class="sy0">,</span>
+		<span class="st_h">'f4'</span><span class="sy0">=&gt;</span><span class="nu0">15</span>
+	<span class="br0">&#41;</span><span class="sy0">,</span>
+<span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">INSERT INTO `test` (`id`,`f1`,`f2`,`f3`,`f4`) VALUES ('1','10','11','12','13'),('2','12','13','14','15')</pre>
+<br />
+Creates giant INSERTs in pairs of 100 lines (to satisfy mysql max_packet_size)
+until all data has been inserted into the database.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic51">Replace data</a></h3>
+Like insert, but deleted any record with the same primary key(s)). Warning:
+If the supplied keys match for multiple rows, all matching rows are deleted
+(mysql behaviour).
+<br /><br />
+<pre class="php" style="font-family:monospace;"><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">replace</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'id'</span><span class="sy0">=&gt;</span><span class="nu0">1</span><span class="sy0">,</span>
+	<span class="st_h">'f1'</span><span class="sy0">=&gt;</span><span class="nu0">1</span><span class="sy0">,</span>
+	<span class="st_h">'f2'</span><span class="sy0">=&gt;</span><span class="nu0">1</span><span class="sy0">,</span>
+	<span class="st_h">'f3'</span><span class="sy0">=&gt;</span><span class="nu0">1</span><span class="sy0">,</span>
+	<span class="st_h">'f4'</span><span class="sy0">=&gt;</span><span class="nu0">1</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">REPLACE INTO `test` SET `id`='1',`f1`='1',`f2`='1',`f3`='1',`f4`='1'</pre>
+<br />
+kata will return how many records have changed.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic52">Update</b> data</a></h3>
+<pre class="php" style="font-family:monospace;"><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">update</span><span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'f1'</span><span class="sy0">=&gt;</span><span class="nu0">3</span><span class="sy0">,</span>
+	<span class="st_h">'f2'</span><span class="sy0">=&gt;</span><span class="nu0">33</span><span class="sy0">,</span>
+	<span class="st_h">'f3'</span><span class="sy0">=&gt;</span><span class="nu0">33</span><span class="sy0">,</span>
+	<span class="st_h">'f4'</span><span class="sy0">=&gt;</span><span class="nu0">33</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">UPDATE `test` SET `f1`='3',`f2`='33',`f3`='33',`f4`='33' WHERE `id`='1'</pre>
+<br />
+kata will return how many records have changed.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic53">Remove data</a></h3>
+<pre class="php" style="font-family:monospace;"><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">delete</span><span class="br0">&#40;</span><span class="nu0">5</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="co1">//does the same:</span>
+<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">delete</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'id'</span><span class="sy0">=&gt;</span><span class="nu0">5</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">DELETE FROM `test` WHERE `id`='5'</pre>
+If you have multiple indexes you would use:
+<pre class="php" style="font-family:monospace;"><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">delete</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'id1'</span><span class="sy0">=&gt;</span><span class="nu0">6</span><span class="sy0">,</span> <span class="st_h">'id2'</span><span class="sy0">=&gt;</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+kata will return how many records have been deleted.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic54">Read rows</a></h3>
+<pre class="php" style="font-family:monospace;"><a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">read</span><span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span> <span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="co1">//does the same:</span>
+<a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">read</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'id'</span><span class="sy0">=&gt;</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">SELECT * FROM `test` WHERE `id`='1'</pre>
+which returns:
+<pre class="result">array
+  0 =&gt;
+    array
+      'id' =&gt; string '1' (length=1)
+      'f1' =&gt; string '4' (length=1)
+      'f2' =&gt; string '44' (length=2)
+      'f3' =&gt; string '44' (length=2)
+      'f4' =&gt; string '44' (length=2)</pre>
+<br />
+Read data with prefiltered result-array:
+<pre class="php" style="font-family:monospace;"><a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">read</span><span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'f1'</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">SELECT f1 FROM `test` WHERE `id`='1'</pre>
+which returns:
+<pre class="result">array
+  0 =&gt;
+    array
+      'f1' =&gt; string '4' (length=1)</pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic55">Complex read</a></h3>
+<pre class="php" style="font-family:monospace;"><a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">find</span><span class="br0">&#40;</span><span class="st_h">'all'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'conditions'</span><span class="sy0">=&gt;</span>array<span class="br0">&#40;</span>
+		<span class="st_h">'f1'</span><span class="sy0">=&gt;</span><span class="nu0">1</span>
+	<span class="br0">&#41;</span><span class="sy0">,</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">SELECT * FROM `test` WHERE `f1`='1'</pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic56">Complex read with conditions (WHERE clause)</a></h3>
+<b>Conditions</b> can also contain &lt;,&gt;,IN,LIKE and so on:
+<pre class="php" style="font-family:monospace;"><a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">find</span><span class="br0">&#40;</span><span class="st_h">'all'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'conditions'</span><span class="sy0">=&gt;</span>array<span class="br0">&#40;</span>
+		<span class="st_h">'f1 &gt;'</span><span class="sy0">=&gt;</span><span class="nu0">1</span>
+	<span class="br0">&#41;</span><span class="sy0">,</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">SELECT * FROM `test` WHERE `f1` &gt; '1'</pre>
+<br />
+<br /><br />
+<pre class="php" style="font-family:monospace;"><a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">find</span><span class="br0">&#40;</span><span class="st_h">'all'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'conditions'</span><span class="sy0">=&gt;</span>array<span class="br0">&#40;</span>
+		<span class="st_h">'f1 in'</span><span class="sy0">=&gt;</span>array<span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	<span class="br0">&#41;</span><span class="sy0">,</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">SELECT * FROM `test` WHERE f1 IN ('1','2')</pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic57">Complex read with complex conditions</a></h3>
+Complicated <b>complex read</b> example:
+<pre class="php" style="font-family:monospace;"><a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">find</span><span class="br0">&#40;</span><span class="st_h">'all'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'conditions'</span><span class="sy0">=&gt;</span>array<span class="br0">&#40;</span>
+		<span class="st_h">'f1 &gt;'</span><span class="sy0">=&gt;</span><span class="nu0">1</span><span class="sy0">,</span>
+		<a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+			<span class="st_h">'f1'</span><span class="sy0">=&gt;</span><span class="nu0">2</span><span class="sy0">,</span>
+			<span class="st_h">'or'</span><span class="sy0">,</span>
+			<span class="st_h">'f2'</span><span class="sy0">=&gt;</span><span class="nu0">3</span><span class="sy0">,</span>
+			<a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+				<span class="st_h">'f3 &lt;='</span><span class="sy0">=&gt;</span><span class="nu0">4</span><span class="sy0">,</span>
+				<span class="st_h">'f3 like'</span><span class="sy0">=&gt;</span><span class="st_h">'%foo'</span>
+			<span class="br0">&#41;</span>
+		<span class="br0">&#41;</span>
+	<span class="br0">&#41;</span><span class="sy0">,</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">SELECT * FROM `test` WHERE `f1` &gt; '1' AND  ( `f1`='2' OR `f2`='3' OR  ( `f3` &lt;= '4' AND `f3` like '%foo' )  )</pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic58">Complex read with automatic pagination</a></h3>
+even for RDBMS that dont support 'LIMIT':
+<pre class="php" style="font-family:monospace;"><a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">find</span><span class="br0">&#40;</span><span class="st_h">'all'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'page'</span><span class="sy0">=&gt;</span><span class="nu0">1</span><span class="sy0">,</span> <span class="co1">//which page to return</span>
+	<span class="st_h">'limit'</span><span class="sy0">=&gt;</span><span class="nu0">1</span><span class="sy0">,</span> <span class="co1">//how many rows per page</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">SELECT * FROM `test` LIMIT 0,1</pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic59">Filter read results</a></h3>
+We can tell kata to <b>filter the result</b> (modus 'list'):
+<pre class="php" style="font-family:monospace;"><span class="re0">$data</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">find</span><span class="br0">&#40;</span><span class="st_h">'list'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'listby'</span><span class="sy0">=&gt;</span>array<span class="br0">&#40;</span>
+		<span class="st_h">'id'</span><span class="sy0">,</span> <span class="co1">// keys of the returned array are</span>
+			  <span class="co1">// filled with the value of the id-field</span>
+	<span class="br0">&#41;</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">SELECT * FROM `test`</pre>
+which returns:
+<pre class="result">Array
+(
+    [1] =&gt; Array
+        (
+            [id] =&gt; 1
+            [f1] =&gt; 4
+            [f2] =&gt; 44
+            [f3] =&gt; 44
+            [f4] =&gt; 44
+        )
+
+    [2] =&gt; Array
+        (
+            [id] =&gt; 2
+            [f1] =&gt; 20
+            [f2] =&gt; 21
+            [f3] =&gt; 22
+            [f4] =&gt; 23
+        )
+...</pre>
+<br />
+<br /><br />
+You can also do this multi-dimensionally:
+<pre class="php" style="font-family:monospace;"><span class="re0">$data</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">find</span><span class="br0">&#40;</span><span class="st_h">'list'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'listby'</span><span class="sy0">=&gt;</span>array<span class="br0">&#40;</span>
+		<span class="st_h">'id'</span><span class="sy0">,</span><span class="st_h">'f1'</span> <span class="co1">// 2-dimensional array which has its keys filled</span>
+				  <span class="co1">// with the value of id and f1</span>
+	<span class="br0">&#41;</span>
+<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+results in:
+<pre class="result">SELECT * FROM `test`</pre>
+which returns:
+<pre class="result">Array
+(
+    [1] =&gt; Array
+        (
+            [4] =&gt; Array
+                (
+                    [id] =&gt; 1
+                    [f1] =&gt; 4
+                    [f2] =&gt; 44
+                    [f3] =&gt; 44
+                    [f4] =&gt; 44
+                )
+
+        )
+
+    [2] =&gt; Array
+        (
+            [20] =&gt; Array
+                (
+                    [id] =&gt; 2
+                    [f1] =&gt; 20
+                    [f2] =&gt; 21
+                    [f3] =&gt; 22
+                    [f4] =&gt; 23
+                )
+
+        )
+...</pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic60">...use a different table for each active record use</a></h3>
+<br /><br />
+The last parameter of all active record functions is always the
+tablename to use. If ommitted <span class="code">useTable</span> is used. If <span class="code">useTable</span> is unset
+the modelname is used as tablename.
+<br /><br />
+Reference:
+<br /><br />
+<pre class="result">
+array read    (mixed $id, [array $fields = null], [string $tableName = null])
+int   update  (mixed $id, array $fields, [string $tableName = null])
+int   replace (array $fields, [ $tableName = null], mixed $id, string $table)
+void  create  (array $fields, [string $tableName = null])
+void  delete  (mixed $id, [string $tableName = null])
+void  find    (string $method , [array $params = array ()], [string $tableName = null])
+</pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic61">...use different databases</a></h3>
+You have a second database-connection inside your <span class="code">config/database.php</span>:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> DATABASE_CONFIG <span class="br0">&#123;</span>
+  <span class="kw2">public</span> static <span class="re0">$default</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'driver'</span> <span class="sy0">=&gt;</span> <span class="st_h">'mysql'</span><span class="sy0">,</span>
+	<span class="st_h">'host'</span> <span class="sy0">=&gt;</span> <span class="st_h">'server1'</span><span class="sy0">,</span>
+	<span class="st_h">'login'</span> <span class="sy0">=&gt;</span> <span class="st_h">'username'</span><span class="sy0">,</span>
+	<span class="st_h">'password'</span> <span class="sy0">=&gt;</span> <span class="st_h">'password'</span><span class="sy0">,</span>
+	<span class="st_h">'database'</span> <span class="sy0">=&gt;</span> <span class="st_h">'www13'</span><span class="sy0">,</span>
+  <span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw2">public</span> static <span class="re0">$second</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'driver'</span> <span class="sy0">=&gt;</span> <span class="st_h">'mysql'</span><span class="sy0">,</span>
+	<span class="st_h">'host'</span> <span class="sy0">=&gt;</span> <span class="st_h">'server2'</span><span class="sy0">,</span>
+	<span class="st_h">'login'</span> <span class="sy0">=&gt;</span> <span class="st_h">'username'</span><span class="sy0">,</span>
+	<span class="st_h">'password'</span> <span class="sy0">=&gt;</span> <span class="st_h">'password'</span><span class="sy0">,</span>
+	<span class="st_h">'database'</span> <span class="sy0">=&gt;</span> <span class="st_h">'www13'</span><span class="sy0">,</span>
+  <span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+To use it with a second Model you just have to add:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> User <span class="kw2">extends</span> AppModel <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">public</span> <span class="re0">$connection</span> <span class="sy0">=</span> <span class="st_h">'second'</span><span class="sy0">;</span></pre>
+You can also swap the connection inside your model dynamically,
+even if you swap (for example) between mysql and mssql:
+<pre class="php" style="font-family:monospace;"><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">changeConnection</span><span class="br0">&#40;</span><span class="st_h">'second'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="co1">//do stuff</span>
+<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">changeConnection</span><span class="br0">&#40;</span><span class="st_h">'default'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="co1">//do stuff again</span>
+<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">changeConnection</span><span class="br0">&#40;</span><span class="st_h">'second'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//no reconnect needed because its cached</span>
+&nbsp;</pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic62">...change database config dynamically</a></h3>
+Example for <span class="code">config/database.php</span>:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> DATABASE_CONFIG <span class="br0">&#123;</span>
+  <span class="kw2">public</span> static <span class="re0">$default</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'driver'</span> <span class="sy0">=&gt;</span> <span class="st_h">'mysql'</span><span class="sy0">,</span>
+	<span class="st_h">'host'</span> <span class="sy0">=&gt;</span> <span class="st_h">'server1'</span><span class="sy0">,</span>
+	<span class="st_h">'login'</span> <span class="sy0">=&gt;</span> <span class="st_h">'username'</span><span class="sy0">,</span>
+	<span class="st_h">'password'</span> <span class="sy0">=&gt;</span> <span class="st_h">'password'</span><span class="sy0">,</span>
+	<span class="st_h">'database'</span> <span class="sy0">=&gt;</span> <span class="st_h">'www13'</span><span class="sy0">,</span>
+  <span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+DATABASE_CONFIG<span class="sy0">::</span><span class="re0">$logdb</span><span class="br0">&#91;</span><span class="st_h">'host'</span><span class="br0">&#93;</span> <span class="sy0">=</span> CURRENT_LOG_HOST<span class="sy0">;</span>
+DATABASE_CONFIG<span class="sy0">::</span><span class="re0">$logdb</span><span class="br0">&#91;</span><span class="st_h">'database'</span><span class="br0">&#93;</span> <span class="sy0">=</span> CURRENT_LOG_DATABASE<span class="sy0">;</span>
+&nbsp;</pre>
+<br />
+Gotcha: Connections are cached, once you are connected (by executing
+a query on that connection) a config-change will not influence the
+connection.
+<br /><br />
+<div class="newttopict"></div><a href="#____top"><div class="top">top</div></a><div class="newttopicb"></div><h3><a name="topic63"><h2>What is ...?</h2></a></h3>
+Short overview of kata terminology.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="helper">what is a helper</a></h3>
+A helper is a class (thats a descendant class of <span class="code">Helper</span>) that is
+accessible inside a view. They have access to anything inside a view.
+Helpers are automatically singletons.
+<br /><br />
+Let's create and use one: Drop this into <span class="code">views/helpers/beans.php</span>:
+<pre class="php" style="font-family:monospace;"><span class="kw2">Class</span> BeansHelper <span class="kw2">extends</span> Helper <span class="br0">&#123;</span>
+&nbsp;
+	protected <span class="re0">$gas</span><span class="sy0">=</span><span class="nu0">0</span><span class="sy0">;</span>
+&nbsp;
+	<span class="kw2">function</span> eat<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">gas</span><span class="sy0">++;</span>
+		<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$gas</span><span class="sy0">&lt;</span><span class="nu0">3</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			<span class="kw1">return</span> <span class="st_h">'You have eaten a bean'</span><span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+		<span class="kw1">return</span> <span class="st_h">'FFFFFRTZZZ!'</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+To make this helper accessible inside a view add this line to your controller
+(if you only use it inside one controller) or your AppController (if you use
+it everywhere):
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> SomeController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="re0">$helpers</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'beans'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+Now you can do the following inside your view/layout/element:
+<pre class="php" style="font-family:monospace;"><span class="kw1">echo</span> <span class="re0">$beans</span><span class="sy0">-&gt;</span><span class="me1">eat</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+The helper-baseclass has several templates for several tags
+included. If you want to add your own or want to override
+the default ones create the following file in <span class="code">config/tags.php</span>:
+<pre class="php" style="font-family:monospace;">&nbsp;
+<span class="sy1">&lt;?</span>
+    <span class="re0">$tags</span><span class="br0">&#91;</span><span class="st_h">'imginput'</span><span class="br0">&#93;</span> <span class="sy0">=</span> <span class="st_h">'&lt;input type=&quot;image&quot; name=&quot;%s&quot; %s/&gt;'</span><span class="sy0">;</span>
+<span class="sy1">?&gt;</span>
+&nbsp;</pre>
+You can access the tag-template inside a helper (or inside a view that is
+using the helper) via <span class="code">$this-&gt;tags['imginput']</span>
+<br /><br />
+All helpers have base functionality, because they extend the <span class="code">Helper</span>-class:
+<table class="framed">
+<tr class="odd"><td>url()</td><td>Constructs an absolute url for given string.<br />Example: <span class="code">-&gt;url('main/index')</span> returns <span class="code">http://example.com/mypath/main/index</span><br /><span class="code">-&gt;url('img/kata.gif')</span> returns <span class="code">http://example.com/mypath/kata.gif</span> </td></tr>
+<tr><td>urlRel()</td><td>like url(), but relative to the kata-webroot, even if your view has many <span class="code">/</span>-like parameters <br />Example: <span class="code">-&gt;url('img/kata.gif)</span> returns <span class="code">../../../img/kata.gif</span> </td></tr>
+<tr class="odd"><td>parseAttributes()</td><td>turns an array of attributes into a suitable string representation<br />Example: <span class="code">-&gt;parseAttributes(array('alt'=&gt;'bumm','disabled'=&gt;1))</span> returns <span class="code">alt=&quot;bumm&quot; disabled=&quot;1&quot;</span> </td></tr>
+</table>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="component">what is a component</a></h3>
+A component is a lightweight class to support a controller. It has
+access to all methods and properties of a controller.
+<br /><br />
+Components are automatically singletons.
+<br /><br />
+Let's create and use one: Drop this into <span class="code">controllers/components/access.php</span>:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> AccessComponent <span class="br0">&#123;</span>
+&nbsp;
+	<span class="co1">// always needed:</span>
+	protected <span class="re0">$controller</span> <span class="sy0">=</span> <span class="kw4">null</span><span class="sy0">;</span>
+&nbsp;
+	<span class="co1">// also always needed:</span>
+	<span class="kw2">public</span> <span class="kw2">function</span> startup<span class="br0">&#40;</span><span class="re0">$controller</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">controller</span> <span class="sy0">=</span> <span class="re0">$controller</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="co1">// your own method:</span>
+	<span class="kw2">public</span> <span class="kw2">function</span> check<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="re0">$user</span> <span class="sy0">=</span> is<span class="br0">&#40;</span>env<span class="br0">&#40;</span><span class="st_h">'PHP_AUTH_USER'</span><span class="br0">&#41;</span><span class="sy0">,</span><span class="st_h">''</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="re0">$password</span> <span class="sy0">=</span> is<span class="br0">&#40;</span>env<span class="br0">&#40;</span><span class="st_h">'PHP_AUTH_PW'</span><span class="br0">&#41;</span><span class="sy0">,</span><span class="st_h">''</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+		<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$user</span><span class="br0">&#41;</span> <span class="sy0">||</span> <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$env</span><span class="br0">&#41;</span> <span class="sy0">||</span>
+			<span class="br0">&#40;</span><span class="re0">$user</span><span class="sy0">&lt;&gt;</span><span class="st_h">'admin'</span><span class="br0">&#41;</span> <span class="sy0">||</span> <span class="br0">&#40;</span><span class="re0">$user</span><span class="sy0">&lt;&gt;</span><span class="st_h">'password'</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    			<a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st_h">'WWW-Authenticate: Basic realm=&quot;uh.&quot;'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    			<a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st_h">'HTTP/1.0 401 Unauthorized'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    			<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">controller</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">'auth_needed'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		    	<a href="http://www.php.net/die"><span class="kw3">die</span></a><span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+To make this helper accessible inside a controller add this line to your
+controller (if you only use it inside one controller) or your AppController
+(if you use it everywhere):
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> SomeController <span class="kw2">extends</span> AppController <span class="br0">&#123;</span>
+&nbsp;
+	<span class="re0">$components</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'Access'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+Now you can do the following inside your controllers:
+<pre class="php" style="font-family:monospace;"><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">Access</span><span class="sy0">-&gt;</span><span class="me1">check</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="utility">what is a utility</a></h3>
+A utility is a lightweight class (without dependencies) that can be used
+anywhere. It can be loaded anytime, anywhere, as singleton using <span class="code">$nameUtil = getUtil('Name')</span>.
+<br /><br />
+Let's build and use one: Put this into <span class="code">utils/bbcodeutility.php</span>:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> BbcodeUtility <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> parse<span class="br0">&#40;</span><span class="re0">$bbcode</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="kw1">return</span> <a href="http://www.php.net/str_replace"><span class="kw3">str_replace</span></a><span class="br0">&#40;</span>
+			<a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+				<span class="st_h">'[b]'</span><span class="sy0">,</span><span class="st_h">'[/b]'</span>
+			<span class="br0">&#41;</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+				<span class="st_h">'&lt;span style=&quot;font-weight:bold&quot;&gt;'</span><span class="sy0">,</span><span class="st_h">'&lt;/span&gt;'</span>
+			<span class="br0">&#41;</span><span class="sy0">,</span><span class="re0">$bbcode</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+To use it do the following:
+<pre class="php" style="font-family:monospace;">	<span class="re0">$bbcodeUtil</span> <span class="sy0">=</span> getUtil<span class="br0">&#40;</span><span class="st_h">'Bbcode'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="kw1">echo</span> <span class="re0">$bbcodeUtil</span><span class="sy0">-&gt;</span><span class="me1">parse</span><span class="br0">&#40;</span><span class="st_h">'[b]wow[/b]'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="element">what is an element</a></h3>
+An element is a simplified view that you can use inside any view.
+Let's build and use one:
+put this into <span class="code">views/elements/legend.thtml</span>:
+<pre class="php" style="font-family:monospace;">&nbsp;
+	I'm a element. i have access to helpers:
+	<span class="sy1">&lt;?=</span><span class="re0">$html</span><span class="sy0">-&gt;</span><span class="me1">url</span><span class="br0">&#40;</span><span class="st_h">'help/'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>
+	I also have access to all view variables you set() inside your
+	controller.
+	I can be supplied with custom variables: <span class="sy1">&lt;?=</span><span class="re0">$test</span><span class="sy1">?&gt;</span>
+&nbsp;</pre>
+<br />
+To use it do the following inside your view:
+<pre class="php" style="font-family:monospace;"><span class="kw1">echo</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">renderElement</span><span class="br0">&#40;</span><span class="st_h">'legend'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'test'</span><span class="sy0">=&gt;</span><span class="nu0">123</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+A helper has access to all variables of the view it's rendered in.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="registry">what is the registry</a></h3>
+The registry can be used to store application wide configuration-parameters
+that are automatically written to disk.
+<br /><br />
+Example:
+<pre class="php" style="font-family:monospace;">  kataReg<span class="sy0">::</span><span class="me2">set</span><span class="br0">&#40;</span><span class="st_h">'foo'</span><span class="sy0">,</span><span class="st_h">'bar'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  kataReg<span class="sy0">::</span><span class="me2">set</span><span class="br0">&#40;</span><span class="st_h">'test'</span><span class="sy0">,</span><span class="kw4">false</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  kataReg<span class="sy0">::</span><span class="me2">set</span><span class="br0">&#40;</span><span class="st_h">'kata.session_start'</span><span class="sy0">,</span><span class="kw4">false</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  kataReg<span class="sy0">::</span><span class="me2">set</span><span class="br0">&#40;</span><span class="st_h">'kata.special'</span><span class="sy0">,</span><span class="kw4">true</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  <a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span>kataReg<span class="sy0">::</span><span class="me2">get</span><span class="br0">&#40;</span><span class="st_h">'foo'</span><span class="sy0">,</span><span class="st_h">'notbar'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span>kataReg<span class="sy0">::</span><span class="me2">get</span><span class="br0">&#40;</span><span class="st_h">'foox'</span><span class="sy0">,</span><span class="st_h">'notbar'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span>kataReg<span class="sy0">::</span><span class="me2">get</span><span class="br0">&#40;</span><span class="st_h">'test'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span>kataReg<span class="sy0">::</span><span class="me2">get</span><span class="br0">&#40;</span><span class="st_h">'kata'</span><span class="sy0">,</span><span class="st_h">'mist'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <a href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">&#40;</span>kataReg<span class="sy0">::</span><span class="me2">get</span><span class="br0">&#40;</span><span class="st_h">'kata.special'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+Results in:
+<pre class="result">(string) 'bar'
+(string) 'notbar'
+(bool) false
+array(
+	'session_start'=&gt;false,
+	'special'=&gt;true
+)
+(bool) true</pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic69">What is compile.php?</a></h3>
+<br /><br />
+The kata &quot;compiler&quot; joins all needed files that contain code into a single
+file and replaces <span class="result">webroot/index.php</span>. If you use a php opcode cache
+and have a very high TTL (days) you can achieve heavy performance
+improvements.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic70">What is service.php?</a></h3>
+<br /><br />
+<span class="result">service.php</span> does some periodicly needed maintenance stuff, like
+cleaning up sessions, locks and so on. It can also rotate logs in <span class="result">KATATMP</span>,
+update locafiles etc. Call it once per hour for high traffic sites.
+<br /><br />
+It won't clean up sessions that have not expired yet, unlinke the php5-cronjob
+does.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="topic71">How to extend a helper, component, utility</a></h3>
+<br /><br />
+Simple. Just give your own class the appropriate name (<span class="result">FooHelper</span>) and
+extend the baseclass, the autoloader will automatically load the old class.
+<br /><br />
+<span class="code">class FooHelper extends HtmlHelper {
+<br /><br />
+   function something() {
+   }
+<br /><br />
+}</span>
+<br /><br />
+<div class="newttopict"></div><a href="#____top"><div class="top">top</div></a><div class="newttopicb"></div><h3><a name="topic72"><h2>Predefined Components</h2></a></h3>
+<br /><br />
+Components are helper-classes for controllers. See <a href="#component">#component</a>
+<br /><br />
+To use them add the following
+line to your <span class="code">controllers/app_controller.php</span>:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> AppController <span class="kw2">extends</span> Controller <span class="br0">&#123;</span>
+        <span class="kw2">public</span> <span class="re0">$components</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'Locale'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+Now you can simply use <span class="code">$foo = $this-&gt;Locale-&gt;getString('test1');</span> inside
+your controller to access the component.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="session">Sessions</a></h3>
+Simply add <span class="code">public $components = array('Session');</span> to your AppController.
+<br /><br />
+After this you can manipulate session-data in the following way:
+<pre class="php" style="font-family:monospace;"><span class="re0">$var</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">Session</span><span class="sy0">-&gt;</span><span class="me1">read</span><span class="br0">&#40;</span><span class="st_h">'myvariable'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//read variables from the session</span>
+<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">Session</span><span class="sy0">-&gt;</span><span class="me1">write</span><span class="br0">&#40;</span><span class="st_h">'user'</span><span class="sy0">,</span><span class="re0">$userArray</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//write something into the session</span>
+<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">Session</span><span class="sy0">-&gt;</span><span class="me1">delete</span><span class="br0">&#40;</span><span class="st_h">'user'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//user logout</span>
+<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">Session</span><span class="sy0">-&gt;</span><span class="me1">destroy</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//end session here and now</span>
+<span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">Session</span><span class="sy0">-&gt;</span><span class="me1">getIp</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//get the users ip</span></pre>
+<br />
+The Session-component alters its behaviour depending on certain settings in <span class="code">config/core.php</span>:
+<table class="framed"><tr class="odd"><td><span class="code">SESSION_TIMEOUT</span></td><td> sets after how many seconds the session expires.</td></tr>
+<tr><td><span class="code">SESSION_COOKIE</span></td><td> sets the name of the cookie to store the session id in.</td></tr>
+<tr class="odd"><td><span class="code">SESSION_STRING</span></td><td> is used if you have multiple kata-installations running on the same server. If you set this to the same value you can access the same sessions throughout different installations.</td></tr></table>
+<tr><td><span class="code">SESSION_UNSAFE</span></td><td> dont invalidate the session if the user-ip changes</td></tr></table>
+<tr class="odd"><td><span class="code">SESSION_BASEDOMAIN</span></td><td> sets the cookie for the domain-part only, so all subdomains can also use it</td></tr></table>
+<br /><br />
+<span class="code">SESSION_STORAGE</span> sets how session data is stored:
+<table class="framed"><tr><td><span class="code">'FILE'</span></td><td> uses normal php filesystem based sessions (the usual <span class="code">session_start()</span> stuff)</td></tr>
+<tr class="odd"><td><span class="code">'CLIENT'</span></td><td> uses an encrypted cookie in the clients browser. Keep in mind that this (big) cookie is sent to the server on every request!</td></tr>
+<tr><td><span class="code">'MEMCACHED'</span></td><td> uses memcache to store  sessions. you have to configure <span class="code">MEMCACHED_SERVERS</span> inside <span class="code">config/core.php</span> in this case.</td></tr></table>
+<br /><br />
+WARNING: If you want that if a user logged out he cannot use the back button
+anymore you have to tell the browser to never cache any pages and to revalidate
+them on every request. This has the big drawback that htmlpages are _always_ refetched.
+You can do this by:
+<br /><br />
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> AppController <span class="kw2">extends</span> Controller <span class="br0">&#123;</span>
+&nbsp;
+	<span class="kw2">function</span> beforeFilter<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st_h">'Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st_h">'Expires: Thu, 17 Jan 1974 11:00:00 GMT'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st_h">'Pragma: no-cache'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="locale">Localization (l10n)</a></h3>
+Simply add <span class="code">public $components = array('Locale');</span> to your AppController.
+<br /><br />
+Example: you have defined <span class="code">LANGUAGE</span> as <span class="code">de</span> in your <span class="code">config/core.php</span>. You have to
+create <span class="code">controllers/lang/de.php</span> that contains the strings you want
+in the following format:
+<pre class="php" style="font-family:monospace;"><span class="re0">$messages</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	<span class="st_h">'GAMENAME'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Turbo Challenge'</span><span class="sy0">,</span>
+	<span class="st_h">'email title'</span> <span class="sy0">=&gt;</span> <span class="st_h">'We welcome %name% to %group%'</span>
+<span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+Now you can access this string by
+<pre class="php" style="font-family:monospace;"><span class="re0">$gamename</span> <span class="sy0">=</span> __<span class="br0">&#40;</span><span class="st_h">'GAMENAME'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+If you have parameters  you want to inject into the locale-strings simply
+use
+<pre class="php" style="font-family:monospace;"><span class="kw1">echo</span> __<span class="br0">&#40;</span><span class="st_h">'email title'</span><span class="sy0">,</span>
+   <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+	  <span class="st_h">'name'</span> <span class="sy0">=&gt;</span> <span class="re0">$username</span><span class="sy0">,</span>
+	  <span class="st_h">'group'</span> <span class="sy0">=&gt;</span> <span class="re0">$groupname</span>
+   <span class="br0">&#41;</span>
+<span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+Methods:
+<table class="framed">
+<tr><td><span class="code">$this-&gt;Locale-&gt;doesLanguageExist('de')</span></td><td> checks if the supplied language exists</td></tr>
+<tr class="odd"><td><span class="code">$this-&gt;Locale-&gt;setCode('de')<br />$this-&gt;Locale-&gt;getCode()</span></td><td> read/change the current used language. The currently used language is always avaiable as <span class="code">$Lang_Code</span> inside your views.</td></tr>
+<tr><td><span class="code">$this-&gt;Locale-&gt;getMessages()</span></td><td> kata returns an array with all defined messages.</td></tr>
+</table>
+<br /><br />
+Locale can guess for you which language should be used:
+If you set <span class="code">LANGUAGE</span> to <span class="code">VHOST</span> inside your <span class="code">config/core.php</span>
+kata will guess the language according to the currently used domainname:
+<span class="code">fr.example.com</span> and <span class="code">example.fr</span> will with automatically set
+the language to <span class="code">fr</span>, but only if <span class="code">fr.php</span> exists.
+<br /><br />
+If you set <span class="code">LANGUAGE</span> to <span class="code">BROWSER</span> inside your <span class="code">config/core.php</span>
+kata will use the language with the highest priority set in the users
+browser configuration.
+<br /><br />
+If you want to check if a key exists and has content, test if
+<span class="code">__('keyname',array(),true)</span> returns a string and not null.
+It will never throw an error, except when language is unset.
+<br /><br />
+If you want all content (including parameters to <span class="code">__()</span>) to be html-
+encoded set <span class="code">LANGUAGE_ESCAPE</span> to <span class="code">true</span> inside <span class="code">config/core.php</span>.
+The encoding is done twice, so pre-encoded html-entities survive.
+<br /><br />
+If you use old-style printf-formatted messages (like <span class="code">'INTRO' =&gt; 'Welcome to %s'</span>)
+you only have to set <span class="code">LANGUAGE_PRINTF</span> to <span class="code">true</span> inside <span class="code">config/core.php</span>.
+<br /><br />
+If you set <span class="code">LANGUAGE_FALLBACK</span> to true, the locale-component tries to find
+empty/non-existing string in the english language file. After that standard behaviour
+follows, so if the key is still empty or non-existant kata will act accordingly.
+<br /><br />
+If you set <span class="code">LANGUAGE_WARNEMPTY</span> to false, kata will not output <span class="result">---EMPTY(keyname)---</span>
+if the key is empty. Default is true. If the key is non-existing kata will throw
+an exception or return <span class="result">---UNSET(keyname)---</span>, see below.
+<br /><br />
+<b>Possible Gotchas:</b>
+The behaviour of Locale differs depending on the <span class="code">DEBUG</span>-level inside your <span class="code">config/core.php</span>:
+<div class="li"><div class="liinner">&bull;</div>If <span class="code">DEBUG=0</span>: returns <span class="result">---UNSET(keyname)---</span></div>
+<div class="li"><div class="liinner">&bull;</div>if <span class="code">DEBUG&gt;0</span>: Throws an Exception</div>
+<br /><br />
+If you dont want this behaviour simply use $this-&gt;Locale-&gt;safeGetString() as
+this method returns <span class="result">NULL</span> if the key is not found.
+<br /><br />
+<div class="newttopict"></div><a href="#____top"><div class="top">top</div></a><div class="newttopicb"></div><h3><a name="topic75"><h2>Predefined Helpers</h2></a></h3>
+<br /><br />
+Helpers are helper-classes for views. See <a href="#helper">#helper</a>
+<br /><br />
+To use them add the following
+line to your <span class="code">controllers/app_controller.php</span>:
+<pre class="php" style="font-family:monospace;"><span class="kw2">class</span> AppController <span class="kw2">extends</span> Controller <span class="br0">&#123;</span>
+        <span class="kw2">public</span> <span class="re0">$helpers</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'Js'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+<br />
+Now you can access the helpers functions inside your view/layout/element via
+<span class="code">echo $html-&gt;url('main/index');</span>.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="html">html - url-generation etc</a></h3>
+<br /><br />
+The html-helper is for your basic html needs. It is always loaded, you dont
+have to add anything to your controller.
+<br /><br />
+<table class="framed">
+<tr><td>cssTag()</td><td>generates [link] html-tags for any number of files. can optionally join+compress files.<br />Example: <span class="code">$html-&gt;cssTag(array('css/foo.css','css/bar.css'))</span> returns <span class="result">[link rel=&quot;stylesheet type=&quot;text/css&quot; ...&gt;</span><br />If you want your css to be compressed just add <span class="code">true</span> as second parameter, kata does the rest. </td></tr>
+<tr class="odd"><td>escape()</td><td>escapes JAVASCRIPT-strings so they can be used for string-declarations. If you want to escape for HTML (to defend against XSS and so on) use <span class="code">h()</span></td></tr>
+<tr><td>image()</td><td>generates an image tag<br />Example: <span class="code">$html-&gt;image('img/kata.gif',array('title'=&gt;'Picture!'))</span> returns <span class="result">&lt;img src=&quot;http://example.com/img/kata.gif&quot; title=&quot;Picture!&quot; /&gt;</span> </td></tr>
+<tr class="odd"><td>javascriptTag()</td><td>like <span class="code">$html-&gt;cssTag()</span>, but for javascript. Can also join+compress javascript-files if second parameter is <span class="code">true</span> </td></tr>
+<tr><td>selectTag()</td><td>generates a select-tag.<br />Example:<span class="code">$html-&gt;selectTag('inputname',$optionsArrayAsKeyValue,$keyThatIsDefaultSelected)</span><br />Full specs:<a href="../phpdoc/kata/HtmlHelper.html#selectTag">../phpdoc/kata/HtmlHelper.html#selectTag</a> </td></tr>
+<tr class="odd"><td>tokenUrl()</td><td>appends the XSRF-token to any given url, use this instead of <span class="code">$html-&gt;url()</span> for links or form-actions. See <a href="#xsrf">#xsrf</a> </td></tr>
+</table>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="js">js - javascript handling</a></h3>
+<br /><br />
+The js-helper offers a neat trick to add snipptes of javascript-code to a buffer,
+and have them returned inside the layout:
+Your views do:
+<pre class="php" style="font-family:monospace;"><span class="re0">$js</span><span class="sy0">-&gt;</span><span class="me1">add</span><span class="br0">&#40;</span><span class="st0">&quot;function handleStuff() {
+   alert('Boo!');
+}
+var foo=new Array();
+window.setTimeout('handleStuff()',100);&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// add some php or html inbetween if you like</span>
+&nbsp;
+<span class="re0">$js</span><span class="sy0">-&gt;</span><span class="me1">add</span><span class="br0">&#40;</span><span class="st0">&quot;Ext.onReady('init();');&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;</pre>
+<br />
+In the head-section of your your layout do:
+<pre class="php" style="font-family:monospace;"><span class="sy1">&lt;?=</span><span class="re0">$js</span><span class="sy0">-&gt;</span><span class="me1">get</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></pre>
+or
+<pre class="php" style="font-family:monospace;"><span class="sy1">&lt;?=</span><span class="re0">$js</span><span class="sy0">-&gt;</span><span class="me1">getCompressed</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></pre>
+<br />
+And you have your javascript that is cluttered all over the view nice and
+neat in one piece in the head-section of your html.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="formhelper">form - easy form handling</a></h3>
+<br /><br />
+To check if a form was filled correctly put this into the action of
+your controller:
+<pre class="php" style="font-family:monospace;">		<span class="re0">$v</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">validate</span><span class="br0">&#40;</span><span class="st_h">'post'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+			<span class="st_h">'empty1'</span>      <span class="sy0">=&gt;</span> <span class="st_h">'NOT_EMPTY'</span><span class="sy0">,</span>
+			<span class="st_h">'allowempty1'</span> <span class="sy0">=&gt;</span> <span class="st_h">'ALLOW_EMPTY'</span><span class="sy0">,</span>
+			<span class="st_h">'cb1'</span>         <span class="sy0">=&gt;</span> <span class="st_h">'BOOL'</span><span class="sy0">,</span>
+			<span class="st_h">'float1'</span>      <span class="sy0">=&gt;</span> <span class="st_h">'FLOAT'</span><span class="sy0">,</span>
+			<span class="st_h">'int1'</span>        <span class="sy0">=&gt;</span> <span class="st_h">'INT'</span><span class="sy0">,</span>
+			<span class="st_h">'uint1'</span>       <span class="sy0">=&gt;</span> <span class="st_h">'UINT'</span><span class="sy0">,</span>
+			<span class="st_h">'ip1'</span>         <span class="sy0">=&gt;</span> <span class="st_h">'ip'</span><span class="sy0">,</span>
+			<span class="st_h">'email1'</span>      <span class="sy0">=&gt;</span> <span class="st_h">'EMAIL'</span><span class="sy0">,</span>
+			<span class="st_h">'sel1'</span>        <span class="sy0">=&gt;</span> <span class="st_h">'ALLOW_MULTI'</span><span class="sy0">,</span>
+			<span class="st_h">'sel2'</span>        <span class="sy0">=&gt;</span> <span class="st_h">'NOT_EMPTY'</span><span class="sy0">,</span>
+			<span class="st_h">'sel3'</span>        <span class="sy0">=&gt;</span> <span class="st_h">'ALLOW_EMPTY'</span><span class="sy0">,</span>
+		<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+		<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$v</span> <span class="sy0">===</span> <span class="kw4">true</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+                    <span class="co1">//success, do stuff and redirect</span>
+		<span class="br0">&#125;</span>
+&nbsp;</pre>
+<br />
+If one or more form-fields fail to validate an array is returned
+with each fieldname and validationrule that failed, like
+<span class="result">array('empty1'=&gt;'NOT_EMPTY')</span>. You dont have to check if
+any GET/POST variable is set, no warning will be generated if its missing.
+<br /><br />
+This is an example for a form, put it into your view:
+<br /><br />
+<pre class="php" style="font-family:monospace;"><span class="re0">$arr</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+<span class="st_h">'b'</span><span class="sy0">=&gt;</span><span class="st_h">'blue'</span><span class="sy0">,</span>
+<span class="st_h">'r'</span><span class="sy0">=&gt;</span><span class="st_h">'red'</span><span class="sy0">,</span>
+<span class="st_h">'g'</span><span class="sy0">=&gt;</span><span class="st_h">'green'</span><span class="sy0">,</span>
+<span class="st_h">'y'</span><span class="sy0">=&gt;</span><span class="st_h">'yellow'</span>
+<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">echo</span> <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">post</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'empty1'</span><span class="sy0">,</span><span class="st_h">'must not be empty'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">input</span><span class="br0">&#40;</span><span class="st_h">'empty1'</span><span class="sy0">,</span><span class="st_h">''</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'class'</span><span class="sy0">=&gt;</span><span class="st_h">'myfancyclass'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'allowempty1'</span><span class="sy0">,</span><span class="st_h">'can be empty'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">input</span><span class="br0">&#40;</span><span class="st_h">'allowempty1'</span><span class="sy0">,</span><span class="st_h">'xxx'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'cb1'</span><span class="sy0">,</span><span class="st_h">'should be bool'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">checkbox</span><span class="br0">&#40;</span><span class="st_h">'cb1'</span><span class="sy0">,</span><span class="kw4">true</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'float1'</span><span class="sy0">,</span><span class="st_h">'should be float'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">input</span><span class="br0">&#40;</span><span class="st_h">'float1'</span><span class="sy0">,</span><span class="st_h">'abc'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'onchange'</span><span class="sy0">=&gt;</span><span class="st_h">'checkFloat(this)'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'int1'</span><span class="sy0">,</span><span class="st_h">'should be int'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">input</span><span class="br0">&#40;</span><span class="st_h">'int1'</span><span class="sy0">,</span><span class="st_h">'abc'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'uint1'</span><span class="sy0">,</span><span class="st_h">'should be uint'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">input</span><span class="br0">&#40;</span><span class="st_h">'uint1'</span><span class="sy0">,</span><span class="st_h">'-123'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'email1'</span><span class="sy0">,</span><span class="st_h">'should be email'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">input</span><span class="br0">&#40;</span><span class="st_h">'email1'</span><span class="sy0">,</span><span class="st_h">'foo@example'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'ip1'</span><span class="sy0">,</span><span class="st_h">'should be ip'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">input</span><span class="br0">&#40;</span><span class="st_h">'ip1'</span><span class="sy0">,</span><span class="st_h">'1.2.3'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'sel1'</span><span class="sy0">,</span><span class="st_h">'select1 multi'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">select</span><span class="br0">&#40;</span><span class="st_h">'sel1'</span><span class="sy0">,</span><span class="re0">$arr</span><span class="sy0">,</span><span class="st_h">'b'</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'multiple'</span><span class="sy0">=&gt;</span>true<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'sel2'</span><span class="sy0">,</span><span class="st_h">'select2 not empty'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">select</span><span class="br0">&#40;</span><span class="st_h">'sel2'</span><span class="sy0">,</span><span class="re0">$arr</span><span class="sy0">,</span><span class="kw4">null</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span><span class="kw4">true</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'sel3'</span><span class="sy0">,</span><span class="st_h">'select3 egal'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">select</span><span class="br0">&#40;</span><span class="st_h">'sel3'</span><span class="sy0">,</span><span class="re0">$arr</span><span class="sy0">,</span><span class="kw4">null</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">submit</span><span class="br0">&#40;</span><span class="st_h">'go'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">reset</span><span class="br0">&#40;</span><span class="st_h">'reset'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">close</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;</pre>
+As you can see nearly all tags support an array with html-attributes as
+the last parameter.
+<br /><br />
+You can also validate the formdata against a model. kata will automatically
+analyse the table and validate against it:
+<pre class="php" style="font-family:monospace;">&nbsp;
+         <span class="re0">$v</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">validateModel</span><span class="br0">&#40;</span><span class="st_h">'get'</span><span class="sy0">,</span><span class="st_h">'Trailers'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+         <span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$v</span> <span class="sy0">===</span> <span class="kw4">true</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+             <span class="co1">//success, do stuff and redirect</span>
+         <span class="br0">&#125;</span>
+&nbsp;</pre>
+<br />
+For model-validation the view will look like this:
+<pre class="php" style="font-family:monospace;">&nbsp;
+     <span class="kw1">echo</span> <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">get</span><span class="br0">&#40;</span><span class="kw4">null</span><span class="sy0">,</span><span class="kw4">null</span><span class="sy0">,</span><span class="st_h">'Trailers'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'game_id'</span><span class="sy0">,</span><span class="st_h">'should be numeric'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">input</span><span class="br0">&#40;</span><span class="st_h">'game_id'</span><span class="sy0">,</span><span class="st_h">''</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'country'</span><span class="sy0">,</span><span class="st_h">'must not be empty'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">input</span><span class="br0">&#40;</span><span class="st_h">'country'</span><span class="sy0">,</span><span class="st_h">''</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">error</span><span class="br0">&#40;</span><span class="st_h">'trailerpath'</span><span class="sy0">,</span><span class="st_h">'should be email'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">input</span><span class="br0">&#40;</span><span class="st_h">'trailerpath'</span><span class="sy0">,</span><span class="st_h">'foo@example'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="st_h">''</span><span class="sy0">,</span>
+&nbsp;
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">submit</span><span class="br0">&#40;</span><span class="st_h">'go'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">reset</span><span class="br0">&#40;</span><span class="st_h">'reset'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+	 <span class="re0">$form</span><span class="sy0">-&gt;</span><span class="me1">close</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;</pre>
+<br />
+<div class="newttopict"></div><a href="#____top"><div class="top">top</div></a><div class="newttopicb"></div><h3><a name="topic79"><h2>Predefined Utilities</h2></a></h3>
+<br /><br />
+Universal helper-classes are accessible anywhere, via a global getter function.
+<br /><br />
+To use one simply do:
+<pre class="php" style="font-family:monospace;"><span class="re0">$ipUtil</span> <span class="sy0">=</span> getUtil<span class="br0">&#40;</span><span class="st_h">'Ip'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw1">echo</span> <span class="re0">$ipUtil</span><span class="sy0">-&gt;</span><span class="me1">getIp</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="cache">cache - universal caching</a></h3>
+<br /><br />
+The cache-utility automatically selects the best suitable caching-method
+for your system (see below for a list).
+<br /><br />
+<table class="framed">
+<tr><td><span class="code">-&gt;read('mykey')</span></td><td>returns whatever you wrote previously or <span class="result">false</span> if entry is nonexisting or expired.</td></tr>
+<tr class="odd"><td><span class="code">-&gt;read('mykey', CacheUtility::CM_FILE)</span></td><td>returns whatever you wrote previously from the filesystem or <span class="result">false</span> if entry is nonexisting or expired.</td></tr>
+<tr><td><span class="code">-&gt;write('mykey',$anyDataYouWant')</span></td><td>Write data to cache. Data never expires</td></tr>
+<tr class="odd"><td><span class="code">-&gt;write('mykey',$anyDataYouWant',600)</span></td><td>Write data to cache. Data expires after 600 seconds</td></tr>
+<tr><td><span class="code">-&gt;write('mykey',$anyDataYouWant',600, CacheUtility::CM_FILE)</span></td><td>Write data to cache. Data expires after 600 seconds. Use filesystem to cache.</td></tr>
+<tr class="odd"><td><span class="code">-&gt;write('mykey',false)</span></td><td>Removes entry from the cache</td></tr>
+<tr><td><span class="code">-&gt;write('mykey',false,0,CacheUtility::CM_FILE)</span></td><td>Removes entry from the filesystem-cache</td></tr>
+<tr class="odd"><td><span class="code">-&gt;add('mykey',$anyData')</span></td><td>Like write, but does not write entry and returns <span class="result">false</span> if entry already exists + is not expired. Otherwise <span class="code">true</span> is returned</td></tr>
+</table>
+<br /><br />
+These constants tell the utility what cache-method to use, with fallback in
+ascending order if the cache-methode you gave kata is not available.
+<table class="framed">
+<tr class="odd"><td><span class="code">CM_MEMCACHE</span></td><td>memcached. Remember to set the <span class="code">MEMCACHED_SERVERS</span> define in <span class="code">config/core.php</span></td></tr>
+<tr><td><span class="code">CM_APC</span></td><td>Advanced PHP Cache</td></tr>
+<tr class="odd"><td><span class="code">CM_XCACHE</span></td><td>XCache</td></tr>
+<tr><td><span class="code">CM_EACC</span></td><td>eAccelerator</td></tr>
+<tr class="odd"><td><span class="code">CM_FILE</span></td><td>filesystem (katas <span class="code">tmp/cache/</span> directory)</td></tr>
+</table>
+<br /><br />
+The cache-utility caches any read/writes internally, so multiple <span class="code">read()</span>s
+on the same entry are very fast. You can disable this behaviour with
+<span class="code">-&gt;disableRequestCache()</span> or re-enable with <span class="code">-&gt;enableRequestCache()</span>.
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="http">http - GET/POST HTTP Requests</a></h3>
+<br /><br />
+Easy HTTP-Requests. <span class="code">get()</span>,<span class="code">post()</span> and <span class="code">head()</span> return HTML
+or (bool) <span class="code">false</span> if request failed (that includes 404 errors).
+<br /><br />
+<table class="framed">
+<tr><td><span class="code">-&gt;get('http://foo',array('user'=&gt;1))</span></td><td>will do a GET-Request to <span class="code">http://foo?user=1</span></td></tr>
+<tr class="odd"><td><span class="code">-&gt;head()</span></td><td>Same as <span class="code">-&gt;get()<span class="code">, but will only do a HEAD-Request, for example if you want to know how big a file is</td></tr>
+<tr><td><span class="code">-&gt;post($url,$getParamArray,$postParamArray))</span></td><td>Will do a POST-Request to given site</td></tr>
+<tr class="odd"><td><span class="code">-&gt;getStatus()</span></td><td>Returns the HTTP-Status-Code from the last request, eg. (int)<span class="code">404</span></td></tr>
+<tr><td><span class="code">-&gt;getReturnHeaders()</span></td><td>Returns all Request-headers the webserver returned to us as array</td></tr>
+</table>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="ip">ip - user-ip finder</a></h3>
+<table class="framed">
+<tr class="odd"><td><span class="code">-&gt;getIp()</span></td><td>Returns the users real ip, even if he is behind several proxies.</td></tr>
+<tr><td><span class="code">-&gt;isUsingProxy()</span></td><td>Returns (bool) if the user is using a proxy.</td></tr>
+</table>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="image">image - image handling / resizing / uploading</a></h3>
+<table class="framed">
+<tr class="odd"><td><span class="code">-&gt;read('foo.jpg')</span></td><td>Returns gdlib-Handle of the picture or (bool)<span class="code">false</span> on error</td></tr>
+<tr><td><span class="code">-&gt;write($img,IMAGETYPE_GIF','foo.gif')</span></td><td>Writes given picture-Handle to disk and returns boolean success. <span class="code">IMAGETYPE_</span> are gdlib-defined constants</td></tr>
+<tr class="odd"><td><span class="code">-&gt;makeThumbnail($img,320,240)</span></td><td>Creates thumbnail without paying attention to aspect ratio</td></tr>
+<tr><td><span class="code">-&gt;makeThumbnailProportional($img,320,240)</span></td><td>Like <span class="code">makeThumbmail</span>, but pays attention to the pictures aspect ratio. This can possibly mean that left/right or top/bottom of the picture are cropped</td></tr>
+<tr class="odd"><td><span class="code">-&gt;getNudity($img)</span></td><td>Returns percentage how many pixels in the picture look like skin-color. Useful to automate pr0n-detection</td></tr>
+<tr><td><span class="code">-&gt;simpleUploadError('file')</span></td><td>returns true if uploaded file is valid or one of the error-codes below. You have to supply the name of your file-input-tag. </td></tr>
+<tr class="odd"><td><span class="code">-&gt;isImageInvalid($filename,$maxWidth,$maxHeight)<br /></span></td><td>Checks if given file is GIF,JPEG or PNG and conforms to given size. You can add 2 more parameters: <span class="code">$minWidth</span> and <span class="code">$minHeight</span> who default to <span class="code">1</span>. Returns (bool)<span class="code">false</span> if everything looks good, or one of the codes below. Useful to check freshly uploaded files.</td></tr>
+</table>
+<br /><br />
+<span class="code">isImageInvalid()</span> can return the following class-constants:
+<table class="framed">
+<tr><td><span class="code">IMGERR_TOOBIG</span></td><td>Image dimensions too large</td></tr>
+<tr class="odd"><td><span class="code">IMGERR_TOOSMALL</span></td><td>Image dimensions too small</td></tr>
+<tr><td><span class="code">IMGERR_UNKNOWNFORMAT</span></td><td>Image is not PNG,JPEG or GIF</td></tr>
+</table>
+<br /><br />
+<span class="code">simpleUploadError()</span> can return the following class-constants:
+<table class="framed">
+<tr class="odd"><td><span class="code">UPL_TOOBIG</span></td><td>File size too large</td></tr>
+<tr><td><span class="code">UPL_INTERNAL</span></td><td>Internal error</td></tr>
+<tr class="odd"><td><span class="code">UPL_EXTENSION</span></td><td>Upload forbidden because of file extension</td></tr>
+</table>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="lock">lock - server-wide process locking</a></h3>
+<br /><br />
+Liteweight semaphore-alternative. Use to stop processes from executing
+code simultaneously.
+<br /><br />
+<table class="framed">
+<tr><td><span class="code">-&gt;lock('id',true)</span></td><td>halts other processes also doing <span class="code">lock('id')</span> until we <span class="code">unlock</span>, the process terminates or crashes. If last parameter is false we wait indefinetly. Returns true if lock was successfully obtained.</td></tr>
+<tr class="odd"><td><span class="code">-&gt;unlock('id')</span></td><td>Allow 1 other (possibly waiting) process to execute</td></tr>
+<tr><td><span class="code">-&gt;setTimeout(60)</span></td><td>How many seconds to wait until we stop trying to obtain a lock</td></tr>
+</table>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="clusterlock">clusterlock - cluster-wide process locking</a></h3>
+<br /><br />
+Same as <span class="code">LockUtility</span> but across any number of servers. Same API as LockUtility, see <a href="#lock">#lock</a>
+<br /><br />
+<div class="newtopict"></div><a href="#____top"><div class="top">top</div></a><div class="newtopicb"></div><h3><a name="validate">validate - parameter validation</a></h3>
+<br /><br />
+<span class="code">ValidateUtility</span> has a single function: <span class="code">check($validateArray,$dataArray)</span>.
+Example:
+<pre class="php" style="font-family:monospace;"><span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$validUtil</span><span class="sy0">-&gt;</span><span class="me1">check</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st_h">'user'</span> <span class="sy0">=&gt;</span> <span class="st_h">'NOT_EMPTY'</span><span class="sy0">,</span>
+    <span class="st_h">'email'</span> <span class="sy0">=&gt;</span> <span class="st_h">'EMAIL'</span><span class="sy0">,</span>
+    <span class="st_h">'ip'</span> <span class="sy0">=&gt;</span> <span class="st_h">'IP'</span>
+    <span class="br0">&#41;</span><span class="sy0">,</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+        <span class="st_h">'user'</span> <span class="sy0">=&gt;</span> <span class="st_h">'foobert'</span><span class="sy0">,</span>
+        <span class="st_h">'email'</span> <span class="sy0">=&gt;</span> <span class="st_h">'foo@example.com'</span><span class="sy0">,</span>
+        <span class="st_h">'1.2.3.4'</span>
+    <span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">===</span><span class="kw4">true</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+       <span class="kw1">echo</span> <span class="st_h">'everything seems fine.'</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;</pre>
+<br />
+If some values fail to validate an array in the form <span class="result">Array('user' =&gt; 'NOT_EMPTY')</span> is returned.
+<br /><br />
+You can supply check with the following parameters:
+<table class="framed">
+<tr><td><span class="code">'NOT_EMPTY'</span></td><td>text must be supplied or one option selected</td></tr>
+<tr class="odd"><td><span class="code">'ALLOW_EMPTY'</span></td><td>text can be left empty or option unselected</td></tr>
+<tr><td><span class="code">'ALLOW_MULTI'</span></td><td>allow multiple option selections, user must select at least 1</td></tr>
+<tr class="odd"><td><span class="code">'ALLOW_MULTI_EMPTY'</span></td><td>allow multiple option selections</td></tr>
+<tr><td><span class="code">'BOOL'</span></td><td>checkboxes, must return 0 or 1 (prepend with hidden input with same name and value=0)<span class="code"></td></tr>
+<tr class="odd"><td><span class="code">'BOOL_LAZY'</span></td><td>checkboxes, only checks for 1<span class="code"></td></tr>
+<tr><td><span class="code">'BOOL_TRUE'</span></td><td>checkbox that needs to be checked</td></tr>
+<tr class="odd"><td><span class="code">'FLOAT'</span></td><td>float numbers</td></tr>
+<tr><td><span class="code">'UINT'</span></td><td>unsigned integers</td></tr>
+<tr class="odd"><td><span class="code">'NUMBER'</span></td><td>see UINT</td></tr>
+<tr><td><span class="code">'INT'</span></td><td>signed integer</td></tr>
+<tr class="odd"><td><span class="code">'HEX'</span></td><td>0xHEX</td></tr>
+<tr><td><span class="code">'EMAIL'</span></td><td>...</td></tr>
+<tr class="odd"><td><span class="code">'IP'</span></td><td>ipv4</td></tr>
+<tr><td><span class="code">'URL'</span></td><td>...</td></tr>
+<tr class="odd"><td><span class="code">'YEAR'</span></td><td>4-year digit, range 1900-2099</td></tr>
+<tr><td><span class="code">myVeryOwnfunction</span></td><td>Your own function in global namespace</td></tr>
+<tr class="odd"><td><span class="code">'/.someregex+/'</span></td><td>regex-string</td></tr>
+</table>
+<br /><br />
+For backwards compability, work like above:<table class="framed">
+<tr class="odd"><td><span class="code">'VALID_NOT_EMPTY'</span></td></tr>
+<tr><td><span class="code">'VALID_NUMBER'</span></td></tr>
+<tr class="odd"><td><span class="code">'VALID_EMAIL'</span></td></tr>
+<tr><td><span class="code">'VALID_YEAR'</span></td></tr>
+<tr class="odd"><td><span class="code">'VALID_IP'</span></td></tr>
+</table>
+<br /><br />
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_cache_utility.html#a7a72ebbae5bf298da6db9860000b88ba" title="CacheUtility::_add" alt="" coords="272,5,400,33"/>
+<area shape="rect" id="node5" href="$class_extcache_utility.html#a82ebb350ab8b2d4eefa8349462ab242c" title="ExtcacheUtility::_decrement" alt="" coords="244,55,428,83"/>
+<area shape="rect" id="node9" href="$class_extcache_utility.html#ae3fa894d093f00b9350ed4e854dd1d6a" title="ExtcacheUtility::_increment" alt="" coords="245,106,427,134"/>
+<area shape="rect" id="node13" href="$class_cache_utility.html#a8e4abfbc91220913da5518a126df6a5e" title="CacheUtility::_read" alt="" coords="271,309,401,337"/>
+<area shape="rect" id="node15" href="$class_cache_utility.html#a0efbe0e81e49ebf31c190f81d4fc8418" title="CacheUtility::_write" alt="" coords="269,359,403,387"/>
+<area shape="rect" id="node17" href="$class_extcache_utility.html#a64b3792d355215b211e7f34c7d62d09f" title="ExtcacheUtility::compareAndSwap" alt="" coords="479,201,700,229"/>
+<area shape="rect" id="node19" href="$class_extcache_utility.html#a61791055bf11bce45bc405921e9c6baf" title="ExtcacheUtility::getMulti" alt="" coords="508,251,671,279"/>
+<area shape="rect" id="node21" href="$class_cache_utility.html#a4c2f49d690e600175c7ab452388d2d43" title="CacheUtility::initialize" alt="" coords="263,157,409,185"/>
+<area shape="rect" id="node7" href="$class_extcache_utility.html#a7ec7891d35ae3240630042ab5bd2235f" title="ExtcacheUtility::decrement" alt="" coords="500,62,679,90"/>
+<area shape="rect" id="node11" href="$class_extcache_utility.html#a84523de5bd9a873102a7dcb57fcc425e" title="ExtcacheUtility::increment" alt="" coords="503,125,676,153"/>
+</map>

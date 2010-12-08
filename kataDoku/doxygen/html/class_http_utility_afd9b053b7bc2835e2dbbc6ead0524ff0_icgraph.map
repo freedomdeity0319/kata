@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_http_utility.html#a590e326c55cd5d4fb6e6b2af1a28cbb3" title="HttpUtility::doRequest" alt="" coords="199,55,345,83"/>
+<area shape="rect" id="node5" href="$class_http_utility.html#abc1820c03c168b0db601e81fade41414" title="HttpUtility::get" alt="" coords="400,5,504,33"/>
+<area shape="rect" id="node7" href="$class_http_utility.html#a1ea99cab41844091c62f7fb8f4b064aa" title="HttpUtility::head" alt="" coords="395,55,509,83"/>
+<area shape="rect" id="node9" href="$class_http_utility.html#a7ac94a8cdbf1fda2579c0e07283135f1" title="HttpUtility::post" alt="" coords="396,106,508,134"/>
+</map>

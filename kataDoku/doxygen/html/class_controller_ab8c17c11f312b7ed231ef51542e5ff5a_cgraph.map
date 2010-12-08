@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_controller.html#a3ed20ed0ecbd08c1c9ada3cf1f95220f" title="Controller::renderView" alt="" coords="175,55,321,83"/>
+<area shape="rect" id="node5" href="$class_controller.html#a2413935136814586d9993b831639ee43" title="Controller::afterFilter" alt="" coords="383,5,521,33"/>
+<area shape="rect" id="node7" href="$class_controller.html#ae756a803e378b692480ba0ab107c9bee" title="Controller::beforeFilter" alt="" coords="379,55,525,83"/>
+<area shape="rect" id="node9" href="$class_controller.html#a75163c6c561158489c39fbae0313d384" title="Controller::initViewClass" alt="" coords="371,106,533,134"/>
+</map>
