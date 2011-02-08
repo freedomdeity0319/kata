@@ -1,9 +1,5 @@
 <wiki:toc />
 
-
-
-
-
 ----
 == Warning! ==
 *NEVER* modify anything inside the 'lib/'-folder, or on the next
@@ -21,29 +17,29 @@ on Windows and Linux.
 
 
 Preparations for kata:
- * Setup linux: http://codeninja.de/kata_php_framework/#installation
+ - Setup linux: http://codeninja.de/kata_php_framework/#installation
 
- * Setup Eclipse: http://codeninja.de/kata_php_framework/#eclipse
+ - Setup Eclipse: http://codeninja.de/kata_php_framework/#eclipse
 
 
 
 What MVC actually does:
 
+http://codeninja.de/kata_php_framework/doc/quick/mvc.png
 
-mvc.png
 //TODO: cli does not use apache
 
 
 (Some) used Patterns:
- * MVC: http://de.wikipedia.org/wiki/Model_View_Controller
+ - MVC: http://de.wikipedia.org/wiki/Model_View_Controller
 
- * IoC: http://en.wikipedia.org/wiki/Inversion_of_control
+ - IoC: http://en.wikipedia.org/wiki/Inversion_of_control
 
- * Proxy: http://en.wikipedia.org/wiki/Proxy_pattern
+ - Proxy: http://en.wikipedia.org/wiki/Proxy_pattern
 
- * CoC: http://en.wikipedia.org/wiki/Convention_over_configuration
+ - CoC: http://en.wikipedia.org/wiki/Convention_over_configuration
 
- * Objectpool: http://en.wikipedia.org/wiki/Object_pool
+ - Objectpool: http://en.wikipedia.org/wiki/Object_pool
 
 
 
@@ -53,7 +49,9 @@ mvc.png
 
 ----
 == Flowchart, for techies ==
-flow.png
+
+http://codeninja.de/kata_php_framework/kata_flowchart.png
+
 
 
 
