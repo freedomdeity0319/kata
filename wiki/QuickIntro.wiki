@@ -12,35 +12,12 @@ kata-update your whole application will break!
 
 ----
 == What is kata? ==
-Kata is a fast, simple, passive, event based MVC Framework for PHP5. It runs
-on Windows and Linux.
-
-
-Preparations for kata:
- - Setup linux: http://codeninja.de/kata_php_framework/#installation
-
- - Setup Eclipse: http://codeninja.de/kata_php_framework/#eclipse
-
+Kata is a fast, simple, passive, event based MVC Framework for PHP5. It runs on Windows and Linux.
 
 
 What MVC actually does:
 
 http://codeninja.de/kata_php_framework/doc/quick/mvc.png
-
-//TODO: cli does not use apache
-
-
-(Some) used Patterns:
- - MVC: http://de.wikipedia.org/wiki/Model_View_Controller
-
- - IoC: http://en.wikipedia.org/wiki/Inversion_of_control
-
- - Proxy: http://en.wikipedia.org/wiki/Proxy_pattern
-
- - CoC: http://en.wikipedia.org/wiki/Convention_over_configuration
-
- - Objectpool: http://en.wikipedia.org/wiki/Object_pool
-
 
 
 
