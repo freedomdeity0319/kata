@@ -1,0 +1,1856 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>lib\model.php</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" href="../css/black-tie/jquery-ui-1.8.2.custom.css" type="text/css"></link><link rel="stylesheet" href="../css/jquery.treeview.css" type="text/css"></link><link rel="stylesheet" href="../css/default.css" type="text/css"></link><script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="../js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="../js/jquery.treeview.js"></script></head><body><script type="text/javascript">
+          $(document).ready(function()
+          {
+            $(".treeview-docblox").treeview({
+              animated: 'fast'
+            });
+          });
+
+          function jq_escape(myid)
+          {
+            return '#' + myid.replace(/(#|\$|:|\.|\(|\))/g, '\\$1');
+          }
+
+          function applySearchHash()
+          {
+            hashes = document.location.hash.substr(1, document.location.hash.length);
+            if (hashes != "")
+            {
+              hashes = hashes.split('/');
+              $.each(hashes, function(index, hash)
+              {
+                node = $(jq_escape(hash));
+                switch (node[0].nodeName)
+                {
+                  case 'DIV':
+                    tabs = node.parents('.tabs');
+                    $(tabs[0]).tabs('select', '#' + hash)
+                    break;
+                  case 'A':
+                    window.scrollTo(0, node.offset().top);
+                    break;
+                }
+              });
+            }
+          }
+
+          jQuery(function()
+          {
+            jQuery(".tabs").tabs();
+            applySearchHash();
+          });
+        </script><div id="maincontainer"><div id="header"><div class="padder"></div></div><div id="content_container"><div id="content"><div class="padder"><h1 xmlns="">lib\model.php</h1>
+<div xmlns="" class="properties">
+<h1>Properties</h1>
+<label class="property-key">package</label><div class="property-value"><a title="kata_model" href="">kata_model</a></div>
+</div>
+<h3 xmlns="">Description</h3>The Base Model. used to access the database (via dbo_ objects)<br xmlns=""><br xmlns="">Kata - Lightweight MVC Framework <http://www.codeninja.de/>
+Copyright 2007-2009 mnt@codeninja.de, gameforge ag
+
+Licensed under The GPL License
+Redistributions of files must retain the above copyright notice.<br xmlns=""><h2 xmlns="">Classes</h2>
+<div xmlns="" id="Model">
+<h3>Model</h3>
+<div class="properties">
+<h1>Properties</h1>
+<label class="property-key">Extends</label><div class="property-value"> </div>
+<label class="property-key">Implements</label><div class="property-value"> 
+      </div>
+<label class="property-key">package</label><div class="property-value">
+<a title="kata_model">kata_model</a>
+             
+        </div>
+<label class="property-key">todo</label><div class="property-value">
+<a title="review replace() (emulation in mssql vs. remove), query only supports basic Commands (but easily can support all)">review replace() (emulation in mssql vs. remove), query only supports basic Commands (but easily can support all)</a>
+             
+        </div>
+<label class="property-key">Abstract</label><div class="property-value">No 
+      </div>
+<label class="property-key">Final</label><div class="property-value">No 
+      </div>
+</div>
+<h4>Description</h4>
+<em>The base model-class that all models derive from</em><br><br><div id="methods_Model">
+<h4>Methods</h4>
+<a style="font-style: italic;" href="#Model::bulkcreate()">bulkcreate</a>,
+      <a style="font-style: italic;" href="#Model::cachedQuery()">cachedQuery</a>,
+      <a style="font-style: italic;" href="#Model::changeConnection()">changeConnection</a>,
+      <a style="font-style: italic;" href="#Model::create()">create</a>,
+      <a style="font-style: italic;" href="#Model::dbo()">dbo</a>,
+      <a style="font-style: italic;" href="#Model::delete()">delete</a>,
+      <a style="font-style: italic;" href="#Model::describe()">describe</a>,
+      <a style="font-style: italic;" href="#Model::escape()">escape</a>,
+      <a style="font-style: italic;" href="#Model::find()">find</a>,
+      <a style="font-style: italic;" href="#Model::getConfig()">getConfig</a>,
+      <a style="font-style: italic;" href="#Model::getConnectionName()">getConnectionName</a>,
+      <a style="font-style: italic;" href="#Model::getLink()">getLink</a>,
+      <a style="font-style: italic;" href="#Model::getModel()">getModel</a>,
+      <a style="font-style: italic;" href="#Model::getPrefix()">getPrefix</a>,
+      <a style="font-style: italic;" href="#Model::getTableName()">getTableName</a>,
+      <a style="font-style: italic;" href="#Model::getWhereString()">getWhereString</a>,
+      <a style="font-style: italic;" href="#Model::getWhereStringHelper()">getWhereStringHelper</a>,
+      <a style="font-style: italic;" href="#Model::log()">log</a>,
+      <a style="font-style: italic;" href="#Model::makeDateTime()">makeDateTime</a>,
+      <a style="font-style: italic;" href="#Model::pairs()">pairs</a>,
+      <a style="font-style: italic;" href="#Model::query()">query</a>,
+      <a style="font-style: italic;" href="#Model::quote()">quote</a>,
+      <a style="font-style: italic;" href="#Model::quoteName()">quoteName</a>,
+      <a style="font-style: italic;" href="#Model::read()">read</a>,
+      <a style="font-style: italic;" href="#Model::replace()">replace</a>,
+      <a style="font-style: italic;" href="#Model::setupDbo()">setupDbo</a>,
+      <a style="font-style: italic;" href="#Model::update()">update</a>,
+      <a style="font-style: italic;" href="#Model::validate()">validate</a>,
+      <div class="method">
+<a id="Model::bulkcreate()"></a><h3>bulkcreate<span class="nb-faded-text">(
+          array $fields
+            = null,
+          bool $ignore
+            = false,
+          mixed $tableName
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">int</span>
+</h3>
+<h4>Description</h4>
+<em>mass insert function</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$fields</td>
+<td>array</td>
+<td>array of row-array to insert</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$ignore</td>
+<td>bool</td>
+<td>if we should do an INSERT INGORE</td>
+<td>false</td>
+</tr>
+<tr>
+<td>$tableName</td>
+<td>mixed</td>
+<td>name of table to use or null for model default</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>int</td>
+<td>number of successfully inserted rows</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::cachedQuery()"></a><h3>cachedQuery<span class="nb-faded-text">(
+          string $s,
+          string $idname
+            = false,
+          string $cacheid
+            = false,
+          int $ttl
+            = 0,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Do a query that is cached via the cacheUtility. caching is done 'dumb', so altering the database wont invalidate the cache</em><br><small>A word of warning: If you dont supply an $idname, queries on different lines will result in different cachefiles</small><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$s</td>
+<td>string</td>
+<td>sql-string</td>
+<td></td>
+</tr>
+<tr>
+<td>$idname</td>
+<td>string</td>
+<td>if set the key of the array is set to the value of this field of the result-array. So the result is not numbered from 0..x but for example the value of the primary key</td>
+<td>false</td>
+</tr>
+<tr>
+<td>$cacheid</td>
+<td>string</td>
+<td>the id used to store this query in the cache. if ommited we try to build a suitable key</td>
+<td>false</td>
+</tr>
+<tr>
+<td>$ttl</td>
+<td>int</td>
+<td>time to live in seconds (0=infinite)</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::changeConnection()"></a><h3>changeConnection<span class="nb-faded-text">(
+          string $connName,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>allowes you to switch the current connection dynamically.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$connName</td>
+<td>string</td>
+<td>name of the new connection to use</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::create()"></a><h3>create<span class="nb-faded-text">(
+          array $fields
+            = null,
+          string $tableName
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>insert a record into the database.</em><br><small>&lt;code&gt;
+$this-&gt;create(array('fooId'=&gt;1,'int1'=&gt;10,'int2'=&gt;20));
+&lt;/code&gt;</small><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$fields</td>
+<td>array</td>
+<td>name=>value pairs to be inserted into the table</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$tableName</td>
+<td>string</td>
+<td>insert into this table (if ommitted: use tablename of this model, including prefix)</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::dbo()"></a><h3>dbo<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">object</span>
+</h3>
+<h4>Description</h4>
+<em>lazy setup dbo the first time its used</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>object</td>
+<td>intialized dbo-class</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::delete()"></a><h3>delete<span class="nb-faded-text">(
+          mixed $id
+            = null,
+          string $tableName
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>delete the row whose id is matching</em><br><small>&lt;code&gt;
+$this-&gt;delete(array('rowId'=&gt;10));
+$this-&gt;delete(array(
+	'rowId'=&gt;20,
+	'and',
+ 'parentId'=&gt;10
+));
+&lt;/code&gt;</small><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$id</td>
+<td>mixed</td>
+<td>primary key of row to delete</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$tableName</td>
+<td>string</td>
+<td>delete from this table (if ommitted: use tablename of this model, including prefix)</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::describe()"></a><h3>describe<span class="nb-faded-text">(
+          string $tableName
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">array</span>
+</h3>
+<h4>Description</h4>
+<em>tries to reduce all fields of the given table to basic datatypes</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$tableName</td>
+<td>string</td>
+<td>optional tablename to use</td>
+<td>null</td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>array</td>
+<td></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::escape()"></a><h3>escape<span class="nb-faded-text">(
+          string $s,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>escape possibly harmful strings so you can safely append them to an sql-string</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$s</td>
+<td>string</td>
+<td>string to escape</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>escaped string</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::find()"></a><h3>find<span class="nb-faded-text">(
+          string $method,
+          array $params
+            = array,
+          mixed $tableName
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>select rows using various methods (see $method for full list)</em><br><small>$method can be:
+'all': return all matching rows as an array of results
+'list': return matching rows as a multidimensional array that use keynames from your supplied 'listby' fields. similar to $idfields of query()  
+'count': return number of rows matching
+'first': return first matching row
+
+$conditions is used to construct a suitable WHERE-clause. fieldnames are default AND connected, just add an 'or' somewhere to change that. 
+Example: 'conditions'=&gt;array('field1'=&gt;5',array('name LIKE'=&gt;'%eter','or','name LIKE'=&gt;'%eta'))
+
+$order: array of fieldnames used to construct ORDER BY clause
+
+$group: array of fieldnames used to construct GROUP BY clause
+
+$listby: see above
+
+$limit: how many rows to return (per page)
+$page: which page to return (if $limit is set), first page is 1
+
+&lt;code&gt;
+$rows = $this-&gt;find('all',array(
+	'conditions' =&gt; array( // WHERE conditions to use. default all elements are AND, just add 'or' to the condition-array to change this
+		'field' =&gt; $thisValue,
+		'or',
+		'field2'=&gt;$value2,
+		'field3'=&gt;$value3,
+		'field4'=&gt;$value4
+	),
+	'fields' =&gt; array( //array of field names that we should return. first field name is used as array-key if you use method 'list' and listby is unset
+		'field1',
+		'field2'
+	),
+ 'order' =&gt; array( //string or array defining order. you can add DESC or ASC
+		'created',
+		'field3 DESC'
+	),
+ 'group' =&gt; array( //fields to GROUP BY
+		'field'
+	),
+ 'listby' =&gt; array( //only if find('list'): fields to arrange result-array by
+		'field1','field2'
+ ),
+ 'limit' =&gt; 50, //int, how many rows per page
+ 'page' =&gt; 1, //int, which page, starting at 1
+),'mytable');
+&lt;/code&gt;</small><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$method</td>
+<td>string</td>
+<td>can be 'all','list','count','first','neighbors'</td>
+<td></td>
+</tr>
+<tr>
+<td>$params</td>
+<td>array</td>
+<td>see example</td>
+<td>array</td>
+</tr>
+<tr>
+<td>$tableName</td>
+<td>mixed</td>
+<td>string or null to use modelname</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::getConfig()"></a><h3>getConfig<span class="nb-faded-text">(
+          string $what
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>getter for the config options of the current model</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$what</td>
+<td>string</td>
+<td>which part of the config you want returned. if null the whole config-array is returned</td>
+<td>null</td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+<th>Link</th>
+</tr></thead>
+<tbody><tr>
+<td>var</td>
+<td>string</td>
+<td></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::getConnectionName()"></a><h3>getConnectionName<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>return currently used connection name (see database.php)</em><br><small>	 * @return string</small><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::getLink()"></a><h3>getLink<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>getter for the database link of the current model. whats returned here depends greatly on the dbo-class</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+<th>Link</th>
+</tr></thead>
+<tbody><tr>
+<td>var</td>
+<td>resource</td>
+<td></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::getModel()"></a><h3>getModel<span class="nb-faded-text">(
+           $name,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>getModel() wrapper</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$name</td>
+<td>n/a</td>
+<td></td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::getPrefix()"></a><h3>getPrefix<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>return the prefix configured for this connection</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::getTableName()"></a><h3>getTableName<span class="nb-faded-text">(
+          string $n
+            = null,
+          bool $withPrefix
+            = true,
+           $quoted
+            = true,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>utility function to generate correct tablename</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$n</td>
+<td>string</td>
+<td>tablename to use. if null uses $this->useTable. if that is also null uses modelname.</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$withPrefix</td>
+<td>bool</td>
+<td>if true adds prefix and adds the correct quote-signs to the name</td>
+<td>true</td>
+</tr>
+<tr>
+<td>$quoted</td>
+<td>n/a</td>
+<td></td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::getWhereString()"></a><h3>getWhereString<span class="nb-faded-text">(
+          mixed $id,
+          string $tableName,
+           $allowKey
+            = false,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>construct a suitable where-clause for a query from an array of conditions</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$id</td>
+<td>mixed</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$tableName</td>
+<td>string</td>
+<td>needed to generate a primary key name</td>
+<td></td>
+</tr>
+<tr>
+<td>$allowKey</td>
+<td>n/a</td>
+<td></td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>full 'WHERE x=' string</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::getWhereStringHelper()"></a><h3>getWhereStringHelper<span class="nb-faded-text">(
+          mixed $id,
+          string $tableName,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>do the actual work for getWhereString(). analyse strings and branch for arrays</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$id</td>
+<td>mixed</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$tableName</td>
+<td>string</td>
+<td>needed to generate a primary key name</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>'x=y AND x=z' string without 'WHERE'</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::log()"></a><h3>log<span class="nb-faded-text">(
+          string $what,
+          string $where,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>convenience method for writeLog</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$what</td>
+<td>string</td>
+<td>what to log</td>
+<td></td>
+</tr>
+<tr>
+<td>$where</td>
+<td>string</td>
+<td>where to log (KATA_DEBUG OR KATA_ERROR)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::makeDateTime()"></a><h3>makeDateTime<span class="nb-faded-text">(
+          integer $t,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>turn a unix timestamp into datetime-suitable SQL-function like FROM_UNIXTIME(timestamp) (depends on used dbo)</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$t</td>
+<td>integer</td>
+<td>unix timestamp</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>sql-statement</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::pairs()"></a><h3>pairs<span class="nb-faded-text">(
+          array $params,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>turn the given array into "name=value,name=value" pairs suitable for INSERT or UPDATE-sqls. strings are automatically quoted+escaped, fieldnames also</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$params</td>
+<td>array</td>
+<td>the data</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>�foo�='bar',�baz�='ding'</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::query()"></a><h3>query<span class="nb-faded-text">(
+          string $s
+            = null,
+          string $idnames
+            = false,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">mixed</span>
+</h3>
+<h4>Description</h4>
+<em>execute an actual query on the database</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$s</td>
+<td>string</td>
+<td>the sql to execute</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$idnames</td>
+<td>string</td>
+<td>can be used to have the keys of the returned array equal the value ob the column given here (instead of just heaving 0..x as keys)</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>mixed</td>
+<td>returns array with results OR integer with insertid OR integer updated rows OR null</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::quote()"></a><h3>quote<span class="nb-faded-text">(
+          string $s,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>enclose string in single-quotes AND escape it</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$s</td>
+<td>string</td>
+<td>string to escape</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>quoted AND escaped string</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::quoteName()"></a><h3>quoteName<span class="nb-faded-text">(
+          string $s,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>enclose table- or fildname in whatever the database needs (depends on used dbo)</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$s</td>
+<td>string</td>
+<td>field or tablename</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>escaped name</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::read()"></a><h3>read<span class="nb-faded-text">(
+          mixed $id
+            = null,
+          array $fields
+            = null,
+          string $tableName
+            = null,
+          mixed $fieldName
+            = false,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>read data from the database.</em><br><small>&lt;code&gt;
+$rows = $this-&gt;read(array('foobarId'=&gt;5));
+$rows = $this-&gt;read(array(
+	'foobarId'=&gt;6,
+ 'and',
+ 'someId'=&gt;2
+));
+&lt;/code&gt;</small><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$id</td>
+<td>mixed</td>
+<td>array of fieldnames used to construct WHERE clause</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$fields</td>
+<td>array</td>
+<td>return these colums (if null: all fields)</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$tableName</td>
+<td>string</td>
+<td>read from this table (if ommitted: use tablename of this model, including prefix)</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$fieldName</td>
+<td>mixed</td>
+<td>string or array to use as key for the returned result, see query()</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::replace()"></a><h3>replace<span class="nb-faded-text">(
+          array $fields
+            = null,
+           $tableName
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>REPLACE works exactly like Insert, but removes previous entries.</em><br><small>Warning: if an old row in the table has the same value as a new row for a PRIMARY KEY or a UNIQUE index,
+the old row is deleted before the new row is inserted. In short: It may be that more than 1 row is deleted.
+
+&lt;code&gt;
+$this-&gt;replace(array(
+	'fooId'=&gt;10,
+ 'data1'=&gt;20
+));
+&lt;/code&gt;</small><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$fields</td>
+<td>array</td>
+<td>name=>value pairs of new values</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$tableName</td>
+<td>n/a</td>
+<td></td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::setupDbo()"></a><h3>setupDbo<span class="nb-faded-text">(
+          string $connName,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>load dbo-class, give dbconfig to class</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$connName</td>
+<td>string</td>
+<td>name of the connection to use</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::update()"></a><h3>update<span class="nb-faded-text">(
+          mixed $id,
+          array $fields,
+          string $tableName
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>update a row whose id is matching.</em><br><small>&lt;code&gt;
+$this-&gt;update(array(
+	'fooId'=&gt;10,
+ 'data1'=&gt;20
+));
+&lt;/code&gt;</small><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$id</td>
+<td>mixed</td>
+<td>primary array of fields suitable to construct a WHERE clause</td>
+<td></td>
+</tr>
+<tr>
+<td>$fields</td>
+<td>array</td>
+<td>name=>value pairs of new values</td>
+<td></td>
+</tr>
+<tr>
+<td>$tableName</td>
+<td>string</td>
+<td>update data in this table (if ommitted: use tablename of this model, including prefix)</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="Model::validate()"></a><h3>validate<span class="nb-faded-text">(
+          array $params
+            = null,
+          array $what
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">bool</span>
+</h3>
+<h4>Description</h4>
+<em>checks the given values of the array match certain criterias</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$params</td>
+<td>array</td>
+<td>key/value pair. key is the name of the key inside the $what-array, value is a "VALID_" define (see above) OR the name of a (global) function that is given the string (should return bool wether the string validates) OR a regex string</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$what</td>
+<td>array</td>
+<td>the actual data, eg. GET/POST parameters</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>bool</td>
+<td>true if everything is okay OR $params-array-key of the row that is not validating</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+<th>Link</th>
+</tr></thead>
+<tbody><tr>
+<td>deprecated</td>
+<td>31.04.2009</td>
+<td></td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div id="properties_Model">
+<h2>Properties</h2>
+<a href="#Model::%24connection">$connection</a>,
+      <a href="#Model::%24dboClass">$dboClass</a>,
+      <a href="#Model::%24useIndex">$useIndex</a>,
+      <a href="#Model::%24useTable">$useTable</a>,
+      <div class="method">
+<a id="Model::$connection"></a><h3>
+<span class="nb-faded-text">string 
+          public 
+          </span>$connection</h3>
+<em>which connection to use of the ones defines inside config/database.php</em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Model::$dboClass"></a><h3>
+<span class="nb-faded-text">object 
+          protected 
+          </span>$dboClass</h3>
+<em>containts the appropriate class used to access the database</em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Model::$useIndex"></a><h3>
+<span class="nb-faded-text">string 
+          public 
+          </span>$useIndex</h3>
+<em>which fieldname to use for primary key. is 'id' by default, override it in your
+model wo 'table_id' or 'tableId' as you like.</em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="Model::$useTable"></a><h3>
+<span class="nb-faded-text">string 
+          public 
+          </span>$useTable</h3>
+<em>whether to use a specific table for this model. false if not specific, otherwise the tablename</em><br><small></small><br><br>
+</div>
+</div>
+</div></div></div></div><div id="menu">
+              Search for keyword:
+              <span id="search-box"><script xmlns="" type="text/javascript">
+      $(function() {
+
+        var is_chrome = /chrome/.test( navigator.userAgent.toLowerCase() );
+        var is_local = /file:\/\//.test(document.location.href);
+        if (is_chrome && is_local)
+        {
+          // search is disabled on chrome with local files due to http://code.google.com/p/chromium/issues/detail?id=40787
+          return;
+        }
+
+        $("#search_box").show();
+        var search_index = {};
+        $.ajax({
+          url: "../search_index.xml",
+          dataType: ($.browser.msie) ? "text" : "xml",
+          error: function(data) {
+            alert('An error occurred using the search data');
+          },
+          success: function( data ) {
+            var xml;
+            if (typeof data == "string") {
+              xml = new ActiveXObject("Microsoft.XMLDOM");
+              xml.async = false;
+              xml.loadXML(data);
+            } else {
+              xml = data;
+            }
+
+            search_index = $("node", xml).map(function() {
+              type = $("type", this).text();
+              return {
+                value: $("value", this).text(),
+                label: '<img src="../images/icons/'+type+'.png" align="absmiddle">'+$("value", this).text(),
+                id: $("id", this).text(),
+              };
+            }).get();
+
+            $("#search_box").autocomplete({
+              source: search_index,
+              select: function(event, ui) {
+                // redirect to the documentation
+                $(location).attr('href', '../'+ui.item.id);
+                applySearchHash();
+              }
+            });
+          }
+        });
+      });
+    </script><input id="search_box" style="display: none"></input></span> ||
+                  <a href="../index.html">Class diagram</a> |
+                  <a href="../markers.html">TODO / Markers</a></div><div id="index"><div class="padder"><h1>Namespaces</h1><ul id="namespaces-" class="treeview-docblox"><li class="namespace closed">
+<div class="content"><span>default</span></div>
+<ul>
+<li><div class="content">
+<span><a href="../files/lib_boot_strict.html#kataStrictError">kataStrictError</a></span><small>our own exception to inject line and file into exception</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_class_registry.html#classRegistry">classRegistry</a></span><small>Class-registry, a pseudo-singleton wrapper. Used to memorize and return all classes we did already instanciate.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_clustermodel.html#ClusterModel">ClusterModel</a></span><small>The cluster enabled model-class
+give it an array of connection-names for database-masters (those are used to alter data)</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_controller.html#Controller">Controller</a></span><small>The controller itself. Is initialized by the dispatcher.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_controller.html#Component">Component</a></span><small>base component class</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_controllers_app_controller.html#AppController">AppController</a></span><small>A dummy-class that is included if the user does not supply an appcontroller.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_controllers_components_client.session.html#SessionComponent">SessionComponent</a></span><small>An experimental component for object oriented session handling using encrypted client-side cookies.
+keep in mind: this cookie is VERY BIG and is sent on EVERY request, even images!</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_controllers_components_file.session.html#SessionComponent">SessionComponent</a></span><small>A component for object oriented session handling using standard filesystem cookies</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_controllers_components_locale.html#LocaleComponent">LocaleComponent</a></span><small>The Locale-Component Class</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_controllers_components_memcached.session.html#SessionComponent">SessionComponent</a></span><small>A component for object oriented session handling using memcached
+needs PECL memcached-extension 2.1.2 or bigger</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_controllers_components_session.html#baseSessionComponent">baseSessionComponent</a></span><small>base session class</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_controllers_scaffold_controller.html#ScaffoldController">ScaffoldController</a></span><small>default scaffolding-controller. extend it and use the hooks to costumize functionality</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_databaseconnectexception.html#DatabaseConnectException">DatabaseConnectException</a></span><small>Thrown on database connection problems</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_databaseduplicateexception.html#DatabaseDuplicateException">DatabaseDuplicateException</a></span><small>Thrown if an sql-query generates an duplication error due du primary/unique constraints</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_databaseerrorexception.html#DatabaseErrorException">DatabaseErrorException</a></span><small>Thrown if an sql-query generates an error</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_dbo_mssql.html#dbo_mssql">dbo_mssql</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_dbo_mysql.html#dbo_mysql">dbo_mysql</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_dbo_pdo.html#dbo_pdo">dbo_pdo</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_dispatcher.html#dispatcher">dispatcher</a></span><small>dispatcher. this is the first thing that is constructed.
+the dispatcher then collects all parameters given via get/post and instanciates the right controller</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_helper.html#Helper">Helper</a></span><small>helper base-class. helpers are the classes you can access via $this-&gt;helpername inside a view</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_kataext.html#kataExt">kataExt</a></span><small>you can freely add methods to this class at runtime</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_kataglob.html#kataGlob">kataGlob</a></span><small>class for easy handling of global variables</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_katahardtyped.html#kataHardtyped">kataHardtyped</a></span><small>type-enforcement class. just base your class on this class
+- dont forget to call parent::__construct() if you override the c&quot;tor</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_kataimmutable.html#kataImmutable">kataImmutable</a></span><small>todo</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_katareg.html#kataReg">kataReg</a></span><small>registry, a configuration object that persists itself on disk.
+split keys into individial sections with a dot. if you read a section an array will be returned with all keys in that section</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_kata_functions.html#kataFunc">kataFunc</a></span><small>static wrapper class so dont we pollute any namespace anymore</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_model.html#Model">Model</a></span><small>The base model-class that all models derive from</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_modelloader.html#ModelLoader">ModelLoader</a></span><small>use other models inside models just like inside controllers</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_modelloadermodel.html#ModelLoaderModel">ModelLoaderModel</a></span><small>use other models inside models just like inside controllers</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_models_app_model.html#AppModel">AppModel</a></span><small>A dummy-class that is included if the user does not supply an appmodel.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_smartyview.html#SmartyView">SmartyView</a></span><small>smarty view class. used to render the view (and layout) for the controller. ALPHAish.
+to use put the following in your controller:</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_cacheutility.html#CacheUtility">CacheUtility</a></span><small>a universal caching class that can store data using several methods</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_clusterlockutility.html#ClusterlockUtility">ClusterlockUtility</a></span><small>CLUSTERwide locking mechanism with timeout for critical sections or eventhandlers
+(needs memcached)</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_extcacheutility.html#ExtcacheUtility">ExtcacheUtility</a></span><small>extends the normal cacheutility with more memcached functions</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_httputility.html#HttpUtility">HttpUtility</a></span><small>http-request class that does GET and POST (and even SSL) and has no dependencies</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_imageutility.html#ImageUtility">ImageUtility</a></span><small>routines to resize images and handle downloads</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_iputility.html#IpUtility">IpUtility</a></span><small>some ip utility functions</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_lockutility.html#LockUtility">LockUtility</a></span><small>systemwide locking mechanism with timeout for critical sections or eventhandlers</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_minifyutility.html#MinifyUtility">MinifyUtility</a></span><small>methods to compress css and javascript</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_minifyutility.html#JSMin">JSMin</a></span><small>jsmin.php - PHP implementation of Douglas Crockford&quot;s JSMin.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_minifyutility.html#JSMinException">JSMinException</a></span><small>Exceptions ---------------------------------------------------------------</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_rsautility.html#RsaUtility">RsaUtility</a></span><small>rsa asymetric crypto related functions</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_simpleparseutility.html#SimpleparseUtility">SimpleparseUtility</a></span><small>routines for super simple pattern parsing</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_utilities_validateutility.html#ValidateUtility">ValidateUtility</a></span><small>check if an array of parameters matches certain criterias.
+you can still use the (deprecated) defines of model.php (until i murder you)</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_view.html#View">View</a></span><small>default view class. used to render the view (and layout) for the controller</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_views_helpers_form.html#FormHelper">FormHelper</a></span><small>form helper for super-easy form handling</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_views_helpers_html.html#HtmlHelper">HtmlHelper</a></span><small>the default html-helper, available in each view.
+modify this helper, or build your own one.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/lib_views_helpers_js.html#JsHelper">JsHelper</a></span><small>nano-helper for javascript. simply add() javascript in your view, and get() it inside the head-section of your layout</small>
+</div></li>
+</ul>
+</li></ul><h1>Packages</h1><ul id="packages-" class="treeview-docblox">
+<li class="package closed">
+<div class="content"><span>JSMin</span></div>
+<ul id="packages_JSMin" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_minifyutility.html#JSMin">JSMin</a></span><small>jsmin.php - PHP implementation of Douglas Crockford&quot;s JSMin.</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_minifyutility.html#JSMinException">JSMinException</a></span><small>Exceptions ---------------------------------------------------------------</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata</span></div>
+<ul id="packages_kata" class="treeview-docblox"></ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_component</span></div>
+<ul id="packages_kata_component" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/lib_controller.html#Component">Component</a></span><small>base component class</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_controllers_components_client.session.html#SessionComponent">SessionComponent</a></span><small>An experimental component for object oriented session handling using encrypted client-side cookies.
+keep in mind: this cookie is VERY BIG and is sent on EVERY request, even images!</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_controllers_components_file.session.html#SessionComponent">SessionComponent</a></span><small>A component for object oriented session handling using standard filesystem cookies</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_controllers_components_locale.html#LocaleComponent">LocaleComponent</a></span><small>The Locale-Component Class</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_controllers_components_memcached.session.html#SessionComponent">SessionComponent</a></span><small>A component for object oriented session handling using memcached
+needs PECL memcached-extension 2.1.2 or bigger</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_controllers_components_session.html#baseSessionComponent">baseSessionComponent</a></span><small>base session class</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_controller</span></div>
+<ul id="packages_kata_controller" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/lib_controller.html#Controller">Controller</a></span><small>The controller itself. Is initialized by the dispatcher.</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_controllers_app_controller.html#AppController">AppController</a></span><small>A dummy-class that is included if the user does not supply an appcontroller.</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_debugging</span></div>
+<ul id="packages_kata_debugging" class="treeview-docblox"><li class="closed"><div class="content">
+<span><a href="../files/lib_boot_strict.html#kataStrictError">kataStrictError</a></span><small>our own exception to inject line and file into exception</small>
+</div></li></ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_helper</span></div>
+<ul id="packages_kata_helper" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/lib_helper.html#Helper">Helper</a></span><small>helper base-class. helpers are the classes you can access via $this-&gt;helpername inside a view</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_views_helpers_form.html#FormHelper">FormHelper</a></span><small>form helper for super-easy form handling</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_views_helpers_html.html#HtmlHelper">HtmlHelper</a></span><small>the default html-helper, available in each view.
+modify this helper, or build your own one.</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_views_helpers_js.html#JsHelper">JsHelper</a></span><small>nano-helper for javascript. simply add() javascript in your view, and get() it inside the head-section of your layout</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_internal</span></div>
+<ul id="packages_kata_internal" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/lib_class_registry.html#classRegistry">classRegistry</a></span><small>Class-registry, a pseudo-singleton wrapper. Used to memorize and return all classes we did already instanciate.</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_dispatcher.html#dispatcher">dispatcher</a></span><small>dispatcher. this is the first thing that is constructed.
+the dispatcher then collects all parameters given via get/post and instanciates the right controller</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_kataext.html#kataExt">kataExt</a></span><small>you can freely add methods to this class at runtime</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_kataglob.html#kataGlob">kataGlob</a></span><small>class for easy handling of global variables</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_katahardtyped.html#kataHardtyped">kataHardtyped</a></span><small>type-enforcement class. just base your class on this class
+- dont forget to call parent::__construct() if you override the c&quot;tor</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_kataimmutable.html#kataImmutable">kataImmutable</a></span><small>todo</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_katareg.html#kataReg">kataReg</a></span><small>registry, a configuration object that persists itself on disk.
+split keys into individial sections with a dot. if you read a section an array will be returned with all keys in that section</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_model</span></div>
+<ul id="packages_kata_model" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/lib_clustermodel.html#ClusterModel">ClusterModel</a></span><small>The cluster enabled model-class
+give it an array of connection-names for database-masters (those are used to alter data)</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_databaseconnectexception.html#DatabaseConnectException">DatabaseConnectException</a></span><small>Thrown on database connection problems</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_databaseduplicateexception.html#DatabaseDuplicateException">DatabaseDuplicateException</a></span><small>Thrown if an sql-query generates an duplication error due du primary/unique constraints</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_databaseerrorexception.html#DatabaseErrorException">DatabaseErrorException</a></span><small>Thrown if an sql-query generates an error</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_dbo_mssql.html#dbo_mssql">dbo_mssql</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_dbo_mysql.html#dbo_mysql">dbo_mysql</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_dbo_pdo.html#dbo_pdo">dbo_pdo</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_model.html#Model">Model</a></span><small>The base model-class that all models derive from</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_modelloader.html#ModelLoader">ModelLoader</a></span><small>use other models inside models just like inside controllers</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_modelloadermodel.html#ModelLoaderModel">ModelLoaderModel</a></span><small>use other models inside models just like inside controllers</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_models_app_model.html#AppModel">AppModel</a></span><small>A dummy-class that is included if the user does not supply an appmodel.</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_scaffold</span></div>
+<ul id="packages_kata_scaffold" class="treeview-docblox"><li class="closed"><div class="content">
+<span><a href="../files/lib_controllers_scaffold_controller.html#ScaffoldController">ScaffoldController</a></span><small>default scaffolding-controller. extend it and use the hooks to costumize functionality</small>
+</div></li></ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_utility</span></div>
+<ul id="packages_kata_utility" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_cacheutility.html#CacheUtility">CacheUtility</a></span><small>a universal caching class that can store data using several methods</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_clusterlockutility.html#ClusterlockUtility">ClusterlockUtility</a></span><small>CLUSTERwide locking mechanism with timeout for critical sections or eventhandlers
+(needs memcached)</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_extcacheutility.html#ExtcacheUtility">ExtcacheUtility</a></span><small>extends the normal cacheutility with more memcached functions</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_httputility.html#HttpUtility">HttpUtility</a></span><small>http-request class that does GET and POST (and even SSL) and has no dependencies</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_imageutility.html#ImageUtility">ImageUtility</a></span><small>routines to resize images and handle downloads</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_iputility.html#IpUtility">IpUtility</a></span><small>some ip utility functions</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_lockutility.html#LockUtility">LockUtility</a></span><small>systemwide locking mechanism with timeout for critical sections or eventhandlers</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_minifyutility.html#MinifyUtility">MinifyUtility</a></span><small>methods to compress css and javascript</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_rsautility.html#RsaUtility">RsaUtility</a></span><small>rsa asymetric crypto related functions</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_simpleparseutility.html#SimpleparseUtility">SimpleparseUtility</a></span><small>routines for super simple pattern parsing</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_utilities_validateutility.html#ValidateUtility">ValidateUtility</a></span><small>check if an array of parameters matches certain criterias.
+you can still use the (deprecated) defines of model.php (until i murder you)</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_view</span></div>
+<ul id="packages_kata_view" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/lib_smartyview.html#SmartyView">SmartyView</a></span><small>smarty view class. used to render the view (and layout) for the controller. ALPHAish.
+to use put the following in your controller:</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/lib_view.html#View">View</a></span><small>default view class. used to render the view (and layout) for the controller</small>
+</div></li>
+</ul>
+</li>
+</ul>
+</div></div><div id="footer"><div class="padder"></div></div></div></body></html>

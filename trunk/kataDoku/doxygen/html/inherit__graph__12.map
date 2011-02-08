@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$class_helper.html" title="Helper" alt="" coords="5,55,64,83"/>
+<area shape="rect" id="node3" href="$class_form_helper.html" title="FormHelper" alt="" coords="112,5,200,33"/>
+<area shape="rect" id="node5" href="$class_html_helper.html" title="HtmlHelper" alt="" coords="113,55,199,83"/>
+<area shape="rect" id="node7" href="$class_js_helper.html" title="JsHelper" alt="" coords="120,106,192,134"/>
+</map>

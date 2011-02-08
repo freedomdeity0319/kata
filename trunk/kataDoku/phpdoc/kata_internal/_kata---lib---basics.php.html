@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs for page basics.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name"><img src="../media/images/Page_logo.png" alt="File" style="vertical-align: middle">/kata/lib/basics.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-functions">Functions</a>
+			</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">several convenience defines and functions</p>
+<p class="description"><p>Kata - Lightweight MVC Framework &lt;http://www.codeninja.de/&gt;  Copyright 2007-2009 mnt@codeninja.de, gameforge ag</p><p>Licensed under The GPL License  Redistributions of files must retain the above copyright notice.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> mnt</li>
+			</ul>
+		
+			</div>
+</div>
+		
+
+	
+	
+	
+	<a name="sec-functions"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Functions</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<span class="disabled">Functions</span>
+		</div>
+		<div class="info-box-body">	
+			<a name="functionam" id="functionam"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">am</span> (line <span class="line-number">183</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">merge any number of arrays</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the merged array</li>
+			</ul>
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			am
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">0</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">1</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">0</span><span class="var-description">: first array</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">1</span><span class="var-description">: second array and so on</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functiondebug" id="functiondebug"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">debug</span> (line <span class="line-number">26</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">print out type and content of the given variable if DEBUG-define (in config/core.php) &gt; 0</p>
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			debug
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$var</span> = <span class="var-default">false</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$escape</span> = <span class="var-default">false</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$var</span><span class="var-description">: Variable to debug</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$escape</span><span class="var-description">: If set to true variables content will be html-escaped</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionenv" id="functionenv"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">env</span> (line <span class="line-number">141</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets an environment variable from available sources.</p>
+<p class="description"><p>env() knows what to do if $_SERVER/$_ENV are not available.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Environment variable setting.</li>
+			</ul>
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			env
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$key</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$key</span><span class="var-description">: Environment variable name.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functiongetModel" id="functiongetModel"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">getModel</span> (line <span class="line-number">114</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">return a handle to the given model. loads and initializes the model if needed.</p>
+<p class="description"><p>You always get the same object, singleton-alike.</p></p>
+	<div class="method-signature">
+		<span class="method-result">object</span>
+		<span class="method-name">
+			getModel
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$value</span><span class="var-description">: model name (without .php)</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$name</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functiongetUtil" id="functiongetUtil"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">getUtil</span> (line <span class="line-number">129</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">return class-handle of a utility-class  You always get the same object, singleton-alike.</p>
+	<div class="method-signature">
+		<span class="method-result">object class-handle</span>
+		<span class="method-name">
+			getUtil
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: name of the utility</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionh" id="functionh"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">h</span> (line <span class="line-number">212</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convenience method for htmlspecialchars. you should use this instead of echo to avoid xss-exploits</p>
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			h
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$text</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$text</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionis" id="functionis"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">is</span> (line <span class="line-number">224</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">convenience method to check if given value is set. if so, value is return, otherwise the default</p>
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			is
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">&$arg</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$default</span> = <span class="var-default">null</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$arg</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$arg</span><span class="var-description">: value to check</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$default</span><span class="var-description">: value returned if $value is unset</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">&$arg</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionloadModel" id="functionloadModel"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">loadModel</span> (line <span class="line-number">99</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">include all neccessary classes and the given model</p>
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			loadModel
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: model name without .php - if null it just loads all needed classes</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionstripslashes_deep" id="functionstripslashes_deep"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">stripslashes_deep</span> (line <span class="line-number">42</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Recursively strips slashes from all values in an array</p>
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			stripslashes_deep
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionurldecode_deep" id="functionurldecode_deep"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">urldecode_deep</span> (line <span class="line-number">55</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Recursively urldecodes all values in an array</p>
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			urldecode_deep
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionvendor" id="functionvendor"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">vendor</span> (line <span class="line-number">200</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">loads the given files in the VENDORS directory if not already loaded</p>
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			vendor
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$name</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name</span><span class="var-description">: Filename without the .php part.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionwriteLog" id="functionwriteLog"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<img src="../media/images/Function.png" />
+		<span class="method-title">writeLog</span> (line <span class="line-number">69</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">write a string to the log in KATATMP/logs. if DEBUG&lt;0 logentries that have KATA_DEBUG are not written.</p>
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			writeLog
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$what</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$where</span> = <span class="var-default">KATA_DEBUG</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$what</span><span class="var-description">: string to write to the log</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$where</span><span class="var-description">: log-level to log (default: KATA_DEBUG)</span>			</li>
+				</ul>
+		
+	
+</div>
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 23 Sep 2010 16:25:51 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.1</a>
+	</p>
+	</div></body>
+</html>

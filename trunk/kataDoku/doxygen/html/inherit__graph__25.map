@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$class_model.html" title="Model" alt="" coords="5,30,61,58"/>
+<area shape="rect" id="node3" href="$class_app_model.html" title="AppModel" alt="" coords="119,5,199,33"/>
+<area shape="rect" id="node7" href="$class_cluster_model.html" title="ClusterModel" alt="" coords="111,55,207,83"/>
+<area shape="rect" id="node5" href="$class_model_loader_model.html" title="ModelLoaderModel" alt="" coords="256,5,387,33"/>
+</map>

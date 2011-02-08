@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$class_controller.html" title="Controller" alt="" coords="7,5,81,33"/>
+<area shape="rect" id="node3" href="$class_app_controller.html" title="AppController" alt="" coords="132,5,231,33"/>
+<area shape="rect" id="node5" href="$class_scaffold_controller.html" title="ScaffoldController" alt="" coords="280,5,403,33"/>
+</map>
