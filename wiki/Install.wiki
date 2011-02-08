@@ -1,0 +1,13 @@
+#summary One-sentence summary of this page.
+
+= Dokumentation =
+
+[http://codeninja.de/kata_php_framework/doc/quick/quick.html End-User documentation]
+
+[http://codeninja.de/kata_php_framework/doc/doxygen/html/index.html Complete Class reference]
+
+[http://codeninja.de/kata_php_framework/doc/ChangeLog Changelog]
+
+= Request flowchart =
+
+http://codeninja.de/kata_php_framework/kata_flowchart.png
