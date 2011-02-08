@@ -1,0 +1,1234 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>lib/views\helpers\form.php</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" href="../css/black-tie/jquery-ui-1.8.2.custom.css" type="text/css"></link><link rel="stylesheet" href="../css/jquery.treeview.css" type="text/css"></link><link rel="stylesheet" href="../css/default.css" type="text/css"></link><script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="../js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="../js/jquery.treeview.js"></script></head><body><script type="text/javascript">
+          $(document).ready(function()
+          {
+            $(".treeview-docblox").treeview({
+              animated: 'fast'
+            });
+          });
+
+          function jq_escape(myid)
+          {
+            return '#' + myid.replace(/(#|\$|:|\.|\(|\))/g, '\\$1');
+          }
+
+          function applySearchHash()
+          {
+            hashes = document.location.hash.substr(1, document.location.hash.length);
+            if (hashes != "")
+            {
+              hashes = hashes.split('/');
+              $.each(hashes, function(index, hash)
+              {
+                node = $(jq_escape(hash));
+                switch (node[0].nodeName)
+                {
+                  case 'DIV':
+                    tabs = node.parents('.tabs');
+                    $(tabs[0]).tabs('select', '#' + hash)
+                    break;
+                  case 'A':
+                    window.scrollTo(0, node.offset().top);
+                    break;
+                }
+              });
+            }
+          }
+
+          jQuery(function()
+          {
+            jQuery(".tabs").tabs();
+            applySearchHash();
+          });
+        </script><div id="maincontainer"><div id="header"><div class="padder"></div></div><div id="content_container"><div id="content"><div class="padder"><h1 xmlns="">lib/views\helpers\form.php</h1>
+<div xmlns="" class="properties">
+<h1>Properties</h1>
+<label class="property-key">package</label><div class="property-value"><a title="kata_helper" href="">kata_helper</a></div>
+</div>
+<h3 xmlns="">Description</h3>Contains the form helper<br xmlns=""><br xmlns="">Kata - Lightweight MVC Framework <http://www.codeninja.de/>
+Copyright 2007-2009 mnt@codeninja.de, gameforge ag
+
+Licensed under The GPL License
+Redistributions of files must retain the above copyright notice.<br xmlns=""><h2 xmlns="">Classes</h2>
+<div xmlns="" id="FormHelper">
+<h3>FormHelper</h3>
+<div class="properties">
+<h1>Properties</h1>
+<label class="property-key">Extends</label><div class="property-value">Helper </div>
+<label class="property-key">Implements</label><div class="property-value"> 
+      </div>
+<label class="property-key">package</label><div class="property-value">
+<a title="kata_helper">kata_helper</a>
+             
+        </div>
+<label class="property-key">Abstract</label><div class="property-value">No 
+      </div>
+<label class="property-key">Final</label><div class="property-value">No 
+      </div>
+</div>
+<h4>Description</h4>
+<em>form helper for super-easy form handling</em><br><br><div id="methods_FormHelper">
+<h4>Methods</h4>
+<a style="font-style: italic;" href="#FormHelper::__destruct()">__destruct</a>,
+      <a style="font-style: italic;" href="#FormHelper::button()">button</a>,
+      <a style="font-style: italic;" href="#FormHelper::checkForOpenForm()">checkForOpenForm</a>,
+      <a style="font-style: italic;" href="#FormHelper::checkbox()">checkbox</a>,
+      <a style="font-style: italic;" href="#FormHelper::close()">close</a>,
+      <a style="font-style: italic;" href="#FormHelper::error()">error</a>,
+      <a style="font-style: italic;" href="#FormHelper::fieldName()">fieldName</a>,
+      <a style="font-style: italic;" href="#FormHelper::get()">get</a>,
+      <a style="font-style: italic;" href="#FormHelper::input()">input</a>,
+      <a style="font-style: italic;" href="#FormHelper::post()">post</a>,
+      <a style="font-style: italic;" href="#FormHelper::reset()">reset</a>,
+      <a style="font-style: italic;" href="#FormHelper::select()">select</a>,
+      <a style="font-style: italic;" href="#FormHelper::setDefault()">setDefault</a>,
+      <a style="font-style: italic;" href="#FormHelper::submit()">submit</a>,
+      <a style="font-style: italic;" href="#FormHelper::textarea()">textarea</a>,
+      <div class="method">
+<a id="FormHelper::__destruct()"></a><h3>__destruct<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>throw error if form still open</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::button()"></a><h3>button<span class="nb-faded-text">(
+          string $name,
+          string $value,
+          array $htmlAttributes
+            = null,
+          array $html,
+           $escapeHtml
+            = false,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>generate button-tag</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$name</td>
+<td>string</td>
+<td>name of button</td>
+<td></td>
+</tr>
+<tr>
+<td>$value</td>
+<td>string</td>
+<td>value of button</td>
+<td></td>
+</tr>
+<tr>
+<td>$htmlAttributes</td>
+<td>array</td>
+<td>tag-attributes</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$html</td>
+<td>array</td>
+<td>html to insert inside button</td>
+<td></td>
+</tr>
+<tr>
+<td>$escapeHtml</td>
+<td>n/a</td>
+<td></td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::checkForOpenForm()"></a><h3>checkForOpenForm<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>throw error if form not open</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::checkbox()"></a><h3>checkbox<span class="nb-faded-text">(
+          string $name,
+          bool $checked
+            = false,
+          array $htmlAttributes
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>generate checkbox. will generate a value (0) even if unchecked, no more javascript fiddeling!</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$name</td>
+<td>string</td>
+<td>name of the input-tag</td>
+<td></td>
+</tr>
+<tr>
+<td>$checked</td>
+<td>bool</td>
+<td>if checkbox should be checked or not. will be overwritten if we land here again after the request</td>
+<td>false</td>
+</tr>
+<tr>
+<td>$htmlAttributes</td>
+<td>array</td>
+<td>tag-attributes</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::close()"></a><h3>close<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>close previously openend form-tag</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::error()"></a><h3>error<span class="nb-faded-text">(
+          string $name,
+          string $errorString,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>return error message if the previously displayed form had any validation errors. obviously only works if you did a validate inside your models action.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$name</td>
+<td>string</td>
+<td>name-portion of input-tag</td>
+<td></td>
+</tr>
+<tr>
+<td>$errorString</td>
+<td>string</td>
+<td>string to display on error</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>empty string if no error, otherwise errorstring inside configured error-tag-template</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::fieldName()"></a><h3>fieldName<span class="nb-faded-text">(
+          mixed $name,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>create name-portion of tag, depends on wether we use a model or not:
+if no model is used simply returns name, otherwise returns 'model[name]'</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$name</td>
+<td>mixed</td>
+<td>name-portion of the input tag</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::get()"></a><h3>get<span class="nb-faded-text">(
+          string $url
+            = null,
+          mixed $htmlAttributes
+            = null,
+          mixed $modelName,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>create a opening form-tag for GET requests</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$url</td>
+<td>string</td>
+<td>url to GET to</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$htmlAttributes</td>
+<td>mixed</td>
+<td>key-value array of html-attributes OR preformatted string ('readonly="true"') OR empty</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$modelName</td>
+<td>mixed</td>
+<td>string of model to use OR empty</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::input()"></a><h3>input<span class="nb-faded-text">(
+          string $name,
+          string $value,
+          array $htmlAttributes
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>generate input-tag</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$name</td>
+<td>string</td>
+<td>name of the input-tag</td>
+<td></td>
+</tr>
+<tr>
+<td>$value</td>
+<td>string</td>
+<td>default value of the input tag. will be overwritten if we land here again after the request</td>
+<td></td>
+</tr>
+<tr>
+<td>$htmlAttributes</td>
+<td>array</td>
+<td>tag-attributes</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::post()"></a><h3>post<span class="nb-faded-text">(
+          string $url
+            = null,
+          mixed $htmlAttributes
+            = null,
+          mixed $modelName,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>create a opening form-tag for POST requests</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$url</td>
+<td>string</td>
+<td>url to POST to</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$htmlAttributes</td>
+<td>mixed</td>
+<td>key-value array of html-attributes OR preformatted string ('readonly="true"') OR empty</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$modelName</td>
+<td>mixed</td>
+<td>string of model to use OR empty</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::reset()"></a><h3>reset<span class="nb-faded-text">(
+          string $title,
+          array $htmlAttributes
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>generate reset-button</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$title</td>
+<td>string</td>
+<td>title of button</td>
+<td></td>
+</tr>
+<tr>
+<td>$htmlAttributes</td>
+<td>array</td>
+<td>tag-attributes</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::select()"></a><h3>select<span class="nb-faded-text">(
+           $name,
+          array $optionElements,
+          string $selected
+            = null,
+          array $selectAttr
+            = array,
+          array $optionAttr
+            = array,
+          boolean $showEmpty
+            = false,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>build select/option tags</em><br><small>&lt;samp&gt;
+$arr = array('blue'=&gt;'Blue color','red'=&gt;'Red color');
+echo $html-&gt;selectTag('gameinput',$arr,'red');
+&lt;/samp&gt;</small><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$name</td>
+<td>n/a</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$optionElements</td>
+<td>array</td>
+<td>array with elements (key=option-tags value-part, name=between option tag)</td>
+<td></td>
+</tr>
+<tr>
+<td>$selected</td>
+<td>string</td>
+<td>keyname of the element to be default selected</td>
+<td>null</td>
+</tr>
+<tr>
+<td>$selectAttr</td>
+<td>array</td>
+<td>array of attributes of the select-tag, for example "class"=>"dontunderline"</td>
+<td>array</td>
+</tr>
+<tr>
+<td>$optionAttr</td>
+<td>array</td>
+<td>array of attributes for each option-tag, for example "class"=>"dontunderline"</td>
+<td>array</td>
+</tr>
+<tr>
+<td>$showEmpty</td>
+<td>boolean</td>
+<td>if we should display an empty option as the default selection so the user knows (s)he has to select something</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::setDefault()"></a><h3>setDefault<span class="nb-faded-text">(
+          string $name,
+          string $value,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>overwrite given (referenced) value with value from get/post, if existing</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$name</td>
+<td>string</td>
+<td>name-portion of tag</td>
+<td></td>
+</tr>
+<tr>
+<td>$value</td>
+<td>string</td>
+<td>value to manipulate (referenced)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::submit()"></a><h3>submit<span class="nb-faded-text">(
+          string $title,
+          array $htmlAttributes
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>generate submit-button</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$title</td>
+<td>string</td>
+<td>title of button</td>
+<td></td>
+</tr>
+<tr>
+<td>$htmlAttributes</td>
+<td>array</td>
+<td>tag-attributes</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="FormHelper::textarea()"></a><h3>textarea<span class="nb-faded-text">(
+          string $name,
+          string $value,
+          array $htmlAttributes
+            = null,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">string</span>
+</h3>
+<h4>Description</h4>
+<em>generate textarea-tag</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$name</td>
+<td>string</td>
+<td>name of the input-tag</td>
+<td></td>
+</tr>
+<tr>
+<td>$value</td>
+<td>string</td>
+<td>default value of the textarea tag. will be overwritten if we land here again after the request</td>
+<td></td>
+</tr>
+<tr>
+<td>$htmlAttributes</td>
+<td>array</td>
+<td>tag-attributes</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>string</td>
+<td>html</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div id="properties_FormHelper">
+<h2>Properties</h2>
+<a href="#FormHelper::%24formTagOpen">$formTagOpen</a>,
+      <a href="#FormHelper::%24method">$method</a>,
+      <a href="#FormHelper::%24modelName">$modelName</a>,
+      <div class="method">
+<a id="FormHelper::$formTagOpen"></a><h3>
+<span class="nb-faded-text">bool 
+          private 
+          </span>$formTagOpen</h3>
+<em>did we already open a form-tag?</em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="FormHelper::$method"></a><h3>
+<span class="nb-faded-text"> 
+          private 
+          </span>$method</h3>
+<em>which submit-method we use, used to access $this-&gt;params</em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="FormHelper::$modelName"></a><h3>
+<span class="nb-faded-text">string 
+          private 
+          </span>$modelName</h3>
+<em>which model to use. needed to format name-portion of tag accordingly</em><br><small></small><br><br>
+</div>
+</div>
+</div></div></div></div><div id="menu"><div class="padder"><h1><img src="../images/logo.png" alt=""></img></h1><div id="search-box"><script xmlns="" type="text/javascript">
+      $(function() {
+
+        var is_chrome = /chrome/.test( navigator.userAgent.toLowerCase() );
+        var is_local = /file:\/\//.test(document.location.href);
+        if (is_chrome && is_local)
+        {
+          // search is disabled on chrome with local files due to http://code.google.com/p/chromium/issues/detail?id=40787
+          return;
+        }
+
+        $("#search_box").show();
+        var search_index = {};
+        $.ajax({
+          url: "../search_index.xml",
+          dataType: ($.browser.msie) ? "text" : "xml",
+          error: function(data) {
+            alert('An error occurred using the search data');
+          },
+          success: function( data ) {
+            var xml;
+            if (typeof data == "string") {
+              xml = new ActiveXObject("Microsoft.XMLDOM");
+              xml.async = false;
+              xml.loadXML(data);
+            } else {
+              xml = data;
+            }
+
+            search_index = $("node", xml).map(function() {
+              type = $("type", this).text();
+              return {
+                value: $("value", this).text(),
+                label: '<img src="../images/icons/'+type+'.png" align="absmiddle">'+$("value", this).text(),
+                id: $("id", this).text(),
+              };
+            }).get();
+
+            $("#search_box").autocomplete({
+              source: search_index,
+              select: function(event, ui) {
+                // redirect to the documentation
+                $(location).attr('href', '../'+ui.item.id);
+                applySearchHash();
+              }
+            });
+          }
+        });
+      });
+    </script><input id="search_box" style="display: none"></input></div><h4>Documentation</h4><ul><li><a href="../index.html">Class diagram</a></li><li><a href="../markers.html">TODO / Markers</a></li></ul></div></div><div id="index"><div class="padder"><h1>Namespaces</h1><ul id="namespaces-" class="treeview-docblox"><li class="namespace closed">
+<div class="content"><span>default</span></div>
+<ul>
+<li><div class="content">
+<span><a href="../files/boot_strict.html#kataStrictError">kataStrictError</a></span><small>our own exception to inject line and file into exception</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/class_registry.html#classRegistry">classRegistry</a></span><small>Class-registry, a pseudo-singleton wrapper. Used to memorize and return all classes we did already instanciate.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/clustermodel.html#ClusterModel">ClusterModel</a></span><small>The cluster enabled model-class
+give it an array of connection-names for database-masters (those are used to alter data)</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/controller.html#Controller">Controller</a></span><small>The controller itself. Is initialized by the dispatcher.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/controller.html#Component">Component</a></span><small>base component class</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/controllers_app_controller.html#AppController">AppController</a></span><small>A dummy-class that is included if the user does not supply an appcontroller.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/controllers_components_client.session.html#SessionComponent">SessionComponent</a></span><small>An experimental component for object oriented session handling using encrypted client-side cookies.
+keep in mind: this cookie is VERY BIG and is sent on EVERY request, even images!</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/controllers_components_file.session.html#SessionComponent">SessionComponent</a></span><small>A component for object oriented session handling using standard filesystem cookies</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/controllers_components_locale.html#LocaleComponent">LocaleComponent</a></span><small>The Locale-Component Class</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/controllers_components_memcached.session.html#SessionComponent">SessionComponent</a></span><small>A component for object oriented session handling using memcached
+needs PECL memcached-extension 2.1.2 or bigger</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/controllers_components_session.html#baseSessionComponent">baseSessionComponent</a></span><small>base session class</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/controllers_scaffold_controller.html#ScaffoldController">ScaffoldController</a></span><small>default scaffolding-controller. extend it and use the hooks to costumize functionality</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/databaseconnectexception.html#DatabaseConnectException">DatabaseConnectException</a></span><small>Thrown on database connection problems</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/databaseduplicateexception.html#DatabaseDuplicateException">DatabaseDuplicateException</a></span><small>Thrown if an sql-query generates an duplication error due du primary/unique constraints</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/databaseerrorexception.html#DatabaseErrorException">DatabaseErrorException</a></span><small>Thrown if an sql-query generates an error</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/dbo_mssql.html#dbo_mssql">dbo_mssql</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/dbo_mysql.html#dbo_mysql">dbo_mysql</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/dbo_pdo.html#dbo_pdo">dbo_pdo</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/dispatcher.html#dispatcher">dispatcher</a></span><small>dispatcher. this is the first thing that is constructed.
+the dispatcher then collects all parameters given via get/post and instanciates the right controller</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/helper.html#Helper">Helper</a></span><small>helper base-class. helpers are the classes you can access via $this-&gt;helpername inside a view</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/kataext.html#kataExt">kataExt</a></span><small>you can freely add methods to this class at runtime</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/kataglob.html#kataGlob">kataGlob</a></span><small>class for easy handling of global variables</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/katahardtyped.html#kataHardtyped">kataHardtyped</a></span><small>type-enforcement class. just base your class on this class
+- dont forget to call parent::__construct() if you override the c&quot;tor</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/kataimmutable.html#kataImmutable">kataImmutable</a></span><small>todo</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/katareg.html#kataReg">kataReg</a></span><small>registry, a configuration object that persists itself on disk.
+split keys into individial sections with a dot. if you read a section an array will be returned with all keys in that section</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/kata_functions.html#kataFunc">kataFunc</a></span><small>static wrapper class so dont we pollute any namespace anymore</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/model.html#Model">Model</a></span><small>The base model-class that all models derive from</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/modelloader.html#ModelLoader">ModelLoader</a></span><small>use other models inside models just like inside controllers</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/modelloadermodel.html#ModelLoaderModel">ModelLoaderModel</a></span><small>use other models inside models just like inside controllers</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/models_app_model.html#AppModel">AppModel</a></span><small>A dummy-class that is included if the user does not supply an appmodel.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/smartyview.html#SmartyView">SmartyView</a></span><small>smarty view class. used to render the view (and layout) for the controller. ALPHAish.
+to use put the following in your controller:</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_cacheutility.html#CacheUtility">CacheUtility</a></span><small>a universal caching class that can store data using several methods</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_clusterlockutility.html#ClusterlockUtility">ClusterlockUtility</a></span><small>CLUSTERwide locking mechanism with timeout for critical sections or eventhandlers
+(needs memcached)</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_extcacheutility.html#ExtcacheUtility">ExtcacheUtility</a></span><small>extends the normal cacheutility with more memcached functions</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_httputility.html#HttpUtility">HttpUtility</a></span><small>http-request class that does GET and POST (and even SSL) and has no dependencies</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_imageutility.html#ImageUtility">ImageUtility</a></span><small>routines to resize images and handle downloads</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_iputility.html#IpUtility">IpUtility</a></span><small>some ip utility functions</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_lockutility.html#LockUtility">LockUtility</a></span><small>systemwide locking mechanism with timeout for critical sections or eventhandlers</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_minifyutility.html#MinifyUtility">MinifyUtility</a></span><small>methods to compress css and javascript</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_minifyutility.html#JSMin">JSMin</a></span><small>jsmin.php - PHP implementation of Douglas Crockford&quot;s JSMin.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_minifyutility.html#JSMinException">JSMinException</a></span><small>Exceptions ---------------------------------------------------------------</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_rsautility.html#RsaUtility">RsaUtility</a></span><small>rsa asymetric crypto related functions</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_simpleparseutility.html#SimpleparseUtility">SimpleparseUtility</a></span><small>routines for super simple pattern parsing</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/utilities_validateutility.html#ValidateUtility">ValidateUtility</a></span><small>check if an array of parameters matches certain criterias.
+you can still use the (deprecated) defines of model.php (until i murder you)</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/view.html#View">View</a></span><small>default view class. used to render the view (and layout) for the controller</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/views_helpers_form.html#FormHelper">FormHelper</a></span><small>form helper for super-easy form handling</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/views_helpers_html.html#HtmlHelper">HtmlHelper</a></span><small>the default html-helper, available in each view.
+modify this helper, or build your own one.</small>
+</div></li>
+<li><div class="content">
+<span><a href="../files/views_helpers_js.html#JsHelper">JsHelper</a></span><small>nano-helper for javascript. simply add() javascript in your view, and get() it inside the head-section of your layout</small>
+</div></li>
+</ul>
+</li></ul><h1>Packages</h1><ul id="packages-" class="treeview-docblox">
+<li class="package closed">
+<div class="content"><span>JSMin</span></div>
+<ul id="packages_JSMin" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_minifyutility.html#JSMin">JSMin</a></span><small>jsmin.php - PHP implementation of Douglas Crockford&quot;s JSMin.</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_minifyutility.html#JSMinException">JSMinException</a></span><small>Exceptions ---------------------------------------------------------------</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata</span></div>
+<ul id="packages_kata" class="treeview-docblox"></ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_component</span></div>
+<ul id="packages_kata_component" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/controller.html#Component">Component</a></span><small>base component class</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/controllers_components_client.session.html#SessionComponent">SessionComponent</a></span><small>An experimental component for object oriented session handling using encrypted client-side cookies.
+keep in mind: this cookie is VERY BIG and is sent on EVERY request, even images!</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/controllers_components_file.session.html#SessionComponent">SessionComponent</a></span><small>A component for object oriented session handling using standard filesystem cookies</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/controllers_components_locale.html#LocaleComponent">LocaleComponent</a></span><small>The Locale-Component Class</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/controllers_components_memcached.session.html#SessionComponent">SessionComponent</a></span><small>A component for object oriented session handling using memcached
+needs PECL memcached-extension 2.1.2 or bigger</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/controllers_components_session.html#baseSessionComponent">baseSessionComponent</a></span><small>base session class</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_controller</span></div>
+<ul id="packages_kata_controller" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/controller.html#Controller">Controller</a></span><small>The controller itself. Is initialized by the dispatcher.</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/controllers_app_controller.html#AppController">AppController</a></span><small>A dummy-class that is included if the user does not supply an appcontroller.</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_debugging</span></div>
+<ul id="packages_kata_debugging" class="treeview-docblox"><li class="closed"><div class="content">
+<span><a href="../files/boot_strict.html#kataStrictError">kataStrictError</a></span><small>our own exception to inject line and file into exception</small>
+</div></li></ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_helper</span></div>
+<ul id="packages_kata_helper" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/helper.html#Helper">Helper</a></span><small>helper base-class. helpers are the classes you can access via $this-&gt;helpername inside a view</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/views_helpers_form.html#FormHelper">FormHelper</a></span><small>form helper for super-easy form handling</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/views_helpers_html.html#HtmlHelper">HtmlHelper</a></span><small>the default html-helper, available in each view.
+modify this helper, or build your own one.</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/views_helpers_js.html#JsHelper">JsHelper</a></span><small>nano-helper for javascript. simply add() javascript in your view, and get() it inside the head-section of your layout</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_internal</span></div>
+<ul id="packages_kata_internal" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/class_registry.html#classRegistry">classRegistry</a></span><small>Class-registry, a pseudo-singleton wrapper. Used to memorize and return all classes we did already instanciate.</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/dispatcher.html#dispatcher">dispatcher</a></span><small>dispatcher. this is the first thing that is constructed.
+the dispatcher then collects all parameters given via get/post and instanciates the right controller</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/kataext.html#kataExt">kataExt</a></span><small>you can freely add methods to this class at runtime</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/kataglob.html#kataGlob">kataGlob</a></span><small>class for easy handling of global variables</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/katahardtyped.html#kataHardtyped">kataHardtyped</a></span><small>type-enforcement class. just base your class on this class
+- dont forget to call parent::__construct() if you override the c&quot;tor</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/kataimmutable.html#kataImmutable">kataImmutable</a></span><small>todo</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/katareg.html#kataReg">kataReg</a></span><small>registry, a configuration object that persists itself on disk.
+split keys into individial sections with a dot. if you read a section an array will be returned with all keys in that section</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_model</span></div>
+<ul id="packages_kata_model" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/clustermodel.html#ClusterModel">ClusterModel</a></span><small>The cluster enabled model-class
+give it an array of connection-names for database-masters (those are used to alter data)</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/databaseconnectexception.html#DatabaseConnectException">DatabaseConnectException</a></span><small>Thrown on database connection problems</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/databaseduplicateexception.html#DatabaseDuplicateException">DatabaseDuplicateException</a></span><small>Thrown if an sql-query generates an duplication error due du primary/unique constraints</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/databaseerrorexception.html#DatabaseErrorException">DatabaseErrorException</a></span><small>Thrown if an sql-query generates an error</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/dbo_mssql.html#dbo_mssql">dbo_mssql</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/dbo_mysql.html#dbo_mysql">dbo_mysql</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/dbo_pdo.html#dbo_pdo">dbo_pdo</a></span><small>this class is used by the model to access the database itself</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/model.html#Model">Model</a></span><small>The base model-class that all models derive from</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/modelloader.html#ModelLoader">ModelLoader</a></span><small>use other models inside models just like inside controllers</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/modelloadermodel.html#ModelLoaderModel">ModelLoaderModel</a></span><small>use other models inside models just like inside controllers</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/models_app_model.html#AppModel">AppModel</a></span><small>A dummy-class that is included if the user does not supply an appmodel.</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_scaffold</span></div>
+<ul id="packages_kata_scaffold" class="treeview-docblox"><li class="closed"><div class="content">
+<span><a href="../files/controllers_scaffold_controller.html#ScaffoldController">ScaffoldController</a></span><small>default scaffolding-controller. extend it and use the hooks to costumize functionality</small>
+</div></li></ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_utility</span></div>
+<ul id="packages_kata_utility" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_cacheutility.html#CacheUtility">CacheUtility</a></span><small>a universal caching class that can store data using several methods</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_clusterlockutility.html#ClusterlockUtility">ClusterlockUtility</a></span><small>CLUSTERwide locking mechanism with timeout for critical sections or eventhandlers
+(needs memcached)</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_extcacheutility.html#ExtcacheUtility">ExtcacheUtility</a></span><small>extends the normal cacheutility with more memcached functions</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_httputility.html#HttpUtility">HttpUtility</a></span><small>http-request class that does GET and POST (and even SSL) and has no dependencies</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_imageutility.html#ImageUtility">ImageUtility</a></span><small>routines to resize images and handle downloads</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_iputility.html#IpUtility">IpUtility</a></span><small>some ip utility functions</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_lockutility.html#LockUtility">LockUtility</a></span><small>systemwide locking mechanism with timeout for critical sections or eventhandlers</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_minifyutility.html#MinifyUtility">MinifyUtility</a></span><small>methods to compress css and javascript</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_rsautility.html#RsaUtility">RsaUtility</a></span><small>rsa asymetric crypto related functions</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_simpleparseutility.html#SimpleparseUtility">SimpleparseUtility</a></span><small>routines for super simple pattern parsing</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/utilities_validateutility.html#ValidateUtility">ValidateUtility</a></span><small>check if an array of parameters matches certain criterias.
+you can still use the (deprecated) defines of model.php (until i murder you)</small>
+</div></li>
+</ul>
+</li>
+<li class="package closed">
+<div class="content"><span>kata_view</span></div>
+<ul id="packages_kata_view" class="treeview-docblox">
+<li class="closed"><div class="content">
+<span><a href="../files/smartyview.html#SmartyView">SmartyView</a></span><small>smarty view class. used to render the view (and layout) for the controller. ALPHAish.
+to use put the following in your controller:</small>
+</div></li>
+<li class="closed"><div class="content">
+<span><a href="../files/view.html#View">View</a></span><small>default view class. used to render the view (and layout) for the controller</small>
+</div></li>
+</ul>
+</li>
+</ul>
+</div></div><div id="footer"><div class="padder"></div></div></div></body></html>
