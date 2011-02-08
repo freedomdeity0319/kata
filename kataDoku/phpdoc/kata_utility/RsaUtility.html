@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class RsaUtility</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> RsaUtility</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">rsa asymetric crypto related functions</p>
+<p class="description"><p>expects pem-style rsa-keys as 'vendors/rsakeys/pub.pem' and  'vendors/rsakeys/priv.pem'. You can change the path by  setKeyPath()</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> joachim.eckert@gameforge.de</li>
+				<li><span class="field">author:</span> feldkamp@gameforge.de</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_kata---lib---utilities---rsautility.php.html">/kata/lib/utilities/rsautility.php</a> (line <span class="field">20</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																<div class="method-definition">
+					<img src="../media/images/Constructor.png" alt=" "/>
+											<span class="method-result">RsaUtility</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#decode" title="details" class="method-name">decode</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$data</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">mixed:</span>
+										<a href="#decrypt" title="details" class="method-name">decrypt</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$senderPubKey</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$checkSignature</span> = <span class="var-default">false</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$data:</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$senderPubKey:</span>, <span class="var-type">bool</span>&nbsp;<span class="var-name">$checkSignature:</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#encode" title="details" class="method-name">encode</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$data</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">mixed:</span>
+										<a href="#encrypt" title="details" class="method-name">encrypt</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$data</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$receiverPubKey</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$sign</span> = <span class="var-default">false</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$data:</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$receiverPubKey:</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$ownPrivKey:</span>, <span class="var-type">bool</span>&nbsp;<span class="var-name">$sign:</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#getEncoder" title="details" class="method-name">getEncoder</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#getKey" title="details" class="method-name">getKey</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$what</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#getKeyPath" title="details" class="method-name">getKeyPath</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#getPrivateKey" title="details" class="method-name">getPrivateKey</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#getPublicKey" title="details" class="method-name">getPublicKey</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#setEncoder" title="details" class="method-name">setEncoder</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$encoder</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#setKeyPath" title="details" class="method-name">setKeyPath</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+													<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Constructor.png" />
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">22</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">RsaUtility</span>
+		<span class="method-name">
+			__construct
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methoddecode" id="decode"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">decode</span> (line <span class="line-number">155</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">decode given string using currently set decoder function</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			decode
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$data</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$data</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddecrypt" id="decrypt"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">decrypt</span> (line <span class="line-number">219</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">decrypts asymetric crypted data  first base64-decodes it, then decrypts it and finally unserializes it  best used to decrypt data encrypted with encryptAsymetric()</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the decrypted data, false on error</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed:</span>
+		<span class="method-name">
+			decrypt
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$senderPubKey</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$checkSignature</span> = <span class="var-default">false</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$data:</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$senderPubKey:</span>, <span class="var-type">bool</span>&nbsp;<span class="var-name">$checkSignature:</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$data:</span><span class="var-description">: the encrypted data</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$senderPubKey:</span><span class="var-description">: the public key of the sender, needed for signature check (defaults to null)</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$checkSignature:</span><span class="var-description">: true if signature should be checked (defaults to false)</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$data</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$senderPubKey</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$checkSignature</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodencode" id="encode"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">encode</span> (line <span class="line-number">141</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">encode given string using currently set encoder function</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			encode
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$data</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$data</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodencrypt" id="encrypt"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">encrypt</span> (line <span class="line-number">182</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">encrypts data asymetrically</p>
+<p class="description"><p>first serializes the data, then encrypts it and finally base64-encodes it  best used to crypt data which can be decrypted with decryptAsymetric()</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the encrypted data, false on error</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed:</span>
+		<span class="method-name">
+			encrypt
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$data</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$receiverPubKey</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$sign</span> = <span class="var-default">false</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$data:</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$receiverPubKey:</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$ownPrivKey:</span>, <span class="var-type">bool</span>&nbsp;<span class="var-name">$sign:</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$data:</span><span class="var-description">: the data to encrypt</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$receiverPubKey:</span><span class="var-description">: the public key of the receiver</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$ownPrivKey:</span><span class="var-description">: own private key, needed if data should also be signed (defaults to null)</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$sign:</span><span class="var-description">: true if signature should be added (defaults to false)</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$data</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$receiverPubKey</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$sign</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetEncoder" id="getEncoder"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getEncoder</span> (line <span class="line-number">132</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">read currently used de/encoder function</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getEncoder
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetKey" id="getKey"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getKey</span> (line <span class="line-number">66</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">read key from filesystem</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getKey
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$what</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$what</span><span class="var-description">: can be 'pub' or 'priv'</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetKeyPath" id="getKeyPath"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getKeyPath</span> (line <span class="line-number">43</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">read current filesystem path for key storage</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getKeyPath
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetPrivateKey" id="getPrivateKey"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getPrivateKey</span> (line <span class="line-number">98</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">return our private key</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getPrivateKey
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetPublicKey" id="getPublicKey"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">getPublicKey</span> (line <span class="line-number">90</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">return our public key</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getPublicKey
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsetEncoder" id="setEncoder"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">setEncoder</span> (line <span class="line-number">114</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">set de/encoder function. can be (for examle) json,base64 etc</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setEncoder
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$encoder</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$encoder</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetKeyPath" id="setKeyPath"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../media/images/Method.png" />
+		<span class="method-title">setKeyPath</span> (line <span class="line-number">51</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">set filesystempath where to find keys</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setKeyPath
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$path</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 23 Sep 2010 16:25:55 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.1</a>
+	</p>
+	</div></body>
+</html>
