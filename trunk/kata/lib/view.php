@@ -109,7 +109,7 @@ class View {
 		if ($this->didConstructHelpers) {
 			return;
 		}
-		require LIB.'helper.php';
+		require_once LIB.'helper.php';
 
 		foreach ($this->helpers as $name) {
 			$name = strtolower($name);

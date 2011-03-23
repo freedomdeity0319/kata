@@ -83,7 +83,7 @@ abstract class Helper {
 	function __construct() {
 		if (file_exists(ROOT . 'config' . DS . 'tags.php')) {
 			$tags = array ();
-			require ROOT . 'config' . DS . 'tags.php';
+			require_once ROOT . 'config' . DS . 'tags.php';
 			$this->tags = array_merge($this->tags, $tags);
 		}
 	}

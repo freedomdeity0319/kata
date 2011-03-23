@@ -32,6 +32,11 @@ define('KATAVERSION','1.4');
  */
 mb_internal_encoding( 'UTF-8' );
 mb_regex_encoding('UTF-8');
+
+iconv_set_encoding("input_encoding", "UTF-8");
+iconv_set_encoding("internal_encoding", "UTF-8");
+iconv_set_encoding("output_encoding", "UTF-8");
+
 if (defined('TZ')) {
 	date_default_timezone_set(TZ);
 } else {

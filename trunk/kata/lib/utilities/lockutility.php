@@ -104,7 +104,6 @@ class LockUtility {
 		flock($fplock, LOCK_UN);
 		fclose($fplock);
 
-		@ unlink(KATATMP.'sessions'.DS.'lockfile'.urlencode($id));
 		unset ($this->locks[$id]);
 		return true;
 	}
