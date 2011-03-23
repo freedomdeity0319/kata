@@ -213,6 +213,7 @@ abstract class Controller {
 			if (!is_array($this->components)) {
 				throw new InvalidArgumentException('$components must be an array');
 			}
+			require_once LIB.'component.php';
 			foreach ($this->components as $comname) {
 				$classname = $comname . 'Component';
 				if (!isset($this->$comname)) {
@@ -252,7 +253,7 @@ abstract class Controller {
 	protected function initViewClass() {
 		if ($this->viewClass === null) {
 			$viewClassName = $this->view;
-			require LIB.strtolower($viewClassName).'.php';
+			require_once LIB.strtolower($viewClassName).'.php';
 			$this->viewClass = new $viewClassName ($this);
 		}
 	}
@@ -525,19 +526,3 @@ abstract class Controller {
 
 }
 
-
-/**
- * base component class
- * @package kata_component
- */
-abstract class Component {
-
-	/**
-	 * startup method
-	 * @param Controller $controller parent controller
-	 */
-	function startup($controller) {
-		$this->controller = $controller;
-	}
-
-}

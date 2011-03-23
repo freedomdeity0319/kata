@@ -237,7 +237,7 @@ class baseSessionComponent extends Component {
  * included derived classes depending on storage-method
  */
 if (!defined('SESSION_STORAGE')) {
-	require (LIB . 'controllers' . DS . 'components' . DS . 'file.session.php');
+	require_once (LIB . 'controllers' . DS . 'components' . DS . 'file.session.php');
 } else {
-	require (LIB . 'controllers' . DS . 'components' . DS . strtolower(SESSION_STORAGE) . '.session.php');
+	require_once (LIB . 'controllers' . DS . 'components' . DS . strtolower(SESSION_STORAGE) . '.session.php');
 }

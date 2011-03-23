@@ -42,18 +42,18 @@ class LocaleComponent extends Component {
 	 * placeholder for all languages
 	 * @var array
 	 */
-	private $acceptedLanguages = null;
+	protected $acceptedLanguages = null;
 	/**
 	 * which language-code is currently in use
 	 * @var string
 	 * @private
 	 */
-	private $code = false;
+	protected $code = false;
 	/**
 	 * the array with all locale-strings for the current language are cached here
 	 * @var mixed
 	 */
-	private $messages = null;
+	protected $messages = null;
 
 	/**
 	 * called by controller after the component was instanciated first
@@ -214,7 +214,10 @@ class LocaleComponent extends Component {
 				$lang = $this->getLanguageFromTld($code);
 				$loc = $lang . '.utf8';
 				setlocale(LC_COLLATE, $loc, $lang, $code);
-				setlocale(LC_CTYPE, $loc, $lang, $code);
+				//"workaround" for http://bugs.php.net/bug.php?id=35050
+				if ('tr' != $code) {
+					setlocale(LC_CTYPE, $loc, $lang, $code);
+				}
 				setlocale(LC_TIME, $loc, $lang, $code);
 			}
 		}
@@ -398,7 +401,7 @@ class LocaleComponent extends Component {
 		} //null
 	}
 
-	private $tldToLanguageArr = array(
+	protected $tldToLanguageArr = array(
 		'ae' => 'ar_AR',
 		'ar' => 'es_AR',
 		'bg' => 'bg_BG',

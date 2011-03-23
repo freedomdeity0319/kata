@@ -30,7 +30,7 @@ if (!function_exists('kataDebugOutput')) {
  * create a directory in TMPPATH and check if its writable
  */
 function kataMakeTmpPath($dirname) {
-	if (!file_exists(KATATMP . $dirname . DS)) {
+	if (!is_dir(KATATMP . $dirname . DS)) {
 		if (!mkdir(KATATMP . $dirname, 0770, true)) {
 			throw new Exception("makeTmpPath: cant create temporary path $dirname");
 		}
@@ -108,7 +108,7 @@ class kataFunc {
 		$cname = strtolower($classname);
 		switch ($cname) {
 			case 'appmodel' :
-				if (file_exists(ROOT . 'models' . DS . 'app_model.php')) {
+				if (is_file(ROOT . 'models' . DS . 'app_model.php')) {
 					require ROOT . 'models' . DS . 'app_model.php';
 				} else {
 					require LIB . 'models' . DS . 'app_model.php';
@@ -116,22 +116,22 @@ class kataFunc {
 				break;
 
 			case 'appcontroller' :
-				if (file_exists(ROOT . 'controllers' . DS . 'app_controller.php')) {
+				if (is_file(ROOT . 'controllers' . DS . 'app_controller.php')) {
 					require ROOT . 'controllers' . DS . 'app_controller.php';
 				} else {
 					require LIB . 'controllers' . DS . 'app_controller.php';
 				}
 				break;
 
-				/*** GF_SPECIFIC ***/
+				/* GF_SPECIFIC */
 			case substr($classname, 0, 3) == 'GF_' or substr($classname, 0, 5) == 'Zend_' or substr($classname, 0, 6) == 'ZendX_' :
 				require str_replace('_', '/', $classname) . '.php';
 				break;
-				/*** /GF_SPECIFIC ***/
+				/* /GF_SPECIFIC */
 
 			case substr($cname, -9, 9) == 'component' :
 				$cname = substr($cname, 0, -9);
-				if (file_exists(LIB . 'controllers' . DS . 'components' . DS . $cname . '.php')) {
+				if (is_file(LIB . 'controllers' . DS . 'components' . DS . $cname . '.php')) {
 					require LIB . 'controllers' . DS . 'components' . DS . $cname . '.php';
 					break;
 				}
@@ -140,7 +140,7 @@ class kataFunc {
 
 			case substr($cname, -6, 6) == 'helper' :
 				$cname = substr($cname, 0, -6);
-				if (file_exists(LIB . 'views' . DS . 'helpers' . DS . $cname . '.php')) {
+				if (is_file(LIB . 'views' . DS . 'helpers' . DS . $cname . '.php')) {
 					require LIB . 'views' . DS . 'helpers' . DS . $cname . '.php';
 					break;
 				}
@@ -148,14 +148,14 @@ class kataFunc {
 				break;
 
 			case substr($cname, -7, 7) == 'utility' :
-				if (file_exists(LIB . 'utilities' . DS . $cname . '.php')) {
+				if (is_file(LIB . 'utilities' . DS . $cname . '.php')) {
 					require LIB . 'utilities' . DS . $cname . '.php';
 					break;
 				}
 				require ROOT . 'utilities' . DS . $cname . '.php';
 				break;
 
-			case file_exists(LIB . $cname . '.php') :
+			case is_file(LIB . $cname . '.php') :
 				require LIB . $cname . '.php';
 				break;
 

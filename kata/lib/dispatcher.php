@@ -296,8 +296,13 @@ class dispatcher {
 	 * tries to construct the base url under which this framework can be called from the browser. adds a "/" at the end
 	 */
 	private function constructBaseUrl() {
-		return 'http' . (env('HTTPS') != '' ? 's' : '') . '://' .
-				env('SERVER_NAME') . (env('SERVER_PORT') != '80' ? (':' . env('SERVER_PORT')) : '') .
+		$isHttp = env('HTTPS') != '';
+		$port = (env('SERVER_PORT') != '80' ? (':' . env('SERVER_PORT')) : '');
+		if ($isHttp && (':443' == $port)) {
+			$port = ''; //thank you IE! :(
+		}
+		
+		return 'http' . ($isHttp ? 's' : '') . '://' . env('SERVER_NAME') . $port .
 				$this->constructBasePath();
 	}
 

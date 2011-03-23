@@ -98,15 +98,11 @@ function writeLog($what, $where = KATA_DEBUG) {
 /**
  * include all neccessary classes and the given model
  * 
- * @param string model name without .php - if null it just loads all needed classes
+ * @param string model name without .php
  * @package kata_model
  */
 function loadModel($name) {
-	if (file_exists(ROOT . 'models' . DS . strtolower($name) . '.php')) {
-		require ROOT . 'models' . DS . strtolower($name) . '.php';
-		return;
-	}
-	throw new Exception('basics: loadModel: cant find Model [' . $name . ']');
+	require_once ROOT . 'models' . DS . strtolower($name) . '.php';
 }
 
 /**

@@ -52,7 +52,8 @@ class dbo_mysql { //implements dbo_interface {
 	 * connect to the database
 	 */
 	function connect() {
-		$this->link = mysql_connect($this->dbconfig['host'], $this->dbconfig['login'], $this->dbconfig['password']);
+		$this->link = mysql_connect($this->dbconfig['host'], $this->dbconfig['login'], $this->dbconfig['password'], true);
+		
 		if (!$this->link) {
 			throw new DatabaseConnectException("Could not connect to server " . $this->dbconfig['host']);
 		}

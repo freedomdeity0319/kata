@@ -110,9 +110,12 @@ class Model {
 		$dboname = 'dbo_' . $dbvars[$connName]['driver'];
 
 		if (!class_exists($dboname)) {
-			require LIB.$dboname.'.php';
+			require_once LIB.$dboname.'.php';
 		}
-		$this->dboClass = classRegistry :: getObject($dboname, $connName);
+
+		//for evil people modifying the connection-parameters
+		$connHandle = implode('|',$dbvars[$connName]);
+		$this->dboClass = classRegistry :: getObject($dboname, $connHandle);
 		$this->dboClass->setConfig($dbvars[$connName]);
 	}
 
@@ -826,7 +829,7 @@ class Model {
 	 * getModel() wrapper
 	 */
 	 function getModel($name) {
-		 return $this->getModel($name);
+		 return getModel($name);
 	 }
 
 }
