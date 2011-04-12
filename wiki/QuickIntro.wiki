@@ -97,8 +97,7 @@ Hello World! ...And hello again!
 
 
 You can also call 'http://localhost/main' or 'http://localhost/main/index' because
-main is the default controller, and index is the default action (which can be changed, see
-#defaultaction
+main is the default controller, and index is the default action (which can be changed, see `$defaultaction`
 
 
 Note: If you append parameters to your url you can't omit controller or action-name.
@@ -350,8 +349,7 @@ different things depending on how a variable is set is _much_
 cleaner and easier to read.
 
 
-Hint: If you have reoccuring pieces of html that you need in multiple views
-use an #element|element.
+Hint: If you have reoccuring pieces of html that you need in multiple views use an `element`.
 
 
 
@@ -552,7 +550,7 @@ echo $html->image('img/foo.jpg', array('align'=>'left')); // image with align="l
 
 
 For a full reference what helpers pre-exists and what they offer: see
-#helper
+helper
 
 
 
@@ -672,7 +670,7 @@ present all properties and methods of the Search-Model.
 
 
 ----
-== Use models or components without starting kata|rawkata ==
+== Use models or components without starting kata ==
 
 
 This example illustrates component and model use in a bare-bone
@@ -758,7 +756,7 @@ official standard. Never again worry about *headers already sent in line 29*.
 
 
 ----
-== Change the default action of a controller|defaultaction ==
+== Change the default action of a controller ==
 
 
 Normally index() is the default action of a controller. You can change
@@ -885,7 +883,7 @@ If 'DEBUG' is '3' caching is completely disabled.
 
 
 ----
-== ...create a protection for XSRF|xsrf ==
+== ...create a protection for XSRF ==
 Such a protection involves three steps:
  * Create a token (if the user logs in) and write it into the users session
 
@@ -1010,7 +1008,7 @@ include '../index.php';
 
 
 For a clean way to use parts of kata inside raw php-files
-see #rawkata
+see `rawkata`
 
 
 
@@ -1018,7 +1016,7 @@ see #rawkata
 
 
 ----
-== ...include external files, aka vendor() call|vendor ==
+== ...include external files, aka vendor() call ==
 Put your php-file into the directory 'vendors/' and include it with
 'vendor('file')' (without vendors/ and .php).
 
@@ -1282,7 +1280,7 @@ class PostsController extends AppController {
 
 
 ----
-== Use one css-file für LTR/RTL layouts|ccss ==
+== Use one css-file für LTR/RTL layouts ==
 
 
 You can mix statements for LTR and RTL layouts to greatly simplify the amount
@@ -1330,7 +1328,7 @@ echo $html->cssTag(array(
 
 ----
 ----
-= Database access: Models|model =
+= Database access: Models =
 A model is a class (thats a descendant of model) that is used to access/store
 data. Models are automatically singletons.
 
@@ -1484,7 +1482,7 @@ Models are automatically singletons, you always get the same one.
 
 
 ----
-== ...use active record model functions|activerecord ==
+== ...use active record model functions ==
 Active record allows simplified access independent of the currently used
 RDBMS. You dont have to write SQL in most cases. It is by no means
 meant do encapsulate database-access, it just offers convenience functions
@@ -2033,7 +2031,7 @@ Short overview of kata terminology.
 
 
 ----
-== what is a helper|helper ==
+== what is a helper ==
 A helper is a class (thats a descendant class of 'Helper') that is
 accessible inside a view. They have access to anything inside a view.
 Helpers are automatically singletons.
@@ -2121,7 +2119,7 @@ Example: '->parseAttributes(array('alt'=>'bumm','disabled'=>1))' returns 'alt="b
 
 
 ----
-== what is a component|component ==
+== what is a component ==
 A component is a lightweight class to support a controller. It has
 access to all methods and properties of a controller.
 
@@ -2195,7 +2193,7 @@ $this->Access->check();
 
 
 ----
-== what is a utility|utility ==
+== what is a utility ==
 A utility is a lightweight class (without dependencies) that can be used
 anywhere. It can be loaded anytime, anywhere, as singleton using '$nameUtil = getUtil('Name')'.
 
@@ -2235,7 +2233,7 @@ To use it do the following:
 
 
 ----
-== what is an element|element ==
+== what is an element ==
 An element is a simplified view that you can use inside any view.
 Let's build and use one:
 put this into 'views/elements/legend.thtml':
@@ -2268,7 +2266,7 @@ A helper has access to all variables of the view it's rendered in.
 
 
 ----
-== what is the registry|registry ==
+== what is the registry ==
 The registry can be used to store application wide configuration-parameters
 that are automatically written to disk.
 
@@ -2364,7 +2362,7 @@ extend the baseclass, the autoloader will automatically load the old class.
 = Predefined Components =
 
 
-Components are helper-classes for controllers. See #component
+Components are helper-classes for controllers. See `component`
 
 
 To use them add the following
@@ -2389,7 +2387,7 @@ your controller to access the component.
 
 
 ----
-== Sessions|session ==
+== Sessions ==
 Simply add 'public $components = array('Session');' to your AppController.
 
 
@@ -2447,7 +2445,7 @@ class AppController extends Controller {
 
 
 ----
-== Localization (l10n)|locale ==
+== Localization (l10n) ==
 Simply add 'public $components = array('Locale');' to your AppController.
 
 
@@ -2554,7 +2552,7 @@ this method returns *NULL* if the key is not found.
 = Predefined Helpers =
 
 
-Helpers are helper-classes for views. See #helper
+Helpers are helper-classes for views. See `helper`
 
 
 To use them add the following
@@ -2579,7 +2577,7 @@ Now you can access the helpers functions inside your view/layout/element via
 
 
 ----
-== html - url-generation etc|html ==
+== html - url-generation etc. ==
 
 
 The html-helper is for your basic html needs. It is always loaded, you dont
@@ -2608,7 +2606,7 @@ Full specs:../phpdoc/kata/HtmlHelper.html#selectTag  ||
 
 
 ----
-== js - javascript handling|js ==
+== js - javascript handling ==
 
 
 The js-helper offers a neat trick to add snipptes of javascript-code to a buffer,
@@ -2655,7 +2653,7 @@ neat in one piece in the head-section of your html.
 
 
 ----
-== form - easy form handling|formhelper ==
+== form - easy form handling ==
 
 
 To check if a form was filled correctly put this into the action of
@@ -2842,7 +2840,7 @@ echo $ipUtil->getIp();
 
 
 ----
-== cache - universal caching|cache ==
+== cache - universal caching ==
 
 
 The cache-utility automatically selects the best suitable caching-method
@@ -2909,7 +2907,7 @@ or (bool) `false` if request failed (that includes 404 errors).
 
 
 ----
-== ip - user-ip finder|ip ==
+== ip - user-ip finder ==
 
 
 || `->getIp()` || Returns the users real ip, even if he is behind several proxies. ||
@@ -2963,7 +2961,7 @@ or (bool) `false` if request failed (that includes 404 errors).
 
 
 ----
-== lock - server-wide process locking|lock ==
+== lock - server-wide process locking ==
 
 
 Liteweight semaphore-alternative. Use to stop processes from executing
@@ -2984,10 +2982,10 @@ code simultaneously.
 
 
 ----
-== clusterlock - cluster-wide process locking|clusterlock ==
+== clusterlock - cluster-wide process locking ==
 
 
-Same as `LockUtility` but across any number of servers. Same API as LockUtility, see #lock
+Same as `LockUtility` but across any number of servers. Same API as LockUtility, see `lock`
 
 
 
@@ -2995,7 +2993,7 @@ Same as `LockUtility` but across any number of servers. Same API as LockUtility,
 
 
 ----
-== validate - parameter validation|validate ==
+== validate - parameter validation ==
 
 
 `ValidateUtility` has a single function: `check($validateArray,$dataArray)`.
