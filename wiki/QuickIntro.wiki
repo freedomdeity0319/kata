@@ -17,7 +17,7 @@ Kata is a fast, simple, passive, event based MVC Framework for PHP5. It runs on 
 
 What MVC actually does:
 
-http://codeninja.de/kata_php_framework/doc/quick/mvc.png
+http://codeninja.de/kata_php_framework/mvc_kata.png
 
 
 
@@ -1354,10 +1354,10 @@ class DATABASE_CONFIG {
 
 
 
-Create the file 'models/users.php' with the following content:
+Create the file 'models/user.php' with the following content:
 
 {{{
-class Users extends AppModel {
+class User extends AppModel {
 
 
 	/* returns: array(
@@ -2851,14 +2851,14 @@ for your system (see below for a list).
 
 
 
-|| '->read('mykey')' || returns whatever you wrote previously or *false* if entry is nonexisting or expired. ||
-|| '->read('mykey', CacheUtility::CM_FILE)' || returns whatever you wrote previously from the filesystem or *false* if entry is nonexisting or expired. ||
-|| '->write('mykey',$anyDataYouWant')' || Write data to cache. Data never expires ||
-|| '->write('mykey',$anyDataYouWant',600)' || Write data to cache. Data expires after 600 seconds ||
-|| '->write('mykey',$anyDataYouWant',600, CacheUtility::CM_FILE)' || Write data to cache. Data expires after 600 seconds. Use filesystem to cache. ||
-|| '->write('mykey',false)' || Removes entry from the cache ||
-|| '->write('mykey',false,0,CacheUtility::CM_FILE)' || Removes entry from the filesystem-cache ||
-|| '->add('mykey',$anyData')' || Like write, but does not write entry and returns *false* if entry already exists + is not expired. Otherwise 'true' is returned ||
+|| `->read(`mykey`)` || returns whatever you wrote previously or *false* if entry is nonexisting or expired. ||
+|| `->read(`mykey`, CacheUtility::CM_FILE)` || returns whatever you wrote previously from the filesystem or *false* if entry is nonexisting or expired. ||
+|| `->write(`mykey`,$anyDataYouWant`)` || Write data to cache. Data never expires ||
+|| `->write(`mykey`,$anyDataYouWant`,600)` || Write data to cache. Data expires after 600 seconds ||
+|| `->write(`mykey`,$anyDataYouWant`,600, CacheUtility::CM_FILE)` || Write data to cache. Data expires after 600 seconds. Use filesystem to cache. ||
+|| `->write(`mykey`,false)` || Removes entry from the cache ||
+|| `->write(`mykey`,false,0,CacheUtility::CM_FILE)` || Removes entry from the filesystem-cache ||
+|| `->add(`mykey`,$anyData`)` || Like write, but does not write entry and returns *false* if entry already exists + is not expired. Otherwise `true` is returned ||
 
 
 
@@ -2867,18 +2867,18 @@ These constants tell the utility what cache-method to use, with fallback in
 ascending order if the cache-methode you gave kata is not available.
 
 
-|| 'CM_MEMCACHE' || memcached. Remember to set the 'MEMCACHED_SERVERS' define in 'config/core.php' ||
-|| 'CM_APC' || Advanced PHP Cache ||
-|| 'CM_XCACHE' || XCache ||
-|| 'CM_EACC' || eAccelerator ||
-|| 'CM_FILE' || filesystem (katas 'tmp/cache/' directory) ||
+|| `CM_MEMCACHE` || memcached. Remember to set the `MEMCACHED_SERVERS` define in `config/core.php` ||
+|| `CM_APC` || Advanced PHP Cache ||
+|| `CM_XCACHE` || XCache ||
+|| `CM_EACC` || eAccelerator ||
+|| `CM_FILE` || filesystem (katas `tmp/cache/` directory) ||
 
 
 
 
-The cache-utility caches any read/writes internally, so multiple 'read()'s
+The cache-utility caches any read/writes internally, so multiple `read()`s
 on the same entry are very fast. You can disable this behaviour with
-'->disableRequestCache()' or re-enable with '->enableRequestCache()'.
+`->disableRequestCache()` or re-enable with `->enableRequestCache()`.
 
 
 
@@ -2889,17 +2889,17 @@ on the same entry are very fast. You can disable this behaviour with
 == http - GET/POST HTTP Requests|http ==
 
 
-Easy HTTP-Requests. 'get()','post()' and 'head()' return HTML
-or (bool) 'false' if request failed (that includes 404 errors).
+Easy HTTP-Requests. `get()`,`post()` and `head()` return HTML
+or (bool) `false` if request failed (that includes 404 errors).
 
 
 
 
-|| '->get('http://foo',array('user'=>1))' || will do a GET-Request to 'http://foo?user=1' ||
-|| '->head()' || Same as '->get()', but will only do a HEAD-Request, for example if you want to know how big a file is ||
-|| '->post($url,$getParamArray,$postParamArray))' || Will do a POST-Request to given site ||
-|| '->getStatus()' || Returns the HTTP-Status-Code from the last request, eg. (int)'404' ||
-|| '->getReturnHeaders()' || Returns all Request-headers the webserver returned to us as array ||
+|| `->get(`http://foo`,array(`user`=>1))` || will do a GET-Request to `http://foo?user=1` ||
+|| `->head()` || Same as `->get()`, but will only do a HEAD-Request, for example if you want to know how big a file is ||
+|| `->post($url,$getParamArray,$postParamArray))` || Will do a POST-Request to given site ||
+|| `->getStatus()` || Returns the HTTP-Status-Code from the last request, eg. (int)`404` ||
+|| `->getReturnHeaders()` || Returns all Request-headers the webserver returned to us as array ||
 
 
 
@@ -2912,8 +2912,8 @@ or (bool) 'false' if request failed (that includes 404 errors).
 == ip - user-ip finder|ip ==
 
 
-|| '->getIp()' || Returns the users real ip, even if he is behind several proxies. ||
-|| '->isUsingProxy()' || Returns (bool) if the user is using a proxy. ||
+|| `->getIp()` || Returns the users real ip, even if he is behind several proxies. ||
+|| `->isUsingProxy()` || Returns (bool) if the user is using a proxy. ||
 
 
 
@@ -2926,34 +2926,34 @@ or (bool) 'false' if request failed (that includes 404 errors).
 == image - image handling / resizing / uploading|image ==
 
 
-|| '->read('foo.jpg')' || Returns gdlib-Handle of the picture or (bool)'false' on error ||
-|| '->write($img,IMAGETYPE_GIF','foo.gif')' || Writes given picture-Handle to disk and returns boolean success. 'IMAGETYPE_' are gdlib-defined constants ||
-|| '->makeThumbnail($img,320,240)' || Creates thumbnail without paying attention to aspect ratio ||
-|| '->makeThumbnailProportional($img,320,240)' || Like 'makeThumbmail', but pays attention to the pictures aspect ratio. This can possibly mean that left/right or top/bottom of the picture are cropped ||
-|| '->getNudity($img)' || Returns percentage how many pixels in the picture look like skin-color. Useful to automate pr0n-detection ||
-|| '->simpleUploadError('file')' || returns true if uploaded file is valid or one of the error-codes below. You have to supply the name of your file-input-tag.  ||
-|| '->isImageInvalid($filename,$maxWidth,$maxHeight)
-' || Checks if given file is GIF,JPEG or PNG and conforms to given size. You can add 2 more parameters: '$minWidth' and '$minHeight' who default to '1'. Returns (bool)'false' if everything looks good, or one of the codes below. Useful to check freshly uploaded files. ||
+|| `->read(`foo.jpg`)` || Returns gdlib-Handle of the picture or (bool)`false` on error ||
+|| `->write($img,IMAGETYPE_GIF`,`foo.gif`)` || Writes given picture-Handle to disk and returns boolean success. `IMAGETYPE_` are gdlib-defined constants ||
+|| `->makeThumbnail($img,320,240)` || Creates thumbnail without paying attention to aspect ratio ||
+|| `->makeThumbnailProportional($img,320,240)` || Like `makeThumbmail`, but pays attention to the pictures aspect ratio. This can possibly mean that left/right or top/bottom of the picture are cropped ||
+|| `->getNudity($img)` || Returns percentage how many pixels in the picture look like skin-color. Useful to automate pr0n-detection ||
+|| `->simpleUploadError(`file`)` || returns true if uploaded file is valid or one of the error-codes below. You have to supply the name of your file-input-tag.  ||
+|| `->isImageInvalid($filename,$maxWidth,$maxHeight)
+` || Checks if given file is GIF,JPEG or PNG and conforms to given size. You can add 2 more parameters: `$minWidth` and `$minHeight` who default to `1`. Returns (bool)`false` if everything looks good, or one of the codes below. Useful to check freshly uploaded files. ||
 
 
 
 
-'isImageInvalid()' can return the following class-constants:
+`isImageInvalid()` can return the following class-constants:
 
 
-|| 'IMGERR_TOOBIG' || Image dimensions too large ||
-|| 'IMGERR_TOOSMALL' || Image dimensions too small ||
-|| 'IMGERR_UNKNOWNFORMAT' || Image is not PNG,JPEG or GIF ||
+|| `IMGERR_TOOBIG` || Image dimensions too large ||
+|| `IMGERR_TOOSMALL` || Image dimensions too small ||
+|| `IMGERR_UNKNOWNFORMAT` || Image is not PNG,JPEG or GIF ||
 
 
 
 
-'simpleUploadError()' can return the following class-constants:
+`simpleUploadError()` can return the following class-constants:
 
 
-|| 'UPL_TOOBIG' || File size too large ||
-|| 'UPL_INTERNAL' || Internal error ||
-|| 'UPL_EXTENSION' || Upload forbidden because of file extension ||
+|| `UPL_TOOBIG` || File size too large ||
+|| `UPL_INTERNAL` || Internal error ||
+|| `UPL_EXTENSION` || Upload forbidden because of file extension ||
 
 
 
@@ -2972,9 +2972,9 @@ code simultaneously.
 
 
 
-|| '->lock('id',true)' || halts other processes also doing 'lock('id')' until we 'unlock', the process terminates or crashes. If last parameter is false we wait indefinetly. Returns true if lock was successfully obtained. ||
-|| '->unlock('id')' || Allow 1 other (possibly waiting) process to execute ||
-|| '->setTimeout(60)' || How many seconds to wait until we stop trying to obtain a lock ||
+|| `->lock(`id`,true)` || halts other processes also doing `lock(`id`)` until we `unlock`, the process terminates or crashes. If last parameter is false we wait indefinetly. Returns true if lock was successfully obtained. ||
+|| `->unlock(`id`)` || Allow 1 other (possibly waiting) process to execute ||
+|| `->setTimeout(60)` || How many seconds to wait until we stop trying to obtain a lock ||
 
 
 
@@ -2987,7 +2987,7 @@ code simultaneously.
 == clusterlock - cluster-wide process locking|clusterlock ==
 
 
-Same as 'LockUtility' but across any number of servers. Same API as LockUtility, see #lock
+Same as `LockUtility` but across any number of servers. Same API as LockUtility, see #lock
 
 
 
@@ -2998,60 +2998,60 @@ Same as 'LockUtility' but across any number of servers. Same API as LockUtility,
 == validate - parameter validation|validate ==
 
 
-'ValidateUtility' has a single function: 'check($validateArray,$dataArray)'.
+`ValidateUtility` has a single function: `check($validateArray,$dataArray)`.
 Example:
 
 {{{
 if ($validUtil->check(array(
-    'user' => 'NOT_EMPTY',
-    'email' => 'EMAIL',
-    'ip' => 'IP'
+    `user` => `NOT_EMPTY`,
+    `email` => `EMAIL`,
+    `ip` => `IP`
     ),array(
-        'user' => 'foobert',
-        'email' => 'foo@example.com',
-        '1.2.3.4'
+        `user` => `foobert`,
+        `email` => `foo@example.com`,
+        `1.2.3.4`
     ))===true) {
-       echo 'everything seems fine.';
+       echo `everything seems fine.`;
     }
 
 }}}
 
 
 
-If some values fail to validate an array in the form *Array('user' => 'NOT_EMPTY')* is returned.
+If some values fail to validate an array in the form *Array(`user` => `NOT_EMPTY`)* is returned.
 
 
 You can supply check with the following parameters:
 
 
-|| ''NOT_EMPTY'' || text must be supplied or one option selected ||
-|| ''ALLOW_EMPTY'' || text can be left empty or option unselected ||
-|| ''ALLOW_MULTI'' || allow multiple option selections, user must select at least 1 ||
-|| ''ALLOW_MULTI_EMPTY'' || allow multiple option selections ||
-|| ''BOOL'' || checkboxes, must return 0 or 1 (prepend with hidden input with same name and value=0)' ||
-|| ''BOOL_LAZY'' || checkboxes, only checks for 1' ||
-|| ''BOOL_TRUE'' || checkbox that needs to be checked ||
-|| ''FLOAT'' || float numbers ||
-|| ''UINT'' || unsigned integers ||
-|| ''NUMBER'' || see UINT ||
-|| ''INT'' || signed integer ||
-|| ''HEX'' || 0xHEX ||
-|| ''EMAIL'' || ... ||
-|| ''IP'' || ipv4 ||
-|| ''URL'' || ... ||
-|| ''YEAR'' || 4-year digit, range 1900-2099 ||
-|| 'myVeryOwnfunction' || Your own function in global namespace ||
-|| ''/.someregex+/'' || regex-string ||
+|| `NOT_EMPTY` || text must be supplied or one option selected ||
+|| `ALLOW_EMPTY` || text can be left empty or option unselected ||
+|| `ALLOW_MULTI` || allow multiple option selections, user must select at least 1 ||
+|| `ALLOW_MULTI_EMPTY` || allow multiple option selections ||
+|| `BOOL` || checkboxes, must return 0 or 1 (prepend with hidden input with same name and value=0)` ||
+|| `BOOL_LAZY` || checkboxes, only checks for 1` ||
+|| `BOOL_TRUE` || checkbox that needs to be checked ||
+|| `FLOAT` || float numbers ||
+|| `UINT` || unsigned integers ||
+|| `NUMBER` || see UINT ||
+|| `INT` || signed integer ||
+|| `HEX` || 0xHEX ||
+|| `EMAIL` || ... ||
+|| `IP` || ipv4 ||
+|| `URL` || ... ||
+|| `YEAR` || 4-year digit, range 1900-2099 ||
+|| `myVeryOwnfunction` || Your own function in global namespace ||
+|| `/.someregex+/` || regex-string ||
 
 
 
 
 For backwards compability, work like above:
-|| ''VALID_NOT_EMPTY'' ||
-|| ''VALID_NUMBER'' ||
-|| ''VALID_EMAIL'' ||
-|| ''VALID_YEAR'' ||
-|| ''VALID_IP'' ||
+|| `VALID_NOT_EMPTY` ||
+|| `VALID_NUMBER` ||
+|| `VALID_EMAIL` ||
+|| `VALID_YEAR` ||
+|| `VALID_IP` ||
 
 
 
