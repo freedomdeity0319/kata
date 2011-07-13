@@ -108,20 +108,24 @@ class HtmlHelper extends Helper {
 	function escape($s, $singleQuotes = true) {
 		if ($singleQuotes) {
 			return str_replace(array (
+				"\\",
 				"'",
 				"\n",
 				"\r"
 			), array (
+				"\\\\",
 				'\\\'',
 				"\\n",
 				""
 			), $s);
 		}
 		return str_replace(array (
+			"\\",
 			'"',
 			"\n",
 			"\r"
 		), array (
+			"\\\\",
 			'\\"',
 			"\\n",
 			""

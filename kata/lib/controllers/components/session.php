@@ -69,6 +69,16 @@ class baseSessionComponent extends Component {
 		$this->domain = env('SERVER_NAME');
 		if (defined('SESSION_BASEDOMAIN') && (SESSION_BASEDOMAIN)) {
 			$parts = explode('.', env('SERVER_NAME'));
+
+			//co.uk
+			$count = 2;
+			if (count($parts) > 1) {
+				$tld = $parts[count($parts) - 1];
+				if (in_array($tld, array('uk'))) {
+					$count = 3;
+				}
+			}
+
 			if (count($parts) > 1) {
 				while (count($parts) > 2) {
 					array_shift($parts);
@@ -86,9 +96,9 @@ class baseSessionComponent extends Component {
 		$this->time = time();
 
 		if (env('HTTP_USER_AGENT') != null) {
-			$this->userAgent = md5(env('HTTP_USER_AGENT') . (!SESSION_UNSAFE ? $this->getIp() : '') . SESSION_STRING);
+			$this->userAgent = md5(env('HTTP_USER_AGENT') . (!SESSION_UNSAFE ? $this->getIp(SESSION_UNSAFE) : '') . SESSION_STRING);
 		} else {
-			$this->userAgent = md5((!SESSION_UNSAFE ? $this->getIp() : '') . SESSION_STRING);
+			$this->userAgent = md5((!SESSION_UNSAFE ? $this->getIp(SESSION_UNSAFE) : '') . SESSION_STRING);
 		}
 	}
 
@@ -150,7 +160,11 @@ class baseSessionComponent extends Component {
 			if ('localhost' === $this->domain) {
 				setcookie(SESSION_COOKIE, $id, false, "/", false); // GRMBL!!!
 			} else {
-				setcookie(SESSION_COOKIE, $id, time() + SESSION_TIMEOUT, $this->path, $this->domain);
+				$timeout = SESSION_TIMEOUT;
+				if (SESSION_TIMEOUT != 0) {
+					$timeout = $timeout + time();
+				}
+				setcookie(SESSION_COOKIE, $id, $timeout, $this->path, $this->domain, false, true);
 			}
 		}
 	}
@@ -208,10 +222,11 @@ class baseSessionComponent extends Component {
 	/**
 	 * try to do an educated guess about the users real ip, even if he is behind proxies
 	 * 
+	 * @param bool $unsafe set the last two bytes of the ip to zero, to circument proxy issues
 	 * @return string ip or '0.0.0.0' if failure
 	 */
-	public function getIp() {
-		$ip = '0.0.0.0';
+	public function getIp($unsafe=false) {
+		$ip = '';
 
 		if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -227,7 +242,21 @@ class baseSessionComponent extends Component {
 			$ip = $_SERVER['HTTP_CLIENTADDRESS'];
 		}
 
-		//TODO some proxies deliver comma seperated ip-lists *grmbl*
+		if ($unsafe && !empty($ip)) {
+			$temp = explode('.', $ip);
+			$ip = $temp[0] . '.' . $temp[1] . '.0.0';
+		}
+
+		if (empty($ip)) {
+			return '0.0.0.0';
+		} else {
+			//some proxies deliver comma seperated ip-lists *grmbl*
+			$ip = explode(',', $ip);
+			if (isset($ip[0])) {
+				$ip = $ip[0];
+			}
+		}
+
 		return $ip;
 	}
 

@@ -114,7 +114,7 @@ class Model {
 		}
 
 		//for evil people modifying the connection-parameters
-		$connHandle = implode('|',$dbvars[$connName]);
+		$connHandle = $connName.implode('|',$dbvars[$connName]);
 		$this->dboClass = classRegistry :: getObject($dboname, $connHandle);
 		$this->dboClass->setConfig($dbvars[$connName]);
 	}

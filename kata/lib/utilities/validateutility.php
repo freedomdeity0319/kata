@@ -126,17 +126,17 @@ class ValidateUtility {
 				case 'YEAR' :
 					if (!is_numeric($inpvalue) || ($inpvalue < 1900) || ($inpvalue > 2099))
 						$errors[$inpname] = $howname;
-				case function_exists($howname) :
-					if (!$howname ($inpname, $inpvalue))
+				case is_callable($howname) :
+					if (!call_user_func($howname, $inpname, $inpvalue))
 						$errors[$inpname] = $howname;
 					break;
 				default :
 					if (false === strpos($howname, '/')) {
 						throw new InvalidArgumentException("validateutil: '$howname' is no rule, function or regex. maybe a typo?");
 					}
-					if (!filter_var($inpvalue, FILTER_VALIDATE_REGEXP, array (
-							'validate_regexp' => $howname
-						)))
+					if (!filter_var($inpvalue, FILTER_VALIDATE_REGEXP, array( 'options' => array (
+							'regexp' => $howname
+						))))
 						$errors[$inpname] = $howname;
 					break;
 			} //switch

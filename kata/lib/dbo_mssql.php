@@ -56,7 +56,7 @@ class dbo_mssql { //implements dbo_interface {
 	 * connect to the database
 	 */
 	function connect() {
-		$this->link = mssql_connect($this->dbconfig['host'], $this->dbconfig['login'], $this->dbconfig['password']);
+		$this->link = mssql_connect($this->dbconfig['host'], $this->dbconfig['login'], $this->dbconfig['password'], true);
 		if (!$this->link) {
 			throw new DatabaseConnectException("Could not connect to server " . $this->dbconfig['host']);
 		}
@@ -90,8 +90,8 @@ class dbo_mssql { //implements dbo_interface {
 	 * return the current link to the database, connect first if needed
 	 */
 	public function getLink() {
-		if (!$this->link) {
-			$this->connect();
+		if (empty($this->link)){
+			return false;
 		}
 		return $this->link;
 	}
