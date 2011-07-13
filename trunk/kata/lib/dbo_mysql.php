@@ -71,14 +71,17 @@ class dbo_mysql { //implements dbo_interface {
 	 * @return bool
 	 */
 	function isConnected() {
-		return (bool) $this->link;
+		if (empty($this->link)){
+			return false;
+		}
+		return mysql_ping($this->link);
 	}
 
 	/**
 	 * return the current link to the database, connect first if needed
 	 */
 	public function getLink() {
-		if (!$this->link) {
+		if (!mysql_ping($this->link)) {
 			$this->connect();
 		}
 		return $this->link;
@@ -96,7 +99,7 @@ class dbo_mysql { //implements dbo_interface {
 	 * @return mixed
 	 */
 	private function execute($sql) {
-		if (!$this->link) {
+		if (!$this->isConnected()) {
 			$this->connect();
 		}
 
@@ -138,7 +141,7 @@ class dbo_mysql { //implements dbo_interface {
 	 * @return int
 	 */
 	private function lastAffected() {
-		if ($this->link) {
+		if ($this->isConnected()) {
 			return mysql_affected_rows($this->link);
 		}
 		$null = null;
@@ -150,6 +153,8 @@ class dbo_mysql { //implements dbo_interface {
 	 * @return int
 	 */
 	private function lastInsertId() {
+		//TODO possible fix: select insertid from table status. problem: table name unknown
+
 		//may lie to you: http://bugs.mysql.com/bug.php?id=26921
 		$id = mysql_insert_id($this->link);
 		if ($id) {
