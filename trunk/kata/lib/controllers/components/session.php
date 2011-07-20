@@ -14,7 +14,8 @@ if (extension_loaded('igbinary')) {
  * base session class
  * 
  * @author feldkamp@gameforge.de
- * @author joachim.eckert@gameforge.de
+ * @author joachim.eckert@gameforge.com
+ * @author martin.contento@gameforge.com
  * @package kata_component
  */
 class baseSessionComponent extends Component {
@@ -222,42 +223,83 @@ class baseSessionComponent extends Component {
 	/**
 	 * try to do an educated guess about the users real ip, even if he is behind proxies
 	 * 
-	 * @param bool $unsafe set the last two bytes of the ip to zero, to circument proxy issues
+	 * @param bool $unsafe if true set the last two bytes (ipv4) or words (ipv6) to zero for really borked configurations
 	 * @return string ip or '0.0.0.0' if failure
 	 */
-	public function getIp($unsafe=false) {
-		$ip = '';
-
-		if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} else {
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-				$ip = $_SERVER['HTTP_CLIENT_IP'];
-			} else {
-				$ip = $_SERVER['REMOTE_ADDR'];
-			}
+	public function getIp($unsafe=null) {
+		if (is_null($unsafe)) {
+			$unsafe = (bool)SESSION_UNSAFE;
 		}
-
-		if (!empty($_SERVER['HTTP_CLIENTADDRESS'])) {
-			$ip = $_SERVER['HTTP_CLIENTADDRESS'];
-		}
+		
+		
+		$ip = $this->getRawIp();
 
 		if ($unsafe && !empty($ip)) {
 			$temp = explode('.', $ip);
-			$ip = $temp[0] . '.' . $temp[1] . '.0.0';
-		}
-
-		if (empty($ip)) {
-			return '0.0.0.0';
-		} else {
-			//some proxies deliver comma seperated ip-lists *grmbl*
-			$ip = explode(',', $ip);
-			if (isset($ip[0])) {
-				$ip = $ip[0];
+			//IPv6?
+			if (count($temp) == 0) {
+				$temp = explode(':', $ip);
+				if (count($temp) > 3) {
+					array_pop($temp);
+					array_pop($temp);
+					$ip = implode(':', $temp);
+				}
+			} else {
+				$ip = $temp[0] . '.' . $temp[1] . '.0.0';
 			}
 		}
 
-		return $ip;
+		if (!empty($ip)) {
+			return $ip;
+		}
+
+		return '0.0.0.0';
+	}
+
+	/**
+	 * check all gazillion proxy headers out there, return ip (NAAAARF)
+	 * 
+	 * @return string raw ip
+	 */
+	public function getRawIp() {
+		if (!empty($_SERVER['HTTP_CLIENT_IP']) && $this->validateIp($_SERVER['HTTP_CLIENT_IP'])) {
+			return $_SERVER['HTTP_CLIENT_IP'];
+		}
+
+		if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			foreach (explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']) as $tip) {
+				if ($this->validateIp($tip)) {
+					return $tip;
+				}
+			}
+		}
+
+		if (!empty($_SERVER['HTTP_X_FORWARDED']) && $this->validateIp($_SERVER['HTTP_X_FORWARDED'])) {
+			return $_SERVER['HTTP_X_FORWARDED'];
+		}
+		if (!empty($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']) && $this->validateIp($_SERVER['HTTP_X_CLUSTER_CLIENT_IP'])) {
+			return $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
+		}
+		if (!empty($_SERVER['HTTP_FORWARDED_FOR']) && $this->validateIp($_SERVER['HTTP_FORWARDED_FOR'])) {
+			return $_SERVER['HTTP_FORWARDED_FOR'];
+		}
+		if (!empty($_SERVER['HTTP_FORWARDED']) && $this->validateIp($_SERVER['HTTP_FORWARDED'])) {
+			return $_SERVER['HTTP_FORWARDED'];
+		}
+
+		return $_SERVER['REMOTE_ADDR'];
+	}
+
+	/**
+	 * validates that a given ip is a valid ip4 or ip6 ip and neither
+	 * from private nor from reserved ranges
+	 *
+	 * @param string $ip
+	 * @return boolean
+	 */
+	public function validateIp($ip) {
+		$result = filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+		return (bool) $result !== false;
 	}
 
 }
