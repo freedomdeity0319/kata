@@ -298,7 +298,7 @@ class baseSessionComponent extends Component {
 	 * @return boolean
 	 */
 	public function validateIp($ip) {
-		$result = filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+		$result = filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
 		return (bool) $result !== false;
 	}
 
