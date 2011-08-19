@@ -1244,10 +1244,26 @@ thx: martin contento
 
 
 
+--
+== How to use kata with nginx ==
+
+config:
+
+{{{
+location / {
+    root /var/www/kata_app/html/webroot;
+    allow all;
+    index  index.php;
+
+    if (!-e $request_filename) {
+        rewrite ^/(.*)$ /index.php?kata=$1$is_args$args last;
+        break;
+    }
+}
+}}}
 
 
-
-
+thx: simon pirschel
 
 ----
 == Add autocompletion for models and components ==
