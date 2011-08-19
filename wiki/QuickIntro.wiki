@@ -1244,7 +1244,7 @@ thx: martin contento
 
 
 
---
+----
 == How to use kata with nginx ==
 
 config:
