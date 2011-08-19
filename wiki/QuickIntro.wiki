@@ -1206,7 +1206,7 @@ If you want to know the absolute framework-webpath use '$basePath'.
 
 
 ----
-== Use kata with lighthttpd ==
+== lighthttpd config ==
 
 
 config:
@@ -1245,7 +1245,7 @@ thx: martin contento
 
 
 ----
-== How to use kata with nginx ==
+== nginx config ==
 
 config:
 
