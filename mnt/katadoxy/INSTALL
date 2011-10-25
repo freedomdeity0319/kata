@@ -1,0 +1,22 @@
+----prequisites----
+
+you need mod_rewrite enabled in your apache config.
+
+via shell:
+$ ls /etc/apache2/mods-enabled/*rewrite*
+-> /etc/apache2/mods-enabled/rewrite.load
+
+make shure AllowOverride is enabled:
+$ grep -i allowoverride /etc/apache2/sites-enabled/000-default
+-> AllowOverride   All
+
+----installation----
+
+extract to a folder of your choice
+
+remove ".default" from files in "config/" folder
+
+chmod 644 tmp/ tmp/logs tmp/session tmp/cache
+chown www-data:www-data ..
+chown www-data:www-data * -R
+

@@ -1,0 +1,1804 @@
+---Warning!
+<b>NEVER</b> modify anything inside the <c>lib/</c>-folder, or on the next
+kata-update your whole application will break!
+
+---What is kata?
+Kata is a fast, simple, passive, event based MVC Framework for PHP5. It runs
+on Windows and Linux.
+
+Preparations for kata:
+- Setup linux: <link>http://codeninja.de/kata_php_framework/#installation</link>
+- Setup Eclipse: <link>http://codeninja.de/kata_php_framework/#eclipse</link>
+
+What MVC actually does:
+
+<img>mvc.png</img>
+//TODO: cli does not use apache
+
+(Some) used Patterns:
+- MVC: <link>http://de.wikipedia.org/wiki/Model_View_Controller</link>
+- IoC: <link>http://en.wikipedia.org/wiki/Inversion_of_control</link>
+- Proxy: <link>http://en.wikipedia.org/wiki/Proxy_pattern</link>
+- CoC: <link>http://en.wikipedia.org/wiki/Convention_over_configuration</link>
+- Objectpool: <link>http://en.wikipedia.org/wiki/Object_pool</link>
+
+---Flowchart, for techies
+<img>flow.png</img>
+
+-----Hello World
+Put the following code into the file <c>controllers/main_controller.php</c>:
+<php>class MainController extends AppController {
+
+	function index() {
+		$this->setPageTitle('My first view title');
+	}
+
+}</php>
+
+Now put the following code into the file <c>views/main/index.thtml</c>:
+<php>Hello World!
+<? echo ' ...And hello again!'; ?></php>
+
+And finally put the following code into the file <c>views/layouts/default.thtml</c>:
+<php><html>
+<head>
+	<title><?=$title_for_layout?></title>
+</head>
+<body>
+<!-- this is where kata injects the html of a view: -->
+<?=$content_for_layout?>
+</body>
+</html></php>
+
+If you now call <c>http://localhost/</c> (presuming you have kata installed
+directly into your apache webroot) you will see the following output:
+<php><html>
+<head>
+	<title>My first view title</title>
+</head>
+<body>
+<!-- this is where kata injects the html of a view: -->
+Hello World! ...And hello again!
+</body>
+</html></php>
+
+You can also call <c>http://localhost/main</c> or <c>http://localhost/main/index</c> because
+main is the default controller, and index is the default action (which can be changed, see 
+<link>#defaultaction</link>
+
+Note: If you append parameters to your url you can't omit controller or action-name.
+For example for <c>http://localhost/123</c> kata will search for a controller named <c>123</c>.
+Likewise if you use <c>http://localhost/main/123</c> kata will search for a method named
+<c>123</c> inside the <c>main</c>-controller.
+
+---What happens when i request http://myhost/games/list/param1/param2
+This (simplified) is what basically happens:
+- kata loads the file <c>controllers/games_controller.php</c> because thats the first parameter in the url
+- inside that file kata expects a class of type <c>GamesController</c> 
+- inside that class kata expects a method <c>list()</c> because thats the second parameter in the url
+- kata calls <c>GameController->list('param1','param2');</c>
+- kata renders template <c>views/games/list.thtml</c>
+- kata renders <c>views/layouts/default.thtml</c> and injects the template it rendered in the previous step
+
+---...access GET-parameters
+adding <c>?foo=1</c> to the url.
+<php>class MainController extends AppController {
+
+	function index() {
+		var_dump($this->params['url']['foo']);
+		die;
+	}
+	
+}</php>
+results in <r>'1'</r>
+
+---...access POST-parameters
+using the following form: <php><form action="<?=$html->url('main/index/?param1=red')?>" method="post">
+<input type="text" name="foo" value="1" />
+<input type="text" name="bar[]" value="1" />
+</form></php>
+To access the GET and POST-parameters:
+<php>class MainController extends AppController {
+
+	function index() {
+		var_dump($this->params['form']['foo']);
+		var_dump($this->params['form']['bar']);
+		var_dump($this->params['url']['param1']);
+		die;
+	}
+
+}</php>
+results in <r>'1'</r>, <r>array('1')</r> and <r>'red'</r>
+Inside a view you also have access to <c>$this->params</c>.
+
+---Why not $_GET or $_POST?
+<c>$this->params</c> is automatically dequoted and sanatized by kata.
+<c>$_GET</c> and <c>$_POST</c> are left untouched.
+
+---Some predefined functions() of kata
+<table><ltd><c>debug()</c><mtd> is like print_r() but remains silent if you set <c>DEBUG</c> to 0 or lower inside <c>config/core.php</c>. You will never see the output of a print_r() on your live-servers anymore.</ltd>
+<ltd><c>env()</c><mtd> returns environment variables, no matter if kata runs as CGI, module or stub. Use this instead of <c>$_SERVER</c></ltd>
+<ltd><c>h()</c><mtd>  is a shortcut for htmlentities()</ltd>
+<ltd><c>is()</c><mtd>  returns the second value, if the first is not set. Example: <c>echo is($this->params['url']['page'],1)</c> will return the get-variable or -if the given get-variable is unset- will return 1.
+POSSIBLE GOTCHAS: SEE WARNING BELOW</ltd>
+<ltd><c>writeLog()</c><mtd>  is a shortcut to write to one of katas logs. Example: <c>writeLog('hack attack',KATA_PANIC);</c>. The second parameter is the severity of the error you are logging.</ltd>
+</table>
+
+Possible values for <c>writeLog</c> or <c>$this->log()</c>:
+<table><ltd><c>KATA_DEBUG</c><mtd>logs to <c>logs/debug.log</c>. If <c>DEBUG</c> is <c>-1</c> nothing is written.</rtd>
+<ltd><c>KATA_ERROR</c><mtd> logs to <c>logs/error.log</c></ltd>
+<ltd><c>KATA_PANIC</c><mtd> logs to <c>logs/panic.log</c></ltd></table>
+Inside a Model or Controller you can also use <c>$this->log('foo',KATA_DEBUG);</c>.
+
+WARNING: Use is() only if you are always shure of the type of the variable
+you are checking (or you checked the type of the variable before).
+Otherwise funny things will happen to the variable you just checked, because
+thats just the (totally awesome) way PHP handles references. Example:
+<php>$abc = false;
+$a = &$abc['unsetKey'];
+var_dump($abc);</php>
+will result in
+<c>array(1) {
+  ["unsetKey"]=>
+  &NULL
+}</c>
+
+---Some predefined CONSTANTS of kata
+Paths:
+<table><ltd><c>DS</c><mtd> is a shortcut for the directory-seperator (<c>/</c> or <c>\</c>, depending on your plattform)</ltd>
+<ltd><c>ROOT</c><mtd> contains an absolute path (including last slash) to where kata resides</ltd>
+<ltd><c>WWW_ROOT</c><mtd> contains an absolute path to katas <c>webroot/</c></ltd>
+<ltd><c>CLI</c><mtd> is <c>1</c> if you are running kata from the command line, <c>0</c> if you are using a webserver</ltd></table>
+
+Time related constants for timestamp calculations:
+<table><ltd><c>SECOND</c></ltd>
+<ltd><c>MINUTE</c></ltd>
+<ltd><c>HOUR</c></ltd>
+<ltd><c>DAY</c></ltd>
+<ltd><c>WEEK</c></ltd>
+<ltd><c>MONTH</c></ltd>
+<ltd><c>YEAR</c></ltd></table>
+
+---...get variables from the controller into the view
+Inside the controller:
+<php>class MainController extends AppController {
+
+	function index() {
+		$this->set('var1','somestring');
+	}
+	
+}</php>
+
+Inside the view (<c>views/main/index.thtml</c> in this case):
+<php>var_dump($var1);</php>
+results in <r>'somestring'</r>
+
+Any variables you set in the controller are also available in the layout.
+
+---...redirect browser to a different url
+Inside the controller:
+<php>class MainController extends AppController {
+
+	function index() {
+		$this->redirect(''); //=main/index
+		// the following lines are never executed because
+		// redirect terminates the program flow:
+		$this->redirect('games/'); //=games/index
+		$this->redirect('games/list2/');
+	}
+	
+}</php>
+
+---...render a different view
+<php>class MainController extends AppController {
+
+	function index() {
+		$this->render('inbox'); //renders views/games/inbox.thtml
+		// the second render is never executed because
+		// we did already render 
+		$this->render('../user/banned'); //renders views/user/banned.thtml
+	}
+	
+}</php>
+
+Rendering different views instead of heaving a view that displays
+different things depending on how a variable is set is <i>much</i>
+cleaner and easier to read.
+
+Hint: If you have reoccuring pieces of html that you need in multiple views 
+use an <link>#element|element</link>. 
+
+---...use a different layout
+You can change the layout before you render:
+<php>class MainController extends AppController {
+
+	function index() {
+		$this->layout = 'black'; //uses views/layouts/black.thtml
+	}
+	
+	function dummy() {
+		$this->layout = null; //dont use a layout, just return the view
+	}
+
+}</php>
+
+You can also change the layout for the whole controller:
+<php>class MainController extends AppController {
+
+	public $layout = 'black';</php>
+
+---...execute something before any method of a controller is called
+Inside the controller:
+<php>class MainController extends AppController {
+
+	function parent::beforeAction() {
+   		$this->checkForLogin();
+	}
+	
+}</php>
+
+<c>beforeAction()</c> is normally used for code that always needs to be executed, 
+for example check if a user is logged in or if the current user is allowed
+to execute the current action.
+
+You should put <c>beforeAction()</c> into the AppController if you want
+all Controllers to act like this.
+
+Whats the difference between beforeAction() and __construct()?
+construct is called when the controller-class is loaded, beforeAction
+is called after all dependencies (Helpers, Models) are initialized.
+
+---...execute something before a view is rendered
+<php>class MainController extends AppController {
+
+	function parent::beforeFilter() {
+             $this->set('mycash',$this->User->getCash());
+	}
+
+}</php>
+
+<c>beforeFilter()</c> is normally used for code that only needs to be executed
+if you really want to display something. It is not executed if you do a
+redirect. Use it if you need to fetch some data from the model to be display
+to display a view. Example:
+
+<php>class MainController extends AppController {
+
+	function parent::beforeFilter() {
+		//automatically set pagetitle. expects localization in 
+		//"controller/action title" format
+		$this->set('title', __($this->params['controller'].'/'.
+			$this->params['action'].' title'));
+	}
+	
+}</php>
+
+---...do ajax
+Just prepend ajax/ to your url:
+Change <c>games/list</c> to <c>ajax/games/list</c>
+
+You will find <r>1</r> in <c>$this->params['isAjax']</c> and the view is rendered "naked" (read:
+without a layout). You can react inside your <c>beforeAction()</c> and <c>beforeFilter()</c>
+accordingly to skip code that is not needed for ajax-calls. Examples are:
+Check if the user is logged in inside <c>beforeAction()</c>, 
+
+---...use the same methods in all controllers
+There are situations where you need some code in all controllers, for example
+a method that checks if the user is online. Create a file <c>controllers/app_controller.php</c>
+and put the following content in it:
+<php>class AppController extends Controller {
+
+public $userArray;
+
+function checkForLogin() {
+	$user = $this->Session->read('user');
+	if (empty($user)) {
+		$this->redirect('user/login');
+	}
+	$this->userArray = $user;
+}</php>
+
+Because all controllers extend AppController they all inherit the 
+<c>checkForLogin</c> method. <b>Possible Gotcha:</b> If you overwrite a
+method thats in the AppController in your own controller you have
+to do a <c>parent::myMethodName();</c> if you want to execute both
+methods. 
+
+---...access a helper inside a view
+Add the helper you want to use to your controller:
+<php>class MyController extends AppController {
+   public $helpers = array('html');</php>
+After this you can do the following inside your view:
+<php>echo $html->url('my/index'); // returns absolute url
+echo $html->relUrl('my/index'); // returns relative url
+echo $html->url('http://somesite.com/foo?bla=1'); // returns http://somesite.com/foo?bla=1
+
+echo $html->image('img/foo.jpg'); // returns complete image-tag
+echo $html->image('img/foo.jpg', array('align'=>'left')); // image with align="left"</php>
+
+For a full reference what helpers pre-exists and what they offer: see
+<link>#helper</link>
+
+-----Gotchas
+Problems that already occured and that you should know about.
+
+---...how to i access a helper from a model
+You dont. Redesign your code so you dont have to.
+
+---...how to i access the model from a view
+You dont. Redesign your code so you dont have to.
+
+---...my params do not survive a redirect
+thats normal, because a redirect simply instructs the users browser
+to fetch a new url. if you need your data to survice a redirect you
+have to append them to the redirect-url (as GET params) or you have
+to write them into the session.
+
+---...i need the same code inside a view and inside a model
+An example for this problem would be a bbcode-parser. You
+need the code to display bbcode, and you need the code to
+send emails.
+
+Solution: Put your code into a utility. 
+
+---... controller/ (without index) never gets called
+
+Do you have a directory by the same name in webroot/? Then apache
+will try to serve this directory instead of your controller.
+
+Solutions: Rename directory in webroot, rename your controller, or put
+a <r>index.php</r> in the directory inside webroot:
+<php><?php header('Location: index'); ?></php>
+
+-----Tricks
+
+Good to know!
+
+---Use models or components without starting kata|rawkata
+
+This example illustrates component and model use in a bare-bone
+.php file inside <c>webroot/</c>.
+<php><?
+define('CURRENTPATH', dirname($_SERVER['PHP_SELF']).'/');
+
+//startup base
+require('..'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'defines.php');
+require(LIB."boot.php");
+
+//fire up locale-component
+require(LIB.'controllers'.DS.'components'.DS.'locale.php');
+$locale = classRegistry :: getObject('LocaleComponent');
+$locale->startup(null);
+
+//guess best userlanguage
+$lang = $locale->getBrowserLang();
+$lang = empty($lang)?'en':$lang;
+$langModel = getModel('Language');
+$lang = $langModel->getBestPortalLanguage($lang);
+$locale->setCode($lang);
+
+//and now you can use __()
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+...
+</php>
+
+---Get rid of all Apache .htaccess files
+
+Add these rules to your vhost:
+<cc><Directory /home/www/mmogame/html/webroot/>
+RewriteEngine  On
+RewriteBase /
+RewriteCond    %{REQUEST_FILENAME} !-d
+RewriteCond    %{REQUEST_FILENAME} !-f
+RewriteRule    ^(.*)$ index.php?kata=$1 [QSA,L]
+AddOutputFilterByType DEFLATE text/html #optional
+</Directory></cc>
+
+If you want to expire all views instantly add this to your vhost:
+<c>FileETag MTime
+ExpiresDefault "M6048000"
+ExpiresByType text/html now
+ExpiresActive On</c>
+
+---Omit ?>
+
+You can omit the last closing <c>?></c> in any of your code. Its
+official standard. Never again worry about <r>headers already sent in line 29</r>.
+
+---Change the default action of a controller|defaultaction
+
+Normally index() is the default action of a controller. You can change
+this by overwriting <c>$defaultAction</c>:
+<php>class MyController extends AppController {
+
+	public $defaultAction = 'foobar';
+
+	function foobar() {
+	}
+
+}</php> 
+
+---have a 404-handler per controller
+
+If kata finds the appropriate controller, but not the appropriate action
+then <c>controller->before404()</c> is called, where you can act accordingly:
+<php>function before404() {
+	$this->peter();
+	$this->render('peter');
+}</php>
+
+If this method returns <c>true</c> kata will render the normal 404-layout.
+
+---exception handlign in controllers
+
+If you want to handle exception within controllers just implement
+the <c>afterError()</c> method:
+<php>class MyController extends AppController {
+
+	public function afterError($exception) {
+		$this->log('exception '.$exception->getMessage(),KATA_ERROR);
+		parent::afterError($exception); //if you want to render error-layout
+	}
+
+}</php>
+
+---...cache anything anywhere
+Simply use the cacheUtility. The cacheutility autoselects the best caching-
+method for you, but you can override that behaviour. Example:
+<php>	function writeHighscore() {
+		$highscore = $this->calculateHighscore();
+		$cacheUtil = getUtil('Cache');
+		
+		//write data to the cache, under the name 'highscore' and cache 
+		//for 300 seconds. 
+		$cacheUtil->write($highscore,'highscore',300);
+		//same as above, but force using the filesystem to persist the data
+		//to we survive a reboot
+		$cacheUtil->write($highscore,'highscore',300,CacheUtility::CM_FILE);
+	}
+
+	function readHighscores() {
+		$cacheUtil = getUtil('Cache');
+
+		$highscore = $cacheUtil->read('highscore');
+		//did we success? return
+		if (false !== $highscore) {
+			return $highscore;
+		}
+		//next try: read it from the filesystem.
+		$cacheUtil->read('highscore',CacheUtility::CM_FILE);
+		if (false !== $highscore) {
+			return $highscore;
+		}		
+		
+		//still no luck? calculate it.
+		return $this->caluclateHighscore();
+	}</php>
+
+If <c>DEBUG</c> is <c>2</c> you will see whats being written/read from cache.
+If <c>DEBUG</c> is <c>3</c> caching is completely disabled.
+
+---...create a protection for XSRF|xsrf
+Such a protection involves three steps: 
+- Create a token (if the user logs in) and write it into the users session
+- use <c>$html->tokenUrl()</c> instead of <c>$html->url()</c> for all POST-FORMs you want to protect
+- Check (for example if you detect post-parameters) if the token is there and valid.
+
+An example implementation would look like this:
+<php>class UserController extends Controller {
+
+	function generateToken() {
+		return md5(rand(0,PHP_INT_MAX));
+	}
+
+	//put a generated token
+	function login() {
+		//....
+		
+		//if user did login successfully:
+		$this->Session->write('usertoken', $this->generateToken());
+		$this->redirect('inbox/index');
+	}
+</php>
+And the AppController:
+<php>class AppController extends Controller {
+
+	function checkToken() {
+		$tokenShould = $this->Session->read('usertoken');
+		$tokenIs = is($this->params['url']['__token'], '');
+		
+		if ($tokenShould != $tokenIs) {
+			//user sees only 'internal server error'
+			throw new Exception('XSRF Protection');		
+		}
+	}
+
+	function beforeFilter() {
+		$this->set('__token',$this->Session->read('usertoken'));
+	}
+
+	function beforeAction() {
+		//do we have post parameters appended?	
+		if (count(is($this->params['form'], array())) > 0) {
+			$this->checkToken();
+		}
+	}</php>
+
+---...use the same helpers, components or models in all controllers
+All models, components, helpers you add inside your AppController
+are accessible to all descendant controllers. All models, components,
+helpers you use inside a controller are simply added to the list.
+
+Example:
+<php>class AppControllers extends Controller {
+	$uses = array('User');</php>
+and your own controller looks like this:
+<php>class MyController extends AppController {
+	$uses = array('Ships');</php>
+then <c>MyController</c> has access to the <c>User</c>-Model and
+the <c>Ships</c>-Model.
+
+---...make a php-file accessible via webserver without using kata
+All files you dump into the <c>webroot/</c> directory are directly
+accessible without using kata. 
+
+Example: You have a file <c>webroot/moo.php</c> that contains
+<php>echo 'moooooo!';</php>
+Then you can simply call <c>http://localhost/moo.php</c>.
+
+Hack: If you decide you want to continue normally inside kata
+just do:
+<php>$_GET['kata'] = 'controller/action/';
+include '../index.php';</php>
+
+For a clean way to use parts of kata inside raw php-files
+see <link>#rawkata</link>
+
+---...include external files, aka vendor() call|vendor
+Put your php-file into the directory <c>vendors/</c> and include it with
+<c>vendor('file')</c> (without vendors/ and .php). 
+
+Example: If you want to use
+your file (for example <c>vendors/mailer/somefile.php</c>)
+simply use:
+<php>vendor('mailer/somefile');</php>
+kata makes shure you dont include a file multiple times.
+
+You can use vendor() anywhere you want.
+
+---...render a view and have it returned to me
+<php>class MainController extends AppController {
+
+	function sendMail() {
+		$html = $this->renderView('emailTemplate');
+		mail('staff@example.org', 'Welcome!', $html);
+		// after sendMail returns kata renders 
+		// views/main/sendMail.thtml as if nothing happend
+	}
+
+}</php>
+
+---...render a view of a different controller
+
+<php>
+class FooController extends AppController {
+
+      function index() {
+      
+         $this->render('../bar/index');
+      }
+}</php>
+
+Possible gotcha: <c>views/foo</c> must exist, or your operating system
+is unable to change directories.
+
+---...use a imageserver / content delivery network
+
+kata can automatically use a different URL to serve images. Simply put
+<c>define('CDN_URL','http://s%d.img.somegame.de/');</c> into your
+<c>config/core.php</c>, after that all URLs for images (jpg,gif,png)
+are rewritten according to your define.
+
+To speed up loading kata generates a (consistent) number from 0-3 per image
+so the browser can use multiple connections to load images. In the above example
+we will end up with the following URLs:
+<r>http://s0.img.somegame.de
+http://s1.img.somegame.de
+http://s2.img.somegame.de
+http://s3.img.somegame.de</r>
+
+---...rewrite incoming urls
+
+You can rewrite incoming URLs to different URLs. Put this into your
+<c>config/core.php</c>:
+<php>
+$routes = array(
+    'main/index'=>'games/index', //change initial controller
+    '' => 'games/index', //ditto
+    'p/' => 'profile/show/', // p/foo/bar -> profile/show/foo/bar
+    'card/'=>'gamerscard/getImage/', // ditto
+    'foo/nonexistantFile.php' => 'somecontroller/someaction'
+);</php>
+
+---...kata and debugging
+Edit <c>config/core.php</c> and set <c>DEBUG</c> TO <c>2</c>. You will
+now see a debug-output at the bottom of the page containing various
+informations: current GET/POST parameters, sql-queries and results,
+cache-operations and results, loaded Classes and so on.  
+
+If an exception occurs kata will render the error-layout which will
+output what went wrong, how we got there, and what parameters we used.
+
+<table>
+<ltd><c>DEBUG=-1</c> <mtd> like 0 + dont write debug-log</rtd>
+<ltd><c>DEBUG=0</c> <mtd> No errors are displayed, fail only on hard problems (like failed sql-queries), on insignificant problems try to survive as long as possible</ltd>
+<ltd><c>DEBUG=1</c> <mtd> Display all errors</ltd>
+<ltd><c>DEBUG=2</c> <mtd> like 1 + everything suspicious leads to an exception + output lots of debug-info</ltd>
+<ltd><c>DEBUG=3</c> <mtd> like 2 + disabled caching</ltd>
+</table>
+
+There are several debugging-aides that you can enable inside
+your <b>core.php</b>. These mostly only work if <c>DEBUG</c> is
+at least <c>2</c>.
+
+<table><ltd><c>include(LIB.'boot_firephp.php');</c><mtd> will redirect all debugging-output from kata to the firebug console (if <c>DEBUG</c> equals <c>1</c>).
+<ltd><c>include(LIB.'boot_coverage.php');</c><mtd> will output a detailed listing of all your used models, controllers etc. and will hilite lines that were actually executed. Very helpful to find unreachable code or to get to the bottom of unexpected behaviour.</rtd>
+<ltd><c>include(LIB.'boot_profile.php');</c><mtd> will output a detailed listing which commands or functions were executed how often, and how many microseconds processing power they consumed.</rtd>
+<ltd><c>include(LIB.'boot_strict.php');</c><mtd> will turn any notice, warning, error into a hard error.</rtd>
+<ltd><c>include(LIB.'boot_xhprof.php');</c><mtd> will dump a profiling log and create a link to visit the report if <c>DEBUG</c> is <c>2</c></rtd>
+</table>
+
+Note: If you use xhprof you have to set the <c>XHPROF_URL</c> define to the url where you
+deposited the <c>xhprof_html</c> folder, eg. <c>define('XHPROF_URL','http://localhost/xhprof/xhprof_html/');</c>
+
+Warning: If you use firephp outputbuffering will be turned on, thus redirects
+will work even if you output text.
+
+---Replace 404 and error layout
+
+Simply add <c>views/layouts/404.thtml</c> or <c>views/layouts/error.thtml</c>.
+
+As not enough parameters are know to fully start kata you only have access to
+<c>$this->params</c>, nothing more, you are own your own.
+If you want to know the absolute framework-webpath use <c>$basePath</c>.
+
+
+---Use kata with lighthttpd
+
+config:
+<cc>$HTTP["host"] == "locakata" {
+    # we only need index.php here.
+    index-file.names = ( "index.php" )
+    # for clean urls
+    magnet.attract-physical-path-to = ( "/etc/lighttpd/locakata.lua" )
+}</cc>
+
+locakata.lua:
+<cc>attr = lighty.stat(lighty.env["physical.path"])
+if (not attr) then
+    local request_uri = lighty.env["uri.path"]:sub(2);
+    if request_uri then
+        lighty.env["uri.path"] = "/index.php"
+        lighty.env["physical.rel-path"] = lighty.env["uri.path"]
+        local uriquery = lighty.env["uri.query"] or ""
+        lighty.env["uri.query"] = "kata=" .. request_uri .. (uriquery ~= "" and "&" or "") .. uriquery
+        lighty.env["physical.path"] = lighty.env["physical.doc-root"] .. lighty.env["physical.rel-path"]
+    end
+end</cc>
+
+thx: martin contento
+
+
+---Add autocompletion for models and components
+Works for Netbeans and some versions of Eclipse.
+
+<php>/**
+ * @property User $User
+ */
+class PostsController extends AppController {
+      public $uses = Array(
+                 'User'
+             );
+             
+      function foo() {
+          $this->User->bar();
+      }
+             
+}</php>
+
+---Use one css-file für LTR/RTL layouts|ccss
+
+You can mix statements for LTR and RTL layouts to greatly simplify the amount
+of work you have to do. Simply prepend each selector with the statements
+seen below:
+
+<cc>/*rtl*/ #contentColumn .dlGamesThumb img { direction:rtl; }
+#contentColumn .dlGamesThumb img { both:1; }
+/*ltr*/ #contentColumn .dlGamesThumb img { direction:ltr; }
+
+#contentColumn .forumWrapper .commonBtn {
+	/*for both ltr + rtl*/
+}
+/*ltr*/ #contentColumn .forumWrapper .commonBtn {
+	/*for ltr*/
+}
+/*rtl*/ #contentColumn .forumWrapper .commonBtn {
+	/*for rtl*/
+}</cc>
+
+All you have to do is name your file <c>.c.css</c> instead of </c>.css</c>
+and use the <c>$html->cssTag()</c> helper to include the file. kata will
+do the rest, and cache the parsed file (if you tell kata so). Please note
+that you have supply <c>$html->cssTag()</c> with a caching-flag and a rtl-flag:
+<php>echo $html->cssTag(array(
+    'all.c.css',
+    'stuff.css',
+),$cacheAndMinify,$isRtl);</php>
+
+-----Database access: Models|model
+A model is a class (thats a descendant of model) that is used to access/store
+data. Models are automatically singletons.
+
+Configure the database to use by modifying <c>config/database.php</c>, using
+<c>config/database.php.default</c> as a template:
+<php>class DATABASE_CONFIG {
+  public static $default = array(
+	'driver' => 'mysql',
+	'host' => 'localhost',
+	'login' => 'username',
+	'password' => 'password',
+	'database' => 'www13',
+	'prefix' => '',
+	'encoding' => ''
+  );
+}</php>
+
+Create the file <c>models/users.php</c> with the following content:
+<php>class Users extends AppModel {
+
+	/* returns: array(
+	 *    [0] => array('user_id'=>4, 'group_id'=>1, 'username'=>'Alice'),
+	 *    [1] => array('user_id'=>5, 'group_id'=>1, 'username'=>'Bob'),
+	 *    [2] => array('user_id'=>6, 'group_id'=>2, 'username'=>'Eve')
+	 * );
+	 */
+	function getAllUsers() {
+		return $this->query('SELECT * FROM users');
+	}
+
+	/* returns: array(
+	 *    [4] => array('user_id'=>4, 'group_id'=>1, 'username'=>'Alice'),
+	 *    [5] => array('user_id'=>5, 'group_id'=>1, 'username'=>'Bob'),
+	 *    [6] => array('user_id'=>6, 'group_id'=>2, 'username'=>'Eve')
+	 * );
+	 */
+	function getAllUsersById() {
+		return $this->query('SELECT * FROM users','user_id');
+	}
+
+	/* returns: array(
+	 *    [1] => array(
+	 *       [4] => array('user_id'=>4, 'group_id'=>1, 'username'=>'Alice'),
+	 *       [5] => array('user_id'=>5, 'group_id'=>1, 'username'=>'Bob'),
+	 *    ),
+	 *    [2] => array(
+	 *       [6] => array('user_id'=>6, 'group_id'=>2, 'username'=>'Eve')
+	 *    ),
+	 * );
+	 */
+	function getAllUsersByGroupAndId() {
+		return $this->query('SELECT * FROM users',array('group_id','user_id'));
+	}
+}</php>
+
+To use the model inside your controller do:
+<php>class UserController extends AppController {
+
+	public $uses = array('User'); //load user-model
+
+	public function listusers() {
+		$this->set('allUsers', $this->User->getAllUsers());
+	}
+
+}</php>
+
+If you have only read-access data it may be useful to do something like this:
+<php>class Items { //note: we dont extend AppModel!
+
+	protected $itemnames = array(
+		1 => 'Tool',
+		2 => 'Weapon',
+		3 => 'Junk'
+	);
+
+	function getItemnameById($id) {
+		if (isset($this->itemnames[$id]]) {
+			return $this->itemnames[$id];
+		}
+		return false;
+	}
+}</php>
+
+if <c>DEBUG</c> is <c>>=2</c> you will see all queries, results, and how
+long each query took.
+
+---...use a model inside a model
+Example:
+<php>class User extends Model {
+
+	function isAllowedToLogin($userid,$password) {
+		$userblob = $this->readUserBlob($userid);
+		if ($userblob['password'] != $password) {
+			return false;
+		}
+
+		$accessModel = getModel('Access');
+		return $accessModel->hasAccess($userid,'LOGIN');
+	}
+
+}</php>
+
+Models are automatically singletons, you always get the same one.
+
+---...use active record model functions|activerecord
+Active record allows simplified access independent of the currently used
+RDBMS. You dont have to write SQL in most cases. It is by no means
+meant do encapsulate database-access, it just offers convenience functions
+to simplify database-access.
+
+For the following examples we show you what to write and what
+the resuling SQL-code kata generates is. We assume a simple table with
+the following layout:
+
+<cc>CREATE TABLE `test` (
+  `id` int(11) NOT NULL auto_increment,
+  `f1` int(11) NOT NULL,
+  `f2` int(11) NOT NULL,
+  `f3` int(11) NOT NULL,
+  `f4` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+);</cc>
+
+We also assume your Model knows what table to access, because you supplied
+a tablename:
+<php>class Test extends Model {
+
+	public $useTable = 'test';</php>
+
+
+---Insert data into a table
+<php>$this->create(array(
+	'id'=>1,
+	'f1'=>10,
+	'f2'=>11,
+	'f3'=>12,
+	'f4'=>13
+));</php>
+results in:
+<rr>INSERT INTO `test` (`id`,`f1`,`f2`,`f3`,`f4`) VALUES ('1','10','11','12','13')</rr>
+
+Insert data, primary key is autoincrement:
+<php>$this->create(array( //primary key missing, but its autoincrement
+	'f1'=>20,
+	'f2'=>21,
+	'f3'=>22,
+	'f4'=>23
+));</php>
+results in:
+<rr>INSERT INTO `test` (`f1`,`f2`,`f3`,`f4`) VALUES ('20','21','22','23')</rr>
+
+kata will return the id of the inserted record.
+
+---MassInsert data into a table
+<php>$this->bulkcreate(array(
+	array(
+		'id'=>1,
+		'f1'=>10,
+		'f2'=>11,
+		'f3'=>12,
+		'f4'=>13
+	),
+	array(
+		'id'=>2,
+		'f1'=>12,
+		'f2'=>13,
+		'f3'=>14,
+		'f4'=>15
+	),
+);</php>
+results in:
+<rr>INSERT INTO `test` (`id`,`f1`,`f2`,`f3`,`f4`) VALUES ('1','10','11','12','13'),('2','12','13','14','15')</rr>
+
+Creates giant INSERTs in pairs of 100 lines (to satisfy mysql max_packet_size)
+until all data has been inserted into the database.
+
+---Replace data
+Like insert, but deleted any record with the same primary key(s)). Warning:
+If the supplied keys match for multiple rows, all matching rows are deleted
+(mysql behaviour).
+
+<php>$this->replace(array(
+	'id'=>1,
+	'f1'=>1,
+	'f2'=>1,
+	'f3'=>1,
+	'f4'=>1
+));</php>
+results in:
+<rr>REPLACE INTO `test` SET `id`='1',`f1`='1',`f2`='1',`f3`='1',`f4`='1'</rr>
+
+kata will return how many records have changed.
+
+---Update</b> data
+<php>$this->update(1, array(
+	'f1'=>3,
+	'f2'=>33,
+	'f3'=>33,
+	'f4'=>33
+));</php>
+results in:
+<rr>UPDATE `test` SET `f1`='3',`f2`='33',`f3`='33',`f4`='33' WHERE `id`='1'</rr>
+
+kata will return how many records have changed.
+
+---Remove data
+<php>$this->delete(5);
+//does the same:
+$this->delete(array('id'=>5));</php>
+results in:
+<rr>DELETE FROM `test` WHERE `id`='5'</rr>
+If you have multiple indexes you would use:
+<php>$this->delete(array('id1'=>6, 'id2'=>2));</php>
+
+kata will return how many records have been deleted.
+
+---Read rows
+<php>var_dump( $this->read(1) );
+//does the same:
+var_dump( $this->read(array('id'=>1)) );</php>
+results in:
+<rr>SELECT * FROM `test` WHERE `id`='1'</rr>
+which returns:
+<rr>array
+  0 =>
+    array
+      'id' => string '1' (length=1)
+      'f1' => string '4' (length=1)
+      'f2' => string '44' (length=2)
+      'f3' => string '44' (length=2)
+      'f4' => string '44' (length=2)</rr>
+
+Read data with prefiltered result-array:
+<php>var_dump( $this->read(1,array('f1')) );</php>
+results in:
+<rr>SELECT f1 FROM `test` WHERE `id`='1'</rr>
+which returns:
+<rr>array
+  0 =>
+    array
+      'f1' => string '4' (length=1)</rr>
+
+---Complex read
+<php>var_dump($this->find('all',array(
+	'conditions'=>array(
+		'f1'=>1
+	),
+)));</php>
+results in:
+<rr>SELECT * FROM `test` WHERE `f1`='1'</rr>
+
+---Complex read with conditions (WHERE clause)
+<b>Conditions</b> can also contain <,>,IN,LIKE and so on:
+<php>var_dump($this->find('all',array(
+	'conditions'=>array(
+		'f1 >'=>1
+	),
+)));</php>
+results in:
+<rr>SELECT * FROM `test` WHERE `f1` > '1'</rr>
+
+
+<php>var_dump($this->find('all',array(
+	'conditions'=>array(
+		'f1 in'=>array(1,2),
+	),
+)));</php>
+results in:
+<rr>SELECT * FROM `test` WHERE f1 IN ('1','2')</rr>
+
+---Complex read with complex conditions
+Complicated <b>complex read</b> example:
+<php>var_dump($this->find('all',array(
+	'conditions'=>array(
+		'f1 >'=>1,
+		array(
+			'f1'=>2,
+			'or',
+			'f2'=>3,
+			array(
+				'f3 <='=>4,
+				'f3 like'=>'%foo'
+			)
+		)
+	),
+)));</php>
+results in:
+<rr>SELECT * FROM `test` WHERE `f1` > '1' AND  ( `f1`='2' OR `f2`='3' OR  ( `f3` <= '4' AND `f3` like '%foo' )  )</rr>
+
+---Complex read with automatic pagination
+even for RDBMS that dont support 'LIMIT':
+<php>var_dump($this->find('all',array(
+	'page'=>1, //which page to return
+	'limit'=>1, //how many rows per page
+)));</php>
+results in:
+<rr>SELECT * FROM `test` LIMIT 0,1</rr>
+
+---Filter read results
+We can tell kata to <b>filter the result</b> (modus 'list'):
+<php>$data = $this->find('list',array(
+	'listby'=>array(
+		'id', // keys of the returned array are
+			  // filled with the value of the id-field
+	)
+));</php>
+results in:
+<rr>SELECT * FROM `test`</rr>
+which returns:
+<rr>Array
+(
+    [1] => Array
+        (
+            [id] => 1
+            [f1] => 4
+            [f2] => 44
+            [f3] => 44
+            [f4] => 44
+        )
+
+    [2] => Array
+        (
+            [id] => 2
+            [f1] => 20
+            [f2] => 21
+            [f3] => 22
+            [f4] => 23
+        )
+...</rr>
+
+
+You can also do this multi-dimensionally:
+<php>$data = $this->find('list',array(
+	'listby'=>array(
+		'id','f1' // 2-dimensional array which has its keys filled
+				  // with the value of id and f1
+	)
+));</php>
+results in:
+<rr>SELECT * FROM `test`</rr>
+which returns:
+<rr>Array
+(
+    [1] => Array
+        (
+            [4] => Array
+                (
+                    [id] => 1
+                    [f1] => 4
+                    [f2] => 44
+                    [f3] => 44
+                    [f4] => 44
+                )
+
+        )
+
+    [2] => Array
+        (
+            [20] => Array
+                (
+                    [id] => 2
+                    [f1] => 20
+                    [f2] => 21
+                    [f3] => 22
+                    [f4] => 23
+                )
+
+        )
+...</rr>
+
+---...use a different table for each active record use
+
+The last parameter of all active record functions is always the
+tablename to use. If ommitted <c>useTable</c> is used. If <c>useTable</c> is unset
+the modelname is used as tablename.
+
+Reference:
+
+<rr>
+array read    (mixed $id, [array $fields = null], [string $tableName = null])
+int   update  (mixed $id, array $fields, [string $tableName = null])
+int   replace (array $fields, [ $tableName = null], mixed $id, string $table)
+void  create  (array $fields, [string $tableName = null])
+void  delete  (mixed $id, [string $tableName = null])
+void  find    (string $method , [array $params = array ()], [string $tableName = null])
+</rr>
+
+---...use different databases
+You have a second database-connection inside your <c>config/database.php</c>:
+<php>class DATABASE_CONFIG {
+  public static $default = array(
+	'driver' => 'mysql',
+	'host' => 'server1',
+	'login' => 'username',
+	'password' => 'password',
+	'database' => 'www13',
+  );
+  public static $second = array(
+	'driver' => 'mysql',
+	'host' => 'server2',
+	'login' => 'username',
+	'password' => 'password',
+	'database' => 'www13',
+  );
+}</php>
+To use it with a second Model you just have to add:
+<php>class User extends AppModel {
+
+	public $connection = 'second';</php>
+You can also swap the connection inside your model dynamically,
+even if you swap (for example) between mysql and mssql:
+<php>$this->changeConnection('second');
+//do stuff
+$this->changeConnection('default');
+//do stuff again
+$this->changeConnection('second'); //no reconnect needed because its cached
+</php>
+
+---...change database config dynamically
+Example for <c>config/database.php</c>:
+<php>class DATABASE_CONFIG {
+  public static $default = array(
+	'driver' => 'mysql',
+	'host' => 'server1',
+	'login' => 'username',
+	'password' => 'password',
+	'database' => 'www13',
+  );
+}
+
+DATABASE_CONFIG::$logdb['host'] = CURRENT_LOG_HOST;
+DATABASE_CONFIG::$logdb['database'] = CURRENT_LOG_DATABASE;
+</php>
+
+Gotcha: Connections are cached, once you are connected (by executing
+a query on that connection) a config-change will not influence the
+connection.
+
+-----What is ...?
+Short overview of kata terminology.
+
+---what is a helper|helper
+A helper is a class (thats a descendant class of <c>Helper</c>) that is 
+accessible inside a view. They have access to anything inside a view.
+Helpers are automatically singletons.
+
+Let's create and use one: Drop this into <c>views/helpers/beans.php</c>:
+<php>Class BeansHelper extends Helper {
+
+	protected $gas=0;
+
+	function eat() {
+		$this->gas++;
+		if ($gas<3) {
+			return 'You have eaten a bean';
+		}
+		return 'FFFFFRTZZZ!';
+	}
+
+}</php>
+
+To make this helper accessible inside a view add this line to your controller
+(if you only use it inside one controller) or your AppController (if you use
+it everywhere):
+<php>class SomeController extends AppController {
+
+	$helpers = array('beans');
+
+}</php>
+
+Now you can do the following inside your view/layout/element:
+<php>echo $beans->eat();</php>
+
+The helper-baseclass has several templates for several tags
+included. If you want to add your own or want to override
+the default ones create the following file in <c>config/tags.php</c>:
+<php>
+<?
+    $tags['imginput'] = '<input type="image" name="%s" %s/>';
+?>
+</php>
+You can access the tag-template inside a helper (or inside a view that is
+using the helper) via <c>$this->tags['imginput']</c>
+
+All helpers have base functionality, because they extend the <c>Helper</c>-class:
+<table>
+<ltd>url()<mtd>Constructs an absolute url for given string.<br>Example: <c>->url('main/index')</c> returns <c>http://example.com/mypath/main/index</c><br><c>->url('img/kata.gif')</c> returns <c>http://example.com/mypath/kata.gif</c> </ltd>
+<ltd>urlRel()<mtd>like url(), but relative to the kata-webroot, even if your view has many <c>/</c>-like parameters <br>Example: <c>->url('img/kata.gif)</c> returns <c>../../../img/kata.gif</c> </ltd>
+<ltd>parseAttributes()<mtd>turns an array of attributes into a suitable string representation<br>Example: <c>->parseAttributes(array('alt'=>'bumm','disabled'=>1))</c> returns <c>alt="bumm" disabled="1"</c> </ltd>
+</table>
+
+---what is a component|component
+A component is a lightweight class to support a controller. It has
+access to all methods and properties of a controller.
+
+Components are automatically singletons.
+
+Let's create and use one: Drop this into <c>controllers/components/access.php</c>:
+<php>class AccessComponent {
+
+	// always needed:
+	protected $controller = null;
+	
+	// also always needed:
+	public function startup($controller) {
+		$this->controller = $controller;
+	}
+
+	// your own method:
+	public function check() {
+		$user = is(env('PHP_AUTH_USER'),'');
+		$password = is(env('PHP_AUTH_PW'),'');
+	
+		if (empty($user) || empty($env) || 
+			($user<>'admin') || ($user<>'password')) {
+    			header('WWW-Authenticate: Basic realm="uh."');
+    			header('HTTP/1.0 401 Unauthorized');
+    			$this->controller->render('auth_needed');
+		    	die;
+		}
+	}
+
+}</php>
+
+To make this helper accessible inside a controller add this line to your 
+controller (if you only use it inside one controller) or your AppController 
+(if you use it everywhere):
+<php>class SomeController extends AppController {
+
+	$components = array('Access');
+
+}</php>
+
+Now you can do the following inside your controllers:
+<php>$this->Access->check();</php>
+
+---what is a utility|utility
+A utility is a lightweight class (without dependencies) that can be used
+anywhere. It can be loaded anytime, anywhere, as singleton using <c>$nameUtil = getUtil('Name')</c>.
+
+Let's build and use one: Put this into <c>utils/bbcodeutility.php</c>:
+<php>class BbcodeUtility {
+
+	function parse($bbcode) {
+		return str_replace(
+			array(
+				'[b]','[/b]'
+			),array(
+				'<span style="font-weight:bold">','</span>'
+			),$bbcode);	
+	}
+
+}</php>
+
+To use it do the following:
+<php>	$bbcodeUtil = getUtil('Bbcode');
+	echo $bbcodeUtil->parse('[b]wow[/b]');</php>
+
+---what is an element|element
+An element is a simplified view that you can use inside any view.
+Let's build and use one: 
+put this into <c>views/elements/legend.thtml</c>:
+<php>
+	I'm a element. i have access to helpers:
+	<?=$html->url('help/')?>
+	I also have access to all view variables you set() inside your
+	controller.
+	I can be supplied with custom variables: <?=$test?>
+</php>
+
+To use it do the following inside your view:
+<php>echo $this->renderElement('legend',array('test'=>123));</php>
+
+A helper has access to all variables of the view it's rendered in.
+
+---what is the registry|registry
+The registry can be used to store application wide configuration-parameters
+that are automatically written to disk.
+
+Example:
+<php>  kataReg::set('foo','bar');
+  kataReg::set('test',false);
+  kataReg::set('kata.session_start',false);
+  kataReg::set('kata.special',true);
+
+  var_dump(kataReg::get('foo','notbar'));
+  var_dump(kataReg::get('foox','notbar'));
+  var_dump(kataReg::get('test'));
+  var_dump(kataReg::get('kata','mist'));
+  var_dump(kataReg::get('kata.special'));</php>
+  
+Results in:
+<rr>(string) 'bar'
+(string) 'notbar'
+(bool) false
+array( 
+	'session_start'=>false, 
+	'special'=>true 
+)
+(bool) true</rr>
+
+---What is compile.php?
+
+The kata "compiler" joins all needed files that contain code into a single
+file and replaces <r>webroot/index.php</r>. If you use a php opcode cache
+and have a very high TTL (days) you can achieve heavy performance
+improvements.
+
+---What is service.php?
+
+<r>service.php</r> does some periodicly needed maintenance stuff, like
+cleaning up sessions, locks and so on. It can also rotate logs in <r>KATATMP</r>,
+update locafiles etc. Call it once per hour for high traffic sites.
+
+It won't clean up sessions that have not expired yet, unlinke the php5-cronjob
+does.
+
+---How to extend a helper, component, utility
+
+Simple. Just give your own class the appropriate name (<r>FooHelper</r>) and
+extend the baseclass, the autoloader will automatically load the old class.
+
+<c>class FooHelper extends HtmlHelper {
+
+   function something() {
+   }
+
+}</c>
+
+-----Predefined Components
+
+Components are helper-classes for controllers. See <link>#component</link>
+
+To use them add the following
+line to your <c>controllers/app_controller.php</c>:
+<php>class AppController extends Controller {
+        public $components = array('Locale');
+
+}</php>
+
+Now you can simply use <c>$foo = $this->Locale->getString('test1');</c> inside
+your controller to access the component.
+
+---Sessions|session
+Simply add <c>public $components = array('Session');</c> to your AppController.
+
+After this you can manipulate session-data in the following way:
+<php>$var = $this->Session->read('myvariable'); //read variables from the session
+$this->Session->write('user',$userArray); //write something into the session
+$this->Session->delete('user'); //user logout
+$this->Session->destroy(); //end session here and now
+$this->Session->getIp(); //get the users ip</php>
+
+The Session-component alters its behaviour depending on certain settings in <c>config/core.php</c>:
+<table><ltd><c>SESSION_TIMEOUT</c><mtd> sets after how many seconds the session expires.</ltd>
+<ltd><c>SESSION_COOKIE</c><mtd> sets the name of the cookie to store the session id in.</ltd>
+<ltd><c>SESSION_STRING</c><mtd> is used if you have multiple kata-installations running on the same server. If you set this to the same value you can access the same sessions throughout different installations.</ltd></table>
+<ltd><c>SESSION_UNSAFE</c><mtd> dont invalidate the session if the user-ip changes</ltd></table>
+<ltd><c>SESSION_BASEDOMAIN</c><mtd> sets the cookie for the domain-part only, so all subdomains can also use it</ltd></table>
+
+<c>SESSION_STORAGE</c> sets how session data is stored:
+<table><ltd><c>'FILE'</c><mtd> uses normal php filesystem based sessions (the usual <c>session_start()</c> stuff)</ltd>
+<ltd><c>'CLIENT'</c><mtd> uses an encrypted cookie in the clients browser. Keep in mind that this (big) cookie is sent to the server on every request!</ltd>
+<ltd><c>'MEMCACHED'</c><mtd> uses memcache to store  sessions. you have to configure <c>MEMCACHED_SERVERS</c> inside <c>config/core.php</c> in this case.</ltd></table>
+
+WARNING: If you want that if a user logged out he cannot use the back button
+anymore you have to tell the browser to never cache any pages and to revalidate
+them on every request. This has the big drawback that htmlpages are _always_ refetched.
+You can do this by:
+
+<php>class AppController extends Controller {
+
+	function beforeFilter() {
+		header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+		header('Expires: Thu, 17 Jan 1974 11:00:00 GMT');
+		header('Pragma: no-cache');
+        }
+
+}</php>
+
+---Localization (l10n)|locale
+Simply add <c>public $components = array('Locale');</c> to your AppController.
+
+Example: you have defined <c>LANGUAGE</c> as <c>de</c> in your <c>config/core.php</c>. You have to
+create <c>controllers/lang/de.php</c> that contains the strings you want
+in the following format:
+<php>$messages = array(
+	'GAMENAME' => 'Turbo Challenge',
+	'email title' => 'We welcome %name% to %group%'
+);</php>
+
+Now you can access this string by
+<php>$gamename = __('GAMENAME');</php>
+
+If you have parameters  you want to inject into the locale-strings simply
+use
+<php>echo __('email title',
+   array(
+	  'name' => $username,
+	  'group' => $groupname
+   )
+);</php>
+
+Methods:
+<table>
+<ltd><c>$this->Locale->doesLanguageExist('de')</c><mtd> checks if the supplied language exists</ltd>
+<ltd><c>$this->Locale->setCode('de')<br>$this->Locale->getCode()</c><mtd> read/change the current used language. The currently used language is always avaiable as <c>$Lang_Code</c> inside your views.</ltd>
+<ltd><c>$this->Locale->getMessages()</c><mtd> kata returns an array with all defined messages.</ltd>
+</table>
+
+Locale can guess for you which language should be used:
+If you set <c>LANGUAGE</c> to <c>VHOST</c> inside your <c>config/core.php</c>
+kata will guess the language according to the currently used domainname:
+<c>fr.example.com</c> and <c>example.fr</c> will with automatically set
+the language to <c>fr</c>, but only if <c>fr.php</c> exists.
+
+If you set <c>LANGUAGE</c> to <c>BROWSER</c> inside your <c>config/core.php</c>
+kata will use the language with the highest priority set in the users
+browser configuration.
+
+If you want to check if a key exists and has content, test if
+<c>__('keyname',array(),true)</c> returns a string and not null.
+It will never throw an error, except when language is unset.
+
+If you want all content (including parameters to <c>__()</c>) to be html-
+encoded set <c>LANGUAGE_ESCAPE</c> to <c>true</c> inside <c>config/core.php</c>.
+The encoding is done twice, so pre-encoded html-entities survive.
+
+If you use old-style printf-formatted messages (like <c>'INTRO' => 'Welcome to %s'</c>)
+you only have to set <c>LANGUAGE_PRINTF</c> to <c>true</c> inside <c>config/core.php</c>.
+
+If you set <c>LANGUAGE_FALLBACK</c> to true, the locale-component tries to find 
+empty/non-existing string in the english language file. After that standard behaviour
+follows, so if the key is still empty or non-existant kata will act accordingly. 
+
+If you set <c>LANGUAGE_WARNEMPTY</c> to false, kata will not output <r>---EMPTY(keyname)---</r>
+if the key is empty. Default is true. If the key is non-existing kata will throw
+an exception or return <r>---UNSET(keyname)---</r>, see below.
+
+<b>Possible Gotchas:</b>
+The behaviour of Locale differs depending on the <c>DEBUG</c>-level inside your <c>config/core.php</c>:
+- If <c>DEBUG=0</c>: returns <r>---UNSET(keyname)---</r>
+- if <c>DEBUG>0</c>: Throws an Exception
+
+If you dont want this behaviour simply use $this->Locale->safeGetString() as
+this method returns <r>NULL</r> if the key is not found.
+
+-----Predefined Helpers
+
+Helpers are helper-classes for views. See <link>#helper</link>
+
+To use them add the following
+line to your <c>controllers/app_controller.php</c>:
+<php>class AppController extends Controller {
+        public $helpers = array('Js');
+
+}</php>
+
+Now you can access the helpers functions inside your view/layout/element via
+<c>echo $html->url('main/index');</c>.
+
+---html - url-generation etc|html
+
+The html-helper is for your basic html needs. It is always loaded, you dont
+have to add anything to your controller.
+
+<table>
+<ltd>cssTag()<mtd>generates [link] html-tags for any number of files. can optionally join+compress files.<br>Example: <c>$html->cssTag(array('css/foo.css','css/bar.css'))</c> returns <r>[link rel="stylesheet type="text/css" ...></r><br>If you want your css to be compressed just add <c>true</c> as second parameter, kata does the rest. </ltd>
+<ltd>escape()<mtd>escapes JAVASCRIPT-strings so they can be used for string-declarations. If you want to escape for HTML (to defend against XSS and so on) use <c>h()</c></ltd>
+<ltd>image()<mtd>generates an image tag<br>Example: <c>$html->image('img/kata.gif',array('title'=>'Picture!'))</c> returns <r><img src="http://example.com/img/kata.gif" title="Picture!" /></r> </ltd>
+<ltd>javascriptTag()<mtd>like <c>$html->cssTag()</c>, but for javascript. Can also join+compress javascript-files if second parameter is <c>true</c> </ltd>
+<ltd>selectTag()<mtd>generates a select-tag.<br>Example:<c>$html->selectTag('inputname',$optionsArrayAsKeyValue,$keyThatIsDefaultSelected)</c><br>Full specs:<link>../phpdoc/kata/HtmlHelper.html#selectTag</link> </ltd>
+<ltd>tokenUrl()<mtd>appends the XSRF-token to any given url, use this instead of <c>$html->url()</c> for links or form-actions. See <link>#xsrf</link> </ltd>
+</table>
+
+---js - javascript handling|js
+
+The js-helper offers a neat trick to add snipptes of javascript-code to a buffer,
+and have them returned inside the layout:
+Your views do:
+<php>$js->add("function handleStuff() {
+   alert('Boo!');
+}
+var foo=new Array();
+window.setTimeout('handleStuff()',100);");
+
+// add some php or html inbetween if you like
+
+$js->add("Ext.onReady('init();');");
+</php>
+
+In the head-section of your your layout do:
+<php><?=$js->get()?></php>
+or
+<php><?=$js->getCompressed()?></php>
+
+And you have your javascript that is cluttered all over the view nice and
+neat in one piece in the head-section of your html.
+
+---form - easy form handling|formhelper
+
+To check if a form was filled correctly put this into the action of
+your controller:
+<php>		$v = $this->validate('post',array(
+			'empty1'      => 'NOT_EMPTY',
+			'allowempty1' => 'ALLOW_EMPTY',
+			'cb1'         => 'BOOL',
+			'float1'      => 'FLOAT',
+			'int1'        => 'INT',
+			'uint1'       => 'UINT',
+			'ip1'         => 'ip',
+			'email1'      => 'EMAIL',
+			'sel1'        => 'ALLOW_MULTI',
+			'sel2'        => 'NOT_EMPTY',
+			'sel3'        => 'ALLOW_EMPTY',
+		));
+		
+		if ($v === true) {
+                    //success, do stuff and redirect
+		}
+</php>
+
+If one or more form-fields fail to validate an array is returned
+with each fieldname and validationrule that failed, like
+<r>array('empty1'=>'NOT_EMPTY')</r>. You dont have to check if
+any GET/POST variable is set, no warning will be generated if its missing.
+		
+This is an example for a form, put it into your view:
+
+<php>$arr = array(
+'b'=>'blue',
+'r'=>'red',
+'g'=>'green',
+'y'=>'yellow'
+);
+
+echo $form->post(),
+
+	 $form->error('empty1','must not be empty'),
+	 $form->input('empty1','',array('class'=>'myfancyclass')),
+	 '<br />',
+
+	 $form->error('allowempty1','can be empty'),
+	 $form->input('allowempty1','xxx'),
+	 '<br />',
+
+	 $form->error('cb1','should be bool'),
+	 $form->checkbox('cb1',true),
+	 '<br />',
+
+	 $form->error('float1','should be float'),
+	 $form->input('float1','abc',array('onchange'=>'checkFloat(this)')),
+	 '<br />',
+
+	 $form->error('int1','should be int'),
+	 $form->input('int1','abc'),
+	 '<br />',
+
+	 $form->error('uint1','should be uint'),
+	 $form->input('uint1','-123'),
+	 '<br />',
+
+	 $form->error('email1','should be email'),
+	 $form->input('email1','foo@example'),
+	 '<br />',
+
+	 $form->error('ip1','should be ip'),
+	 $form->input('ip1','1.2.3'),
+	 '<br />',
+
+	 $form->error('sel1','select1 multi'),
+	 $form->select('sel1',$arr,'b',array('multiple'=>true)),
+	 '<br />',
+
+	 $form->error('sel2','select2 not empty'),
+	 $form->select('sel2',$arr,null,array(),array(),true),
+	 '<br />',
+
+	 $form->error('sel3','select3 egal'),
+	 $form->select('sel3',$arr,null),
+	 '<br />',
+
+	 $form->submit('go'),
+	 $form->reset('reset'),
+	 $form->close();
+</php>
+As you can see nearly all tags support an array with html-attributes as
+the last parameter.
+
+You can also validate the formdata against a model. kata will automatically
+analyse the table and validate against it:
+<php>
+         $v = $this->validateModel('get','Trailers');
+         if ($v === true) {
+             //success, do stuff and redirect
+         }
+</php>
+
+For model-validation the view will look like this:
+<php>
+     echo $form->get(null,null,'Trailers'),
+
+	 $form->error('game_id','should be numeric'),
+	 $form->input('game_id',''),
+	 '<br />',
+
+	 $form->error('country','must not be empty'),
+	 $form->input('country',''),
+	 '<br />',
+
+	 $form->error('trailerpath','should be email'),
+	 $form->input('trailerpath','foo@example'),
+	 '<br />',
+
+	 $form->submit('go'),
+	 $form->reset('reset'),
+	 $form->close();
+</php>
+
+-----Predefined Utilities
+
+Universal helper-classes are accessible anywhere, via a global getter function.
+
+To use one simply do:
+<php>$ipUtil = getUtil('Ip');
+echo $ipUtil->getIp();</php>
+
+---cache - universal caching|cache
+
+The cache-utility automatically selects the best suitable caching-method
+for your system (see below for a list).
+
+<table>
+<ltd><c>->read('mykey')</c><mtd>returns whatever you wrote previously or <r>false</r> if entry is nonexisting or expired.</ltd>
+<ltd><c>->read('mykey', CacheUtility::CM_FILE)</c><mtd>returns whatever you wrote previously from the filesystem or <r>false</r> if entry is nonexisting or expired.</ltd>
+<ltd><c>->write('mykey',$anyDataYouWant')</c><mtd>Write data to cache. Data never expires</ltd>
+<ltd><c>->write('mykey',$anyDataYouWant',600)</c><mtd>Write data to cache. Data expires after 600 seconds</ltd>
+<ltd><c>->write('mykey',$anyDataYouWant',600, CacheUtility::CM_FILE)</c><mtd>Write data to cache. Data expires after 600 seconds. Use filesystem to cache.</ltd>
+<ltd><c>->write('mykey',false)</c><mtd>Removes entry from the cache</ltd>
+<ltd><c>->write('mykey',false,0,CacheUtility::CM_FILE)</c><mtd>Removes entry from the filesystem-cache</ltd>
+<ltd><c>->add('mykey',$anyData')</c><mtd>Like write, but does not write entry and returns <r>false</r> if entry already exists + is not expired. Otherwise <c>true</c> is returned</ltd>
+</table>
+
+These constants tell the utility what cache-method to use, with fallback in
+ascending order if the cache-methode you gave kata is not available.
+<table>
+<ltd><c>CM_MEMCACHE</c><mtd>memcached. Remember to set the <c>MEMCACHED_SERVERS</c> define in <c>config/core.php</c></ltd>
+<ltd><c>CM_APC</c><mtd>Advanced PHP Cache</ltd>
+<ltd><c>CM_XCACHE</c><mtd>XCache</ltd>
+<ltd><c>CM_EACC</c><mtd>eAccelerator</ltd>
+<ltd><c>CM_FILE</c><mtd>filesystem (katas <c>tmp/cache/</c> directory)</ltd>
+</table>
+
+The cache-utility caches any read/writes internally, so multiple <c>read()</c>s
+on the same entry are very fast. You can disable this behaviour with
+<c>->disableRequestCache()</c> or re-enable with <c>->enableRequestCache()</c>.
+
+---http - GET/POST HTTP Requests|http
+
+Easy HTTP-Requests. <c>get()</c>,<c>post()</c> and <c>head()</c> return HTML
+or (bool) <c>false</c> if request failed (that includes 404 errors).
+
+<table>
+<ltd><c>->get('http://foo',array('user'=>1))</c><mtd>will do a GET-Request to <c>http://foo?user=1</c></ltd>
+<ltd><c>->head()</c><mtd>Same as <c>->get()<c>, but will only do a HEAD-Request, for example if you want to know how big a file is</ltd>
+<ltd><c>->post($url,$getParamArray,$postParamArray))</c><mtd>Will do a POST-Request to given site</ltd>
+<ltd><c>->getStatus()</c><mtd>Returns the HTTP-Status-Code from the last request, eg. (int)<c>404</c></ltd>
+<ltd><c>->getReturnHeaders()</c><mtd>Returns all Request-headers the webserver returned to us as array</ltd>
+</table>
+
+---ip - user-ip finder|ip
+<table>
+<ltd><c>->getIp()</c><mtd>Returns the users real ip, even if he is behind several proxies.</ltd>
+<ltd><c>->isUsingProxy()</c><mtd>Returns (bool) if the user is using a proxy.</ltd>
+</table>
+
+---image - image handling / resizing / uploading|image
+<table>
+<ltd><c>->read('foo.jpg')</c><mtd>Returns gdlib-Handle of the picture or (bool)<c>false</c> on error</ltd>
+<ltd><c>->write($img,IMAGETYPE_GIF','foo.gif')</c><mtd>Writes given picture-Handle to disk and returns boolean success. <c>IMAGETYPE_</c> are gdlib-defined constants</ltd>
+<ltd><c>->makeThumbnail($img,320,240)</c><mtd>Creates thumbnail without paying attention to aspect ratio</ltd>
+<ltd><c>->makeThumbnailProportional($img,320,240)</c><mtd>Like <c>makeThumbmail</c>, but pays attention to the pictures aspect ratio. This can possibly mean that left/right or top/bottom of the picture are cropped</ltd>
+<ltd><c>->getNudity($img)</c><mtd>Returns percentage how many pixels in the picture look like skin-color. Useful to automate pr0n-detection</ltd>
+<ltd><c>->simpleUploadError('file')</c><mtd>returns true if uploaded file is valid or one of the error-codes below. You have to supply the name of your file-input-tag. </ltd>
+<ltd><c>->isImageInvalid($filename,$maxWidth,$maxHeight)<br></c><mtd>Checks if given file is GIF,JPEG or PNG and conforms to given size. You can add 2 more parameters: <c>$minWidth</c> and <c>$minHeight</c> who default to <c>1</c>. Returns (bool)<c>false</c> if everything looks good, or one of the codes below. Useful to check freshly uploaded files.</ltd>
+</table>
+
+<c>isImageInvalid()</c> can return the following class-constants:
+<table>
+<ltd><c>IMGERR_TOOBIG</c><mtd>Image dimensions too large</ltd>
+<ltd><c>IMGERR_TOOSMALL</c><mtd>Image dimensions too small</ltd>
+<ltd><c>IMGERR_UNKNOWNFORMAT</c><mtd>Image is not PNG,JPEG or GIF</ltd>
+</table>
+
+<c>simpleUploadError()</c> can return the following class-constants:
+<table>
+<ltd><c>UPL_TOOBIG</c><mtd>File size too large</ltd>
+<ltd><c>UPL_INTERNAL</c><mtd>Internal error</ltd>
+<ltd><c>UPL_EXTENSION</c><mtd>Upload forbidden because of file extension</ltd>
+</table>
+
+---lock - server-wide process locking|lock
+
+Liteweight semaphore-alternative. Use to stop processes from executing
+code simultaneously.
+
+<table>
+<ltd><c>->lock('id',true)</c><mtd>halts other processes also doing <c>lock('id')</c> until we <c>unlock</c>, the process terminates or crashes. If last parameter is false we wait indefinetly. Returns true if lock was successfully obtained.</ltd>
+<ltd><c>->unlock('id')</c><mtd>Allow 1 other (possibly waiting) process to execute</ltd>
+<ltd><c>->setTimeout(60)</c><mtd>How many seconds to wait until we stop trying to obtain a lock</ltd>
+</table>
+
+---clusterlock - cluster-wide process locking|clusterlock
+
+Same as <c>LockUtility</c> but across any number of servers. Same API as LockUtility, see <link>#lock</link>
+
+---validate - parameter validation|validate
+
+<c>ValidateUtility</c> has a single function: <c>check($validateArray,$dataArray)</c>.
+Example:
+<php>if ($validUtil->check(array(
+    'user' => 'NOT_EMPTY',
+    'email' => 'EMAIL',
+    'ip' => 'IP'
+    ),array(
+        'user' => 'foobert',
+        'email' => 'foo@example.com',
+        '1.2.3.4'
+    ))===true) {
+       echo 'everything seems fine.';
+    }
+</php>
+
+If some values fail to validate an array in the form <r>Array('user' => 'NOT_EMPTY')</r> is returned.
+
+You can supply check with the following parameters:
+<table>
+<ltd><c>'NOT_EMPTY'</c><mtd>text must be supplied or one option selected</ltd>
+<ltd><c>'ALLOW_EMPTY'</c><mtd>text can be left empty or option unselected</ltd>
+<ltd><c>'ALLOW_MULTI'</c><mtd>allow multiple option selections, user must select at least 1</ltd>
+<ltd><c>'ALLOW_MULTI_EMPTY'</c><mtd>allow multiple option selections</ltd>
+<ltd><c>'BOOL'</c><mtd>checkboxes, must return 0 or 1 (prepend with hidden input with same name and value=0)<c></ltd>
+<ltd><c>'BOOL_LAZY'</c><mtd>checkboxes, only checks for 1<c></ltd>
+<ltd><c>'BOOL_TRUE'</c><mtd>checkbox that needs to be checked</ltd>
+<ltd><c>'FLOAT'</c><mtd>float numbers</ltd>
+<ltd><c>'UINT'</c><mtd>unsigned integers</ltd>
+<ltd><c>'NUMBER'</c><mtd>see UINT</ltd>
+<ltd><c>'INT'</c><mtd>signed integer</ltd>
+<ltd><c>'HEX'</c><mtd>0xHEX</ltd>
+<ltd><c>'EMAIL'</c><mtd>...</ltd>
+<ltd><c>'IP'</c><mtd>ipv4</ltd>
+<ltd><c>'URL'</c><mtd>...</ltd>
+<ltd><c>'YEAR'</c><mtd>4-year digit, range 1900-2099</ltd>
+<ltd><c>myVeryOwnfunction</c><mtd>Your own function in global namespace</ltd>
+<ltd><c>'/.someregex+/'</c><mtd>regex-string</ltd>
+</table>
+
+For backwards compability, work like above:<table>
+<ltd><c>'VALID_NOT_EMPTY'</c></ltd>
+<ltd><c>'VALID_NUMBER'</c></ltd>
+<ltd><c>'VALID_EMAIL'</c></ltd>
+<ltd><c>'VALID_YEAR'</c></ltd>
+<ltd><c>'VALID_IP'</c></ltd>
+</table>
+
