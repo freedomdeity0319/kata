@@ -1,0 +1,18 @@
+
+
+
+-doku
+exceptions vom model, wann
+helper-tags overwrite
+kataglob
+formhelper
+controller->addHelper
+controller->__construct macht bumm bei leerem array
+components->components machen, ohne endlose rekursion
+
+
+-mock
++core/database
+-htaccess existiert?
+-controllertest:61 - im dispatcher gucken ob classe vorhanden, sonst exception werfen
+
