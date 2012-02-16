@@ -8,6 +8,8 @@ What has changed in the trunk, what will be in the next version
 = Details =
 
 {{{
+- MongoModel
+- MongoVersionedModel, adds a versioning layer above mongodb
 - loadModel no longer does file_exists for speed reasons,
 - set iconv_settings to utf-8,
 - component now it's own class,
