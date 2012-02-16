@@ -8,6 +8,7 @@ What has changed in the trunk, what will be in the next version
 = Details =
 
 {{{
+- Fix for apache +=space problem
 - MongoModel
 - MongoVersionedModel, adds a versioning layer above mongodb
 - loadModel no longer does file_exists for speed reasons,
