@@ -98,8 +98,7 @@ class MongoModel {
         if (isset($this->config['prefix'])) {
             return $this->config['prefix'];
         }
-        else
-            return '';
+        return '';
     }
 
     /**
@@ -121,7 +120,7 @@ class MongoModel {
         if ($readOne) {
             $row = $col->findOne($id);
             if (isset($row['_id'])) {
-                $row[$this->useIndex] = $row['_id'];
+                $row[$this->useIndex] = (string)$row['_id'];
                 unset($row['_id']);
             }
             return $row;
@@ -131,10 +130,11 @@ class MongoModel {
 
         $rows = $col->find($id);
         while ($row = $rows->getNext()) {
-            $row[$this->useIndex] = $row['_id'];
+            $id = (string) $row['_id'];
+            $row[$this->useIndex] = $id;
             unset($row['_id']);
 
-            $return[$row['id']] = $row;
+            $return[$id] = $row;
         }
 
         return $return;
@@ -152,12 +152,12 @@ class MongoModel {
      */
     function create($fields = null, $tableName = null) {
         if (isset($fields[$this->useIndex])) {
-            $fields['_id'] = $fields[$this->useIndex];
+            $fields['_id'] = (string)$fields[$this->useIndex];
             unset($fields[$this->useIndex]);
         }
 
         $col = $this->getCollection($tableName);
-        return $col->save($fields);
+        return $col->save($fields, array('safe' => true));
     }
 
     /**
@@ -186,12 +186,12 @@ class MongoModel {
             $id = array('_id' => $id);
         }
         if (isset($id[$this->useIndex])) {
-            $id['_id'] = $id[$this->useIndex];
+            $id['_id'] = (string)$id[$this->useIndex];
             unset($id[$this->useIndex]);
         }
 
         $col = $this->getCollection($tableName);
-        $col->remove($id, true);
+        $col->remove($id, array('safe' => true));
     }
 
     /**
@@ -218,17 +218,17 @@ class MongoModel {
         if (!is_array($fields)) {
             throw new InvalidArgumentException('fields must be an array');
         }
-        
+
         if (!is_array($id)) {
-            $id = array('_id' => new MongoID($id));
+            $id = array('_id' => $id);
         }
         if (isset($id[$this->useIndex])) {
-            $id['_id'] = new MongoID($id[$this->useIndex]);
+            $id['_id'] = (string)$id[$this->useIndex];
             unset($id[$this->useIndex]);
         }
 
         $col = $this->getCollection($tableName);
-        $col->update($id, $fields,array('upsert'=>true));
+        $col->update($id, $fields, array('upsert' => true));
     }
 
     /**
@@ -256,16 +256,15 @@ class MongoModel {
             throw new InvalidArgumentException('fields must be an array');
         }
 
-        $col = $this->getCollection();
-
         if (!is_array($id)) {
             $id = array('_id' => $id);
         }
         if (isset($id[$this->useIndex])) {
-            $id['_id'] = $id[$this->useIndex];
+            $id['_id'] = (string)$id[$this->useIndex];
             unset($id[$this->useIndex]);
         }
 
+        $col = $this->getCollection();
         $col->remove($id['_id']);
         $col->insert($fields);
     }
