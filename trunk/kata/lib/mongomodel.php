@@ -55,13 +55,32 @@ class MongoModel {
 
             $this->config = $dbvars[$this->connection];
 
-            $this->link = new Mongo($this->config['host']);
+            if (!empty($this->config['options'])) {
+                $opts = $this->config['options'];
+            } else {
+                $opts = array(
+                );
+            }
+            if (!empty($this->config['login'])) {
+                $opts['username'] = $this->config['login'];
+            }
+            if (!empty($this->config['password'])) {
+                $opts['password'] = $this->config['password'];
+            }
+            $opts['connect'] = true;
+			
+            $this->link = new Mongo('mongodb://'.$this->config['host'], $opts);
+
+			
+            if (!empty($this->config['slaveOkay'])) {
+                $this->setSlaveOkay(true);
+            }
         }
 
         $dbName = $this->config['database'];
         $db = $this->link->$dbName;
 
-        if (is_bool($altTableName) && (false === $altTableName)) {
+        if (false === $altTableName) {
             return;
         }
 
@@ -103,11 +122,15 @@ class MongoModel {
 
     /**
      *
-     * @param string $id
-     * @param string $tableName
+     * @param string $id	index to use
+     * @param string $tableName collection to use
+     * @param bool $readOne only read one
+     * @param array $fields fields to return
+     * @param int $limit limit to amount of entries
+     * @param array $sortby sort by fields
      * @return array
      */
-    function read($id = null, $tableName = null, $readOne = false) {
+    function read($id = null, $tableName = null, $readOne = false, $fields = array(), $limit = null, $sortby = null) {
         $col = $this->getCollection($tableName);
         if (is_null($id)) {
             $id = array();
@@ -118,9 +141,10 @@ class MongoModel {
         }
 
         if ($readOne) {
-            $row = $col->findOne($id);
+            $row = $col->findOne($id, $fields);
+			
             if (isset($row['_id'])) {
-                $row[$this->useIndex] = (string)$row['_id'];
+                $row[$this->useIndex] = (string) $row['_id'];
                 unset($row['_id']);
             }
             return $row;
@@ -128,7 +152,14 @@ class MongoModel {
 
         $return = array();
 
-        $rows = $col->find($id);
+        $rows = $col->find($id, $fields);
+		
+        if ($limit) {
+            $rows = $rows->limit($limit);
+        }
+        if ($sortby) {
+            $rows = $rows->sort($sortby);
+        }
         while ($row = $rows->getNext()) {
             $id = (string) $row['_id'];
             $row[$this->useIndex] = $id;
@@ -152,7 +183,7 @@ class MongoModel {
      */
     function create($fields = null, $tableName = null) {
         if (isset($fields[$this->useIndex])) {
-            $fields['_id'] = (string)$fields[$this->useIndex];
+            $fields['_id'] = (string) $fields[$this->useIndex];
             unset($fields[$this->useIndex]);
         }
 
@@ -186,7 +217,7 @@ class MongoModel {
             $id = array('_id' => $id);
         }
         if (isset($id[$this->useIndex])) {
-            $id['_id'] = (string)$id[$this->useIndex];
+            $id['_id'] = (string) $id[$this->useIndex];
             unset($id[$this->useIndex]);
         }
 
@@ -223,12 +254,23 @@ class MongoModel {
             $id = array('_id' => $id);
         }
         if (isset($id[$this->useIndex])) {
-            $id['_id'] = (string)$id[$this->useIndex];
+            $id['_id'] = (string) $id[$this->useIndex];
             unset($id[$this->useIndex]);
         }
 
         $col = $this->getCollection($tableName);
         $col->update($id, $fields, array('upsert' => true));
+    }
+
+    /**
+     *
+     * @param string $selector	fields to select entries to count
+     * @param string $tableName collection to use
+     * @return int number of matching entries
+     */
+    function count($selector, $tableName = null) {
+        $col = $this->getCollection($tableName);
+        return $col->count($selector);
     }
 
     /**
@@ -260,7 +302,7 @@ class MongoModel {
             $id = array('_id' => $id);
         }
         if (isset($id[$this->useIndex])) {
-            $id['_id'] = (string)$id[$this->useIndex];
+            $id['_id'] = (string) $id[$this->useIndex];
             unset($id[$this->useIndex]);
         }
 
@@ -269,4 +311,43 @@ class MongoModel {
         $col->insert($fields);
     }
 
+    /**
+     * drop complete collection
+     * 
+     * @param type $tableName name of the collection
+     * @return type success
+     */
+    function drop($tableName = null) {
+        $col = $this->getCollection($tableName);
+        return $this->link->dropCollection($col->__toString());
+    }
+
+    /**
+     *
+     * @param type $col
+     * @param type $index indexes to set
+     * @param type $opts optional options
+     * @return type 
+     */
+    function ensureIndex($col, $index, $opts = array()) {
+        if (empty($index)) {
+            throw new InvalidArgumentException('enshureIndex without indexes, seems odd');
+        }
+        if (!is_array($index)) {
+            throw new InvalidArgumentException('$index must be an array');
+        }
+        if (!is_array($opts)) {
+            throw new InvalidArgumentException('$opts must be an array');
+        }
+
+        $col = $this->getCollection($col);
+        return $col->ensureIndex($index, $opts);
+    }
+
+    function __destroy() {
+        if ($this->link) {
+            $this->link->close();
+        }
+    }
+    
 }
