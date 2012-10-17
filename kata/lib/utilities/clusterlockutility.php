@@ -85,13 +85,13 @@ class ClusterlockUtility {
 		$lockId = CACHE_IDENTIFIER . 'clusterLockUtilHandle' . urlencode($id);
 		$success = false;
 
-		while ((time() < $timeout) && $waitForTimeout) {
+		do {
 			if ($this->cacheUtil->add($lockId, 1, $this->timeout, $this->forceType)) {
 				$success = true;
 				break;
 			}
 			usleep(100000);
-		}
+		} while ((time() < $timeout) && $waitForTimeout);
 
 		if ($success) {
 			$this->locks[$id] = true;
