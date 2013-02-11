@@ -51,10 +51,9 @@ class dbo_pdo { //implements dbo_interface {
 	 * connect to the database
 	 */
 	function connect() {
-		kataMakeTmpPath('db');
+		$db = 'mysql:host=' . $this->dbconfig['host'] . ';dbname=' . $this->dbconfig['database'];
+		$this->link = new PDO($db, $this->dbconfig['login'], $this->dbconfig['password'], !empty($this->dbconfig['options'])?$this->dbconfig['options']:null);
 
-		$db = str_replace('KATATMP/',KATATMP.'db'.DS,$this->dbconfig['database']);
-		$this->link = new PDO($db,null,null,!empty($this->dbconfig['options'])?$this->dbconfig['options']:null);
 		if (!$this->link) {
 			throw new DatabaseConnectException("Could not open database " . $db);
 		}
@@ -243,6 +242,10 @@ class dbo_pdo { //implements dbo_interface {
 	 * @return string
 	 */
 	function escape($sql) {
+	    if (!$this->link) {
+            $this->connect();
+        }
+		
 		$sql = $this->link->quote($sql);
 		return substr($sql,1,-1);
 	}
